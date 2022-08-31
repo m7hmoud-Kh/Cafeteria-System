@@ -74,6 +74,7 @@ jquery -->
 <!-- custom -->
 <script src="{{asset('assets/admin/js/custom.js')}}"></script>
 
+@yield('script')
 </body>
 
 </html>

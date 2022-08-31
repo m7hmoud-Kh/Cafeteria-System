@@ -42,6 +42,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'user_image' => [
+            'driver' => 'local',
+            'root' => public_path('User_image/'),
+
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
