@@ -1,6 +1,8 @@
 <?php
+namespace App\Http\Controllers\admin;
 
-namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
+
 
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -14,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       $category=Category::all();
-       return view("category.index",["category"=>$category]);
+       $categories=Category::all();
+       return view("admin.category.index",["categories"=>$categories]);
     }
 
     /**
@@ -26,7 +28,7 @@ class CategoryController extends Controller
     public function create()
     {
         
-        return view("category.add");
+        return view("admin.category.add");
     }
 
     /**
@@ -41,8 +43,18 @@ class CategoryController extends Controller
             "name"=>"required"
             
         ]);
+        
         $inputdata = $request->all();
         $inputdata->file("image");
+        if($image){
+            $imagename=implode(".",
+                [date('YmdHis'),$inputdata["title"], $image->getClientOriginalExtension()]);
+            $dstentaiton_path ="categoryimage/";
+            $image->move($dstentaiton_path, $imagename);
+            $inputdata["image"] = $imagename;
+        }
+        Category::create($inputdata);
+        return to_route("admin.category.index");
     }
 
     /**
@@ -53,7 +65,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view("admin.category.show",["category"=>$category]);
     }
 
     /**
@@ -64,7 +76,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view("admin.category.edit",["category"=>$category]);
     }
 
     /**
@@ -76,7 +88,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $inputdata=$request->all();
+        $inputdata->file("image");
+        if ($request->file("image")) {
+            $this->deleteImage($category);
+            $new_image = $request->file("image"); 
+          
+            $imagename = implode(".",
+                [date('YmdHis'), $inputdata["title"], $new_image->getClientOriginalExtension()]);
+           
+            $dstentaiton_path = "categoryimage/";
+            $new_image->move($dstentaiton_path, $imagename);
+            $inputdata["image"] = $imagename;
+        }
+        $category->update($inputdata);
+        return to_route("admin.category.show", $category->id);
+
     }
 
     /**
@@ -87,6 +114,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return to_route("admin.category.index");
     }
 }

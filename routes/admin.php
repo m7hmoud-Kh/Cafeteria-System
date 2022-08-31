@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[DashboardController::class,'index']);
-Route::resource('/admin/category', CategoryController::class, 'index');
+Route::resource('category', CategoryController::class);
