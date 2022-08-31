@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[DashboardController::class,'index']);
+Route::resource('/admin/category', CategoryController::class, 'index');
