@@ -66,6 +66,14 @@
             <li>
                 <a href="{{route('user.index')}}"><i class="fa fa-user-o"></i><span class="right-nav-text">User</span> </a>
             </li>
+
+            <li>
+                <a href="{{route('tag.index')}}"><i class="fa fa-tag"></i><span class="right-nav-text">Tag</span> </a>
+            </li>
+
+            <li>
+                <a href="{{route('category.index')}}"><i class="fa fa-user-o"></i><span class="right-nav-text">Category</span> </a>
+            </li>
             <!-- menu item chat-->
             <li>
                 <a href="chat-page.html"><i class="ti-comments"></i><span class="right-nav-text">Chat

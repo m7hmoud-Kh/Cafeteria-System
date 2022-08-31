@@ -1,8 +1,15 @@
 <?php
 
 use App\Http\Controllers\admin\DashboardController;
+
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\TagController;
+
 use App\Http\Controllers\admin\UserController;
+
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +22,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+Route::resource('category', CategoryController::class);
+Route::resource('tag', TagController::class);
+
 Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
 Route::resource('user', UserController::class);
+
