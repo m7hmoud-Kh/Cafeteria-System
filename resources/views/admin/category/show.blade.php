@@ -12,7 +12,7 @@ create
         <div class="card-body">
             <p class="card-text">Title {{ $category->name }}</p>
            
-            <a href="{{route('category.index'}}" class="btn btn-primary">Back</a>
+            <a href="{{route('category.index')}}" class="btn btn-primary">Back</a>
         </div>
     </div>
 @endsection

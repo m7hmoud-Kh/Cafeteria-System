@@ -2,13 +2,17 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\trait\ImageTrait;
 
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    use ImageTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -40,21 +44,18 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name"=>"required"
+            "name"=>"required",
+            'image'=>'required'
             
         ]);
         
         $inputdata = $request->all();
-        $inputdata->file("image");
-        if($image){
-            $imagename=implode(".",
-                [date('YmdHis'),$inputdata["title"], $image->getClientOriginalExtension()]);
-            $dstentaiton_path ="categoryimage/";
-            $image->move($dstentaiton_path, $imagename);
-            $inputdata["image"] = $imagename;
-        }
+        $inputdata['image'] = $this->insertImage($request->name,$request->image,'Category_image/');
         Category::create($inputdata);
-        return to_route("admin.category.index");
+        return redirect()->route('category.index')->with([
+            'message' => 'Category Added Successfully',
+            'alert' => 'success'
+        ]);
     }
 
     /**
@@ -89,21 +90,16 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $inputdata=$request->all();
-        $inputdata->file("image");
         if ($request->file("image")) {
-            $this->deleteImage($category);
-            $new_image = $request->file("image"); 
-          
-            $imagename = implode(".",
-                [date('YmdHis'), $inputdata["title"], $new_image->getClientOriginalExtension()]);
-           
-            $dstentaiton_path = "categoryimage/";
-            $new_image->move($dstentaiton_path, $imagename);
-            $inputdata["image"] = $imagename;
+            Storage::disk('category_image')->delete($category->image);
+            $inputdata['image'] = $this->insertImage($request->name,$request->image,'Category_image/');
+
         }
         $category->update($inputdata);
-        return to_route("admin.category.show", $category->id);
-
+        return redirect()->route('category.index')->with([
+            'message' => 'Category Updated Successfully',
+            'alert' => 'success'
+        ]);
     }
 
     /**
@@ -114,7 +110,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        Storage::disk('category_image')->delete($category->image);
         $category->delete();
-        return to_route("admin.category.index");
+        return redirect()->route('category.index')->with([
+            'message' => 'Category deleted Successfully',
+            'alert' => 'success'
+        ]);
     }
 }

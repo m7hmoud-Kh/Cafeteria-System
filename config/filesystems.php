@@ -48,6 +48,12 @@ return [
 
         ],
 
+        'category_image' => [
+            'driver' => 'local',
+            'root' => public_path('Category_image/'),
+
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
