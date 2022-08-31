@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\admin\DashboardController;
+<<<<<<< HEAD
 use App\Http\Controllers\admin\CategoryController;
+=======
+use App\Http\Controllers\admin\UserController;
+>>>>>>> master
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 
@@ -17,5 +21,11 @@ use App\Models\Category;
 |
 */
 
-Route::get('/',[DashboardController::class,'index']);
+<<<<<<< HEAD
+
 Route::resource('category', CategoryController::class);
+=======
+Route::get('/',[DashboardController::class,'index'])->name('dashboard');
+
+Route::resource('user', UserController::class);
+>>>>>>> master
