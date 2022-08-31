@@ -80,7 +80,7 @@ class UserController extends Controller
         $data = $request->all();
         if($request->file('image')){
             Storage::disk('user_image')->delete($user->image);
-            $data['image'] = $this->insertImage($request->name,$request->image,'User_image/');
+            $data['image'] = $this->insertImage($request->email,$request->image,'User_image/');
         }
 
         $user->update($data);
