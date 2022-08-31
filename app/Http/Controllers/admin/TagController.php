@@ -51,7 +51,7 @@ class TagController extends Controller
         $inputdata = $request->all();
         Tag::create($inputdata);
         return redirect()->route('tag.index')->with([
-            'message' => 'Category Added Successfully',
+            'message' => 'tag Added Successfully',
             'alert' => 'success'
         ]);
 
@@ -91,7 +91,7 @@ class TagController extends Controller
         $inputdata=$request->all();
         $tag->update($inputdata);
         return redirect()->route('tag.index')->with([
-            'message' => 'Category Updated Successfully',
+            'message' => 'tag Updated Successfully',
             'alert' => 'success'
         ]);
     }
@@ -106,8 +106,8 @@ class TagController extends Controller
     {
         $tag->delete();
         return redirect()->route('tag.index')->with([
-            'message' => 'Category deleted Successfully',
-            'alert' => 'success'
+            'message' => 'tag deleted Successfully',
+            'alert' => 'danger'
         ]);
     }
 }

@@ -40,10 +40,11 @@ Edit
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
                   <input type="text" class="form-control" id="name" name="name" value ="{{$category->name}}">
-                
-                  <div class="mb-3">
-                <label for="image" class="form-label">Default file input example</label>
-                <input class="form-control" type="file" id="image" name="image"  value ="{{$category->image}}">
+                </div>
+                <div class="custom-file mb-10">
+                  <input type="file" name="image" class="custom-file-input" id="validatedCustomFile"
+                      >
+                  <label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
               </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
