@@ -1,23 +1,18 @@
 @include('admin.includes.header')
 <div class="wrapper">
 
-    <!--=================================
- preloader -->
+    <!--preloader -->
     @include('admin.includes.loader')
-    <!--=================================
- preloader -->
+    <!--preloader -->
 
 
-    <!--=================================
- header start-->
+    <!--header start-->
 
     @include('admin.includes.nav')
 
-    <!--=================================
- header End-->
+    <!--header End-->
 
-    <!--=================================
- Main content -->
+    <!--Main content -->
 
     <div class="container-fluid">
         <div class="row">
@@ -25,12 +20,10 @@
             @include('admin.includes.sidebar')
             <!-- Left Sidebar End-->
 
-            <!--=================================
-wrapper -->
+            <!--wrapper -->
             <div class="content-wrapper">
-                
+
                 @yield('content')
-                <!--=================================
-wrapper -->
+                <!--wrapper -->
 
                 @include('admin.includes.footer')
