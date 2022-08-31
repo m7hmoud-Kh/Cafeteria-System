@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\DashboardController;
 
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\TagController;
 
 use App\Http\Controllers\admin\UserController;
 
@@ -24,6 +25,7 @@ use App\Models\Category;
 
 
 Route::resource('category', CategoryController::class);
+Route::resource('tag', TagController::class);
 
 Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 

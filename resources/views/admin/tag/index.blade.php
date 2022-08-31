@@ -10,7 +10,7 @@ categories
 <div>
     @include('admin.includes.alert-message')
 </div>
-<h1> All categories </h1>
+<h1> All Tags </h1>
 <div class="col-xl-12 mb-30">
     <div class="card card-statistics h-100">
         <div class="card-body">
@@ -21,22 +21,21 @@ categories
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>image</th>
+                
                 <th>control</th>
                 
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $category)
+            @foreach ($tags as $tag)
                 <tr>
-                    <td> {{ $category->id }} </td>
-                    <td> {{ $category->name }} </td>
-                    <td><img src="{{ asset('Category_image/'.$category->image )}}" width="50" alt=""></td>
-
+                    <td> {{ $tag->id }} </td>
+                    <td> {{ $tag->name }} </td>
+                   
                     <td>
-                    <a href="{{route('category.edit',$category->id)}}" class="btn btn-warning "> Edit </a>
+                    <a href="{{route('tag.edit',$tag->id)}}" class="btn btn-warning "> Edit </a>
            
-                <form action="{{route('category.destroy',$category->id)}}" method="POST">
+                <form action="{{route('tag.destroy',$tag->id)}}" method="POST">
                     @csrf
                     @method("delete")
                     <input type="submit"  class="btn btn-danger" value="Delete">
@@ -44,15 +43,15 @@ categories
             </td>
                 </tr>
 
-               
+              
                
             @endforeach
             <tfoot>
                 <tr>
                     <th scope="">#</th>
                     <th scope="">Name</th>
-                    <th scope="">Image</th>
                     <th scope="">control</th>
+                
                 </tr>
             </tfoot>
         </tbody>
@@ -61,7 +60,7 @@ categories
 
 
 
-    <a href="{{route('category.create')}}" class="btn btn-primary">add new category</a>
+    <a href="{{route('tag.create')}}" class="btn btn-primary">add new category</a>
 
 
   
