@@ -14,9 +14,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories=Category::all();
+        $categories= Category::WhereHas('product' ,function($query) {
+            $query->where('status', true);
+        })->select('id','name')->get();
         $tags=Tag::all();
         $products = Product::all();
+       
         return view('website.index',["categories"=>$categories, "tags"=>$tags,"products"=>$products]);
     }
 }
