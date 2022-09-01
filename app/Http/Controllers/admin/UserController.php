@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Http\trait\ImageTrait;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -47,6 +49,8 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->all();
+        $data['email_verified_at'] = Carbon::now();
+        $data['password'] = Hash::make($request->password);
         $data['image'] = $this->insertImage($request->email,$request->image,'User_image/');
         User::create($data);
         return redirect()->route('user.index')->with([
