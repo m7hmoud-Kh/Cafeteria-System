@@ -22871,3 +22871,9 @@ div.style-customizer .content-chooser input[type=radio]:checked ~ label {
     padding: 6px 19px !important; }
   .fc-right .fc-button-group .fc-button {
     padding: 6px 13px !important; } }
+
+    div.dataTables_wrapper div.dataTables_length select {
+      width: 56px;
+      display: inline-block;
+      height: 30px !important;
+  }

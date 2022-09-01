@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
 <section class="height-100vh d-flex align-items-center page-section-ptb login" 
 style="background-image: url({{ asset('assets/admin/images/register-bg.jpg')}});">
   <div class="container">
-     <div class="row no-gutters">
+     <div class="row no-gutters ">
        <div class="col-lg-4 offset-lg-1 col-md-6 login-fancy-bg bg parallax" style="background-image: url(images/register-inner-bg.jpg);">
          <div class="login-fancy">
           <h2 class="text-white mb-20">Hello world!</h2>
@@ -17,11 +18,11 @@ style="background-image: url({{ asset('assets/admin/images/register-bg.jpg')}});
        </div>
        <div class="col-lg-4 col-md-6 bg-white">
         <div class="login-fancy pb-40 clearfix">    
-        <h3 class="mb-30">Signup</h3>
+        <h3 class="mb-20">Signup</h3>
         <form method="POST" action="{{ route('register') }}"enctype="multipart/form-data">
           @csrf
          <div class="row">
-             <div class="section-field mb-20 col-sm-12">
+             <div class="section-field mb-10 col-sm-12">
                <label class="mb-10" for="name">Name* </label>
                  <input id="fname" class="web form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ old('name') }}"required autocomplete="name" autofocus>
                  @error('name')
@@ -32,7 +33,7 @@ style="background-image: url({{ asset('assets/admin/images/register-bg.jpg')}});
               </div>
           </div>
 
-            <div class="section-field mb-20">
+            <div class="section-field mb-10">
                  <label class="mb-10" for="email">Email* </label>
                   <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email"value="{{ old('email') }}"required autocomplete="email">
                   @error('email')
@@ -42,7 +43,7 @@ style="background-image: url({{ asset('assets/admin/images/register-bg.jpg')}});
               @enderror
              </div>
 
-            <div class="section-field mb-20">
+            <div class="section-field mb-10">
              <label class="mb-10" for="password">Password* </label>
                <input class="Password form-control @error('password') is-invalid @enderror" id="password" type="password" name="password" required autocomplete="new-password">
                @error('password')
@@ -52,12 +53,12 @@ style="background-image: url({{ asset('assets/admin/images/register-bg.jpg')}});
            @enderror
             </div>
 
-            <div class="section-field mb-20">
+            <div class="section-field mb-10">
               <label class="mb-10" for="password-confirm">{{ __('Confirm Password') }}</label>
                 <input class="Password form-control" id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
              </div>
 
-             <div class="section-field mb-20">
+             <div class="section-field mb-10">
                  <label class="mb-10" for="email">Image </label>
                   <input type="file" id="image" class="form-control @error('image') is-invalid @enderror" name="image"value="{{ old('image') }}"required autocomplete="image">
    
