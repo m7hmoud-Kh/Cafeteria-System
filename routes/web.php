@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\admin\DashboardController;
-// use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------

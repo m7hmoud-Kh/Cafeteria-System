@@ -1,61 +1,3 @@
-{{-- @extends('admin.layout')
-
-@section('content')
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <h1 class="text-center"> Add Product </h1>
-    <br>
-    <form action="{{ route('products.store') }}" method="POST" class="col-4" style="margin:auto;"
-        enctype="multipart/form-data">
-        @csrf
-        <div class="mb-3">
-            <label class="form-label">Product</label>
-            <input type="text" name="name" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Price</label>
-            <input type="number" name='price' class="form-control">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Category</label>
-            <select class="form-select" aria-label="Default select example" name="category_id">
-                @foreach ($categories as $c)
-                    <option value="{{ $c->id }}">{{ $c->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Product Image</label>
-            <input type="file" name="image">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Size</label>
-            <input type="number" name='size' class="form-control">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Quantity</label>
-            <input type="number" name='quantity' class="form-control">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Status</label>
-            <input type="number" name='status' class="form-control">
-        </div>
-        <button type="submit" class="btn btn-success" style="width: 45%">Save </button>
-        <button type="reset" class="btn btn-primary " style="width: 45%">Restet</button>
-    </form>
-    <br>
-@endsection --}}
-
-
 @extends('admin.layout')
 
 @section('title')
@@ -73,14 +15,13 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                    {{-- <li class="breadcrumb-item">
+                    <li class="breadcrumb-item">
                         <a href="{{ route('dashboard') }}" class="default-color">Home</a>
-                    </li> --}}
+                    </li>
                     <li class="breadcrumb-item active">
                         <a class="default-color" href="{{ route('products.index') }}">Product</a>
                     </li>
                     <li class="breadcrumb-item active">Add Product</li>
-
                 </ol>
             </div>
         </div>
@@ -104,35 +45,34 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Price</label>
                             <input type="number" name="price" class="form-control" id="exampleInputPassword1"
-                                value="{{ old('price') }}">
-                        </div>
-                        <div class="custom-file mb-10">
-                            <input type="file" name="image" class="custom-file-input" id="validatedCustomFile"
-                                required>
-                            <label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
+                                value="{{ old('price') }}" min="1" step="0.5">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Size</label>
-                            <input type="number" name="size" class="form-control" id="exampleInputPassword1"
-                                value="{{ old('size') }}">
+                            <select class="custom-select" name="size">
+                                <option selected>Choose Size</option>
+                                <option value="1">Small</option>
+                                <option value="2">Medium</option>
+                                <option value="3">Large</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Quantity</label>
                             <input type="number" name="quantity" class="form-control" id="exampleInputPassword1"
-                                value="{{ old('quantity') }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Status</label>
-                            <input type="number" name="status" class="form-control" id="exampleInputPassword1"
-                                value="{{ old('status') }}">
+                                value="{{ old('quantity', 1) }}">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Category</label>
-                            <select class="form-select" aria-label="Default select example" name="category_id">
+                            <select class="custom-select" name="category_id">
+                                <option selected disabled>Choose Category</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="custom-file mb-10 mt-10 ">
+                            <input type="file" name="image" class="custom-file-input" id="validatedCustomFile">
+                            <label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -141,7 +81,6 @@
         </div>
     </div>
 @endsection
-
 
 @section('script')
 @endsection

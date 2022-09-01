@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string("image")->nullable();
             $table->enum('size',[1,2,3]);
             $table->boolean("status")->default(1);
-            $table->integer("quantity")->default(0);
+            $table->integer("quantity")->default(1);
             $table->foreignId("category_id")->nullable()->constrained();
             $table->timestamps();
         });

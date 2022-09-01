@@ -22,7 +22,6 @@ Route::resource('category', CategoryController::class);
 Route::resource('tag', TagController::class);
 Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 Route::resource('user', UserController::class);
-Route::get('/',[DashboardController::class,'index']);
 Route::resource('products',ProductController::class);
 
 

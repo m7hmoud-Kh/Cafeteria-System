@@ -20,7 +20,6 @@
                         <a class="default-color" href="{{ route('category.index') }}">category</a>
                     </li>
                     <li class="breadcrumb-item active">Add category</li>
-
                 </ol>
             </div>
         </div>

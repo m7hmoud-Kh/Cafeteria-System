@@ -1,59 +1,3 @@
-{{-- @extends('admin.layout')
-
-@section('content')
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <h1 class="text-center"> Edit Product Details </h1>
-    <br>
-    <form action="{{ route('products.update', $product->id) }}" method="POST" class="col-4" style="margin:auto;"
-        enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        <div class="mb-3">
-            <label class="form-label">Product Name:</label>
-            <input type="text" name="name" class="form-control" value="{{ $product->name }}">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Product Price:</label>
-            <input type="number" name='price' class="form-control" value="{{ $product->price }}">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Category</label>
-            <select class="form-select" aria-label="Default select example" name="category_id">
-                @foreach ($categories as $c)
-                    <option value="{{ $c->id }}">{{ $c->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Product Image</label>
-            <input type="file" name="image" value="{{ $product->image }}">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Size</label>
-            <input type="number" name='size' class="form-control" value="{{ $product->size }}">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Quantity</label>
-            <input type="number" name='quantity' class="form-control" value="{{ $product->quantity }}">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Status</label>
-            <input type="number" name='status' class="form-control" value="{{ old('status') }}">
-        </div>
-        <button type="submit" class="btn btn-success container">Edit</button>
-    </form>
-    <br>
-@endsection --}}
 @extends('admin.layout')
 
 @section('title')
@@ -72,7 +16,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                     <li class="breadcrumb-item">
-                        {{-- <a href="{{ route('dashboard') }}" class="default-color">Home</a> --}}
+                        <a href="{{ route('dashboard') }}" class="default-color">Home</a>
                     </li>
                     <li class="breadcrumb-item active">
                         <a class="default-color" href="{{ route('products.index') }}">Product</a>
@@ -101,15 +45,14 @@
                             <input type="number" name="price" class="form-control" id="exampleInputPassword1"
                                 value="{{ $product->price }}">
                         </div>
-                        <div class="custom-file mb-10">
-                            <input type="file" name="image" class="custom-file-input" id="validatedCustomFile" required
-                                value="{{ $product->image }}">
-                            <label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
-                        </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Size</label>
-                            <input type="number" name="size" class="form-control" id="exampleInputPassword1"
-                                value="{{ $product->size }}">
+                            <select class="custom-select" name="size">
+                                <option>Choose Size</option>
+                                <option value="1" @if ($product->size == 1) selected @endif>Small</option>
+                                <option value="2" @if ($product->size == 2) selected @endif>Medium</option>
+                                <option value="3" @if ($product->size == 3) selected @endif>Large</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Quantity</label>
@@ -123,11 +66,17 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Category</label>
-                            <select class="form-select" aria-label="Default select example" name="category_id">
+                            <select class="custom-select" name="category_id">
+                                <option disabled>Choose Category</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" @if ($product->category_id == $category->id) selected @endif>
+                                        {{ $category->name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="custom-file mb-10 mt-10 ">
+                            <input type="file" name="image" class="custom-file-input" id="validatedCustomFile">
+                            <label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>

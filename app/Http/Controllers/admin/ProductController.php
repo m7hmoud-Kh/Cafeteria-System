@@ -37,6 +37,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
+
     return view("admin.products.create",["categories"=>$categories]);
     }
 
@@ -46,7 +47,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store( Request $request)
+    public function store( StoreProductRequest $request)
     {
         $data = $request->all();
         $data['image'] = $this->insertImage($request->name,$request->image,'Product_image/');
@@ -86,7 +87,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
         $data= $request->all();
         if($request->file("image")){
@@ -95,7 +96,6 @@ class ProductController extends Controller
 
         }
         $product->update($data);
-        // return to_route("products.index", $product->id);
         return redirect()->route('products.index')->with([
             'message' => 'Product Updated Successfully',
             'alert' => 'success'
