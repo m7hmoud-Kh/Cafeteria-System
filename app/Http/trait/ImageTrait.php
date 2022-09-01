@@ -14,4 +14,3 @@ trait ImageTrait
         return $new_image;
     }
 }
-

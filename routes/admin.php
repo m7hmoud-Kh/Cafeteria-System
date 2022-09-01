@@ -5,6 +5,8 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\UserController;
+
+use App\Http\Controllers\admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,4 +28,6 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('user', UserController::class);
     Route::resource('admin', AdminController::class);
+    Route::resource('products',ProductController::class);
 });
+
