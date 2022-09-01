@@ -41,12 +41,12 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Name</label>
                             <input type="text" name="name" class="form-control" id="exampleInputPassword1"
-                                placeholder="Name" value="{{old('name')}}">
+                                placeholder="Name" value="{{ old('name') }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" name='email' class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Enter email" value="{{old('email')}}">
+                                aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
                             <small id="emailHelp" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group">
@@ -56,8 +56,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Confirm Password</label>
-                            <input type="password" name="password_confirmation" class="form-control" id="exampleInputPassword1"
-                                placeholder="Password">
+                            <input type="password" name="password_confirmation" class="form-control"
+                                id="exampleInputPassword1" placeholder="Password">
                         </div>
 
                         <div class="custom-file mb-10">
@@ -72,9 +72,6 @@
             </div>
         </div>
     </div>
-
-
-
 @endsection
 
 

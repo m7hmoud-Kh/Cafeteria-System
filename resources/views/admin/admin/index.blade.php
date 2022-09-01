@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title')
-    User
+    Admin
 @endsection
 
 @section('style')
@@ -15,12 +15,12 @@
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">
-                <h4 class="mb-0"> <a class="btn btn-primary" href="{{ route('user.create') }}">Add User</a> </h4>
+                <h4 class="mb-0"> <a class="btn btn-primary" href="{{ route('admin.create') }}">Add Admin</a> </h4>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="default-color">Home</a></li>
-                    <li class="breadcrumb-item active">Users</li>
+                    <li class="breadcrumb-item active">Admins</li>
                 </ol>
             </div>
         </div>
@@ -54,10 +54,12 @@
                                             alt="{{ $user->name }}"></td>
                                     <td>{{ $user->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{route('admin.edit',$user->id)}}" class="btn btn-primary">Edit</a>
+
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-id="{{ $user->id }}" data-name="{{ $user->name }}"
-                                            data-target="#exampleModalCenter"> Delete </button>
+                                        data-id="{{$user->id}}"
+                                        data-name="{{$user->name}}"
+                                        data-target="#exampleModalCenter"> Delete </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -72,6 +74,7 @@
                                 <th scope="">More Action</th>
                             </tr>
                         </tfoot>
+
                     </table>
                 </div>
             </div>
@@ -85,10 +88,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">
-                        Delete User
+                        Delete Admin
                     </div>
                 </div>
-                <form action="{{ route('user.destroy', 1) }}" method="post">
+                <form action="{{route('admin.destroy',1)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <div class="modal-body">
@@ -125,5 +128,8 @@
             modal.find('.modal-body #name').html(name);
             modal.find('.modal-body #user_id').val(id);
         });
+
     </script>
+
+
 @endsection
