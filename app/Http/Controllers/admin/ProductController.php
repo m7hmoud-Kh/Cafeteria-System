@@ -2,15 +2,19 @@
 
 
 namespace App\Http\Controllers\admin;
-namespace App\Http\Controllers;
 use App\Models\Product;
-// use App\Models\Category;
+use App\Models\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreProductRequest;
+use App\Http\Requests\Admin\UpdateProductRequest;
 use Illuminate\Support\Facades\File;
+use App\Http\trait\ImageTrait;
 
 
 class ProductController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +23,10 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view("admin.products.index", ["products"=>$products]);
+        $data = [
+            'products' => $products
+        ];
+        return view("admin.products.index",compact('data'));
     }
     /**
      *  the form for creating a new resource.
@@ -38,19 +45,16 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Request $request)
     {
         $data = $request->all();
-        // $image = $request->file("image");
-        // if($image){
-        //     $imageName=implode(".",[date('YmdHis'),$data["name"], $image->getClientOriginalExtension()]);
-        //     $destPath ="assets/admin/productsimages/";
-        //     //public\assets\admin\productsimages
-        //     $image->move($destPath, $imageName);
-        //     $data["image"] = $imageName;
-        // }
+        $data['image'] = $this->insertImage($request->name,$request->image,'Product_image/');
         Product::create($data);
-        return to_route("products.index");
+        // return to_route("products.index");
+        return redirect()->route('products.index')->with([
+            'message' => 'Product Added Successfully',
+            'alert' => 'success'
+        ]);
     }
 
     /**
@@ -82,20 +86,20 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        $oldData= $request->all();
+        $data= $request->all();
         if($request->file("image")){
-            $this->deleteImage($product);
-            $newImage= $request->file("image");
-            $imageName=implode(".",
-                [date('YmdHis'),$oldData["name"], $newImage->getClientOriginalExtension()]);
-            $destPath ="assets/admin/productsimages/";
-            $newImage->move($destPath, $imageName);
-            $oldData["image"] = $imageName;
+            Storage::disk('product_image')->delete($product->image);
+            $data['image'] = $this->insertImage($request->name,$request->image,'Product_image/');
+
         }
-        $product->update($oldData);
-        return to_route("products.index", $product->id);
+        $product->update($data);
+        // return to_route("products.index", $product->id);
+        return redirect()->route('products.index')->with([
+            'message' => 'Product Updated Successfully',
+            'alert' => 'success'
+        ]);
     }
 
     /**
@@ -104,19 +108,17 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request)
     {
-        if(File::exists(public_path("assets/admin/productsimages/$product->image")))
-        {
-            File::delete(public_path("assets/admin/productsimages/$product->image"));
+        $product = Product::find($request->id);
+        if($product){
+            Storage::disk('Product_image')->delete($product->image);
+            $product->delete();
         }
-        $product->delete();
-        return to_route("products.index");
+        return redirect()->route('products.index')->with([
+            'message' => 'Product Deleted Successfully',
+            'alert' => 'danger'
+        ]);
     }
 
-    private function  deleteImage(Product $product){
-        if(File::exists(public_path("assets/admin/productsimages/$product->image"))){
-            File::delete(public_path("assets/admin/productsimages/$product->image"));
-        }
-    }
 }

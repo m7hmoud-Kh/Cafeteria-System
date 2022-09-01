@@ -1,4 +1,4 @@
-@extends('admin.layout')
+{{-- @extends('admin.layout')
 
 @section('content')
 
@@ -26,14 +26,14 @@
             <label class="form-label">Product Price:</label>
             <input type="number" name='price' class="form-control" value="{{ $product->price }}">
         </div>
-        {{-- <div class="mb-3">
+        <div class="mb-3">
             <label class="form-label">Category</label>
             <select class="form-select" aria-label="Default select example" name="category_id">
                 @foreach ($categories as $c)
                     <option value="{{ $c->id }}">{{ $c->name }}</option>
                 @endforeach
             </select>
-        </div> --}}
+        </div>
         <div class="mb-3">
             <label class="form-label">Product Image</label>
             <input type="file" name="image" value="{{ $product->image }}">
@@ -53,4 +53,82 @@
         <button type="submit" class="btn btn-success container">Edit</button>
     </form>
     <br>
+@endsection --}}
+@extends('admin.layout')
+
+@section('title')
+    Product
+@endsection
+
+@section('style')
+@endsection
+
+@section('content')
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mb-0"> Update Product </h4>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
+                    <li class="breadcrumb-item">
+                        {{-- <a href="{{ route('dashboard') }}" class="default-color">Home</a> --}}
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <a class="default-color" href="{{ route('products.index') }}">Product</a>
+                    </li>
+                    <li class="breadcrumb-item active">Update Product</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 mb-30">
+            <div class="card card-statistics mb-30">
+                <div class="card-body">
+                    <h5 class="card-title">Product</h5>
+                    <form action="{{ route('products.update', $product->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Name</label>
+                            <input type="text" name="name" class="form-control" id="exampleInputPassword1"
+                                placeholder="Name" value="{{ old('name') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Price</label>
+                            <input type="number" name="price" class="form-control" id="exampleInputPassword1"
+                                value="{{ old('price') }}">
+                        </div>
+                        <div class="custom-file mb-10">
+                            <input type="file" name="image" class="custom-file-input" id="validatedCustomFile"
+                                required>
+                            <label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Size</label>
+                            <input type="number" name="size" class="form-control" id="exampleInputPassword1"
+                                value="{{ old('size') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Quantity</label>
+                            <input type="number" name="quantity" class="form-control" id="exampleInputPassword1"
+                                value="{{ old('quantity') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Status</label>
+                            <input type="number" name="status" class="form-control" id="exampleInputPassword1"
+                                value="{{ old('status') }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+
+@section('script')
 @endsection
