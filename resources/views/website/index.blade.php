@@ -1,15 +1,13 @@
 @extends('website.layout')
 
 @section('title')
-Home
+    Home
 @endsection
 
 @section('name')
-Shop
+    Shop
 @endsection
 
 @section('content')
-<div>
-    Hello
-</div>
+
 @endsection
