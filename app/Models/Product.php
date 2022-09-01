@@ -46,5 +46,4 @@ class Product extends Model
         return  $value ? '<span class="badge badge-success">Avilable</span>' : '<span class="badge badge-danger">Unavilable</span>';
     }
 
-
 }
