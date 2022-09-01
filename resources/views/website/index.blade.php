@@ -17,10 +17,11 @@ Shop
          
          @foreach ($categories as $category)
              
-            <div class="py-2 px-4 bg-light mb-3"><strong class="small text-uppercase font-weight-bold">{{$category->name}}</strong></div>
-            <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
+            
                 @foreach ($products as $prouduct)
                 @if($prouduct->category_id=== $category->id)
+                <div class="py-2 px-4 bg-light mb-3"><strong class="small text-uppercase font-weight-bold">{{$category->name}}</strong></div>
+            <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
               <li class="mb-2"><a class="reset-anchor" href="#">{{$prouduct->name}}</a></li>
               @endif
              
