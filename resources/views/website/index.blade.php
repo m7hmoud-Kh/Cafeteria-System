@@ -19,10 +19,10 @@ Shop
              
             
                 @foreach ($products as $prouduct)
-                @if($prouduct->category_id=== $category->id)
-                <div class="py-2 px-4 bg-light mb-3"><strong class="small text-uppercase font-weight-bold">{{$category->name}}</strong></div>
+                @if($prouduct->category_id === $category->id)
+            
             <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-              <li class="mb-2"><a class="reset-anchor" href="#">{{$prouduct->name}}</a></li>
+              <li class="mb-2"><a class="reset-anchor" href="#"> {{$category->name}}</a></li>
               @endif
              
               @endforeach
@@ -33,9 +33,9 @@ Shop
      
          @foreach ($tags as $tag)
         
-            <div class="py-2 px-4 bg-light mb-3"><strong class="small text-uppercase font-weight-bold">{{$tag->name}}</strong></div>
+           
             <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-              <li class="mb-2"><a class="reset-anchor" href="#"></a></li>
+                <li class="mb-2"><a class="reset-anchor" href="#">{{$tag->name}}</a></li>
             </ul>
          @endforeach
 
