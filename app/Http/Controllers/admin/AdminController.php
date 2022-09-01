@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\admin;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreUserRequest;
-use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Http\trait\ImageTrait;
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Admin\StoreUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
-
     use ImageTrait;
     /**
      * Display a listing of the resource.
@@ -23,11 +22,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::WhereNull('isAdmin')->get();
+        $users = User::whereNotNull('isAdmin')->get();
         $data = [
             'users' => $users
         ];
-        return view('admin.user.index',compact('data'));
+        return view('admin.admin.index',compact('data'));
     }
 
     /**
@@ -37,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.admin.create');
     }
 
     /**
@@ -50,11 +49,12 @@ class UserController extends Controller
     {
         $data = $request->all();
         $data['email_verified_at'] = Carbon::now();
+        $data['isAdmin'] = true;
         $data['password'] = Hash::make($request->password);
         $data['image'] = $this->insertImage($request->email,$request->image,'User_image/');
         User::create($data);
-        return redirect()->route('user.index')->with([
-            'message' => 'User Added Successfully',
+        return redirect()->route('admin.index')->with([
+            'message' => 'Admin Added Successfully',
             'alert' => 'success'
         ]);
     }
@@ -69,7 +69,7 @@ class UserController extends Controller
         $data = [
             'user' => $user
         ];
-        return view('admin.user.edit',compact('data'));
+        return view('admin.admin.edit',compact('data'));
     }
 
     /**
@@ -88,8 +88,8 @@ class UserController extends Controller
         }
 
         $user->update($data);
-        return redirect()->route('user.index')->with([
-            'message' => 'User Updated Successfully',
+        return redirect()->route('admin.index')->with([
+            'message' => 'Admin Updated Successfully',
             'alert' => 'success'
         ]);
     }
@@ -108,7 +108,7 @@ class UserController extends Controller
             $user->delete();
         }
         return redirect()->route('user.index')->with([
-            'message' => 'User Deleted Successfully',
+            'message' => 'Admin Deleted Successfully',
             'alert' => 'danger'
         ]);
     }

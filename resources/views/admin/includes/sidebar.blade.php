@@ -64,6 +64,10 @@
             </li>
             <!-- menu item todo-->
             <li>
+                <a href="{{route('admin.index')}}"><i class="fa fa-user-plus"></i><span class="right-nav-text">Admin</span> </a>
+            </li>
+
+            <li>
                 <a href="{{route('user.index')}}"><i class="fa fa-user-o"></i><span class="right-nav-text">User</span> </a>
             </li>
 

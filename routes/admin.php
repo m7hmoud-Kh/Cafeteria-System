@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\TagController;
@@ -24,4 +25,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('tag', TagController::class);
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('user', UserController::class);
+    Route::resource('admin', AdminController::class);
+
+
 });
