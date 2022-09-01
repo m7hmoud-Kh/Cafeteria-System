@@ -41,19 +41,18 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
+        'product_image' => [
+            'driver' => 'local',
+            'root' => public_path('Product_image/'),
         'user_image' => [
             'driver' => 'local',
             'root' => public_path('User_image/'),
-
         ],
-
         'category_image' => [
             'driver' => 'local',
             'root' => public_path('Category_image/'),
-
         ],
-
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
