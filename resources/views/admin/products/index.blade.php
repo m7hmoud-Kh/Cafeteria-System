@@ -108,13 +108,7 @@
                                             height="100" alt="{{ $product->name }}"></td>
                                     <td>{{ $product->size }}</td>
                                     <td>{{ $product->quantity }}</td>
-                                    <td>
-                                        @if ($product->status == 1)
-                                            <p>Aviliable</p>
-                                        @elseif ($product->status != 1)
-                                            <p>Unaviliable</p>
-                                        @endif
-                                    </td>
+                                    <td>{{ $product->status }}</td>
                                     <td>
                                         <a href="{{ route('products.edit', $product->id) }}"
                                             class="btn btn-primary">Edit</a>

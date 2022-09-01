@@ -1,18 +1,22 @@
 <?php
+
 namespace App\Http\Controllers;
-use App\Models\Category;
-use App\Models\Tag;
-use App\Models\Product;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\TagController;
+use App\Http\Controllers\admin\ProductController;
+use App\Models\Category; 
+use App\Models\Tag; 
+use App\Models\Product; 
+
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::WhereHas('product' ,function($query) {
-            $query->where('status', true);
-        })->select('id','name')->get();
+        $categories=Category::all();
         $tags=Tag::all();
-        $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->get();
+        $products = Product::all();
         return view('website.index',["categories"=>$categories, "tags"=>$tags,"products"=>$products]);
     }
 }
