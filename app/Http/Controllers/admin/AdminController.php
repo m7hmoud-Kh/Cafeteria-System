@@ -12,9 +12,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
-{
 
+class AdminController extends Controller
+{
     use ImageTrait;
     /**
      * Display a listing of the resource.
@@ -23,11 +23,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::WhereNull('isAdmin')->get();
+        $users = User::whereNotNull('isAdmin')->get();
         $data = [
             'users' => $users
         ];
-        return view('admin.user.index',compact('data'));
+        return view('admin.admin.index',compact('data'));
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.admin.create');
     }
 
     /**
@@ -50,11 +50,12 @@ class UserController extends Controller
     {
         $data = $request->all();
         $data['email_verified_at'] = Carbon::now();
+        $data['isAdmin'] = true;
         $data['password'] = Hash::make($request->password);
         $data['image'] = $this->insertImage($request->email,$request->image,'User_image/');
         User::create($data);
-        return redirect()->route('user.index')->with([
-            'message' => 'User Added Successfully',
+        return redirect()->route('admin.index')->with([
+            'message' => 'Admin Added Successfully',
             'alert' => 'success'
         ]);
     }
@@ -64,12 +65,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::find($id);
         $data = [
             'user' => $user
         ];
-        return view('admin.user.edit',compact('data'));
+        return view('admin.admin.edit',compact('data'));
     }
 
     /**
@@ -79,17 +81,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, $id)
     {
+        $user = User::find($id);
         $data = $request->all();
         if($request->file('image')){
             Storage::disk('user_image')->delete($user->image);
             $data['image'] = $this->insertImage($request->email,$request->image,'User_image/');
         }
-
         $user->update($data);
-        return redirect()->route('user.index')->with([
-            'message' => 'User Updated Successfully',
+        return redirect()->route('admin.index')->with([
+            'message' => 'Admin Updated Successfully',
             'alert' => 'success'
         ]);
     }
@@ -107,8 +109,8 @@ class UserController extends Controller
             Storage::disk('user_image')->delete($user->image);
             $user->delete();
         }
-        return redirect()->route('user.index')->with([
-            'message' => 'User Deleted Successfully',
+        return redirect()->route('admin.index')->with([
+            'message' => 'Admin Deleted Successfully',
             'alert' => 'danger'
         ]);
     }
