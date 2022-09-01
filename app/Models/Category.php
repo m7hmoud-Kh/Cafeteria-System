@@ -13,6 +13,7 @@ class Category extends Model
         'image',
     ];
     use HasFactory;
+    
     function product(){
         return $this->hasMany(Product::class);
     }

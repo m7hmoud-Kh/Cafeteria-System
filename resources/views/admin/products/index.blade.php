@@ -51,12 +51,16 @@
                                 <tr>
                                     <td>{{ ++$product_count }}</td>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->format_price($product->price) }}</td>
                                     <td><img src="{{ asset('product_image/' . $product->image) }}" width="100"
                                             height="100" alt="{{ $product->name }}"></td>
-                                    <td>{{ $product->size }}</td>
+                                    <td>{{ $product->size($product->size) }}</td>
                                     <td>{{ $product->quantity }}</td>
+<<<<<<< HEAD
                                     <td>{{ $product->status }}</td>
+=======
+                                    <td>{!! $product->status($product->status) !!}</td>
+>>>>>>> ea2c52a63f4c460c72bc7e875491d3ab7ae437a3
                                     <td>
                                         <a href="{{ route('products.edit', $product->id) }}"
                                             class="btn btn-primary">Edit</a>
