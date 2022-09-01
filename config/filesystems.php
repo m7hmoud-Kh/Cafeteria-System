@@ -41,13 +41,17 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+
         'product_image' => [
             'driver' => 'local',
             'root' => public_path('Product_image/'),
+        ],
+
         'user_image' => [
             'driver' => 'local',
             'root' => public_path('User_image/'),
         ],
+
         'category_image' => [
             'driver' => 'local',
             'root' => public_path('Category_image/'),
@@ -63,8 +67,6 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
-
-    ],
 
     /*
     |--------------------------------------------------------------------------

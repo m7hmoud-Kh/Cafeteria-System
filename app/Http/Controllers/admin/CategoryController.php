@@ -31,7 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
+
         return view("admin.category.add");
     }
 
@@ -46,9 +46,9 @@ class CategoryController extends Controller
         $request->validate([
             "name"=>"required",
             'image'=>'required'
-            
+
         ]);
-        
+
         $inputdata = $request->all();
         $inputdata['image'] = $this->insertImage($request->name,$request->image,'Category_image/');
         Category::create($inputdata);

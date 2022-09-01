@@ -6,8 +6,6 @@ use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ProductController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
-
 
 /*
 |--------------------------------------------------------------------------

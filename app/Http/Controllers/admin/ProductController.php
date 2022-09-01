@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\StoreProductRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use App\Http\trait\ImageTrait;
 
 
@@ -22,6 +22,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+
         $products = Product::all();
         $data = [
             'products' => $products
@@ -35,8 +36,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // $categories = Category::all();
-    return view("admin.products.create",/*["categories"=>$categories]*/);
+        $categories = Category::all();
+    return view("admin.products.create",["categories"=>$categories]);
     }
 
     /**
@@ -50,7 +51,6 @@ class ProductController extends Controller
         $data = $request->all();
         $data['image'] = $this->insertImage($request->name,$request->image,'Product_image/');
         Product::create($data);
-        // return to_route("products.index");
         return redirect()->route('products.index')->with([
             'message' => 'Product Added Successfully',
             'alert' => 'success'
@@ -75,8 +75,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-
-        return view("admin.products.edit", ["product"=>$product]);
+        $categories = Category::all();
+        return view("admin.products.edit", ["product"=>$product,"categories"=>$categories]);
     }
 
     /**
@@ -86,7 +86,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
         $data= $request->all();
         if($request->file("image")){
@@ -112,7 +112,7 @@ class ProductController extends Controller
     {
         $product = Product::find($request->id);
         if($product){
-            Storage::disk('Product_image')->delete($product->image);
+            Storage::disk('product_image')->delete($product->image);
             $product->delete();
         }
         return redirect()->route('products.index')->with([

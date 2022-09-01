@@ -61,9 +61,9 @@
 @endsection
 
 @section('content')
-    {{-- <div>
+    <div>
         @include('admin.includes.alert-message')
-    </div> --}}
+    </div>
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">
@@ -104,7 +104,7 @@
                                     <td>{{ ++$product_count }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
-                                    <td><img src="{{ asset('Product_image/' . $product->image) }}" width="100"
+                                    <td><img src="{{ asset('product_image/' . $product->image) }}" width="100"
                                             height="100" alt="{{ $product->name }}"></td>
                                     <td>{{ $product->size }}</td>
                                     <td>{{ $product->quantity }}</td>
@@ -144,10 +144,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">
-                        Delete products
+                        Delete Product
                     </div>
                 </div>
-                <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                <form action="{{ route('products.destroy', 1) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <div class="modal-body">

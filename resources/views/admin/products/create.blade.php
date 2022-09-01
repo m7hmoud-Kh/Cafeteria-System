@@ -87,7 +87,7 @@
     </div>
 
 
-    {{-- @include('admin.includes.error-request') --}}
+    @include('admin.includes.error-request')
 
     <div class="row">
         <div class="col-xl-12 mb-30">
@@ -125,6 +125,14 @@
                             <label for="exampleInputPassword1">Status</label>
                             <input type="number" name="status" class="form-control" id="exampleInputPassword1"
                                 value="{{ old('status') }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category</label>
+                            <select class="form-select" aria-label="Default select example" name="category_id">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

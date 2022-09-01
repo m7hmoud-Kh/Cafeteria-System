@@ -94,32 +94,40 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Name</label>
                             <input type="text" name="name" class="form-control" id="exampleInputPassword1"
-                                placeholder="Name" value="{{ old('name') }}">
+                                placeholder="Name" value="{{ $product->name }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Price</label>
                             <input type="number" name="price" class="form-control" id="exampleInputPassword1"
-                                value="{{ old('price') }}">
+                                value="{{ $product->price }}">
                         </div>
                         <div class="custom-file mb-10">
-                            <input type="file" name="image" class="custom-file-input" id="validatedCustomFile"
-                                required>
+                            <input type="file" name="image" class="custom-file-input" id="validatedCustomFile" required
+                                value="{{ $product->image }}">
                             <label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Size</label>
                             <input type="number" name="size" class="form-control" id="exampleInputPassword1"
-                                value="{{ old('size') }}">
+                                value="{{ $product->size }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Quantity</label>
                             <input type="number" name="quantity" class="form-control" id="exampleInputPassword1"
-                                value="{{ old('quantity') }}">
+                                value="{{ $product->quantity }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Status</label>
                             <input type="number" name="status" class="form-control" id="exampleInputPassword1"
-                                value="{{ old('status') }}">
+                                value="{{ $product->status }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category</label>
+                            <select class="form-select" aria-label="Default select example" name="category_id">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
