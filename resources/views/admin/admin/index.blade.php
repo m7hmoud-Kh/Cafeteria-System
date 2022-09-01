@@ -54,7 +54,8 @@
                                             alt="{{ $user->name }}"></td>
                                     <td>{{ $user->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('admin.edit', $user->id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{route('admin.edit',$user->id)}}" class="btn btn-primary">Edit</a>
+
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
                                         data-id="{{$user->id}}"
                                         data-name="{{$user->name}}"

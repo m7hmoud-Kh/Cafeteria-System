@@ -19,7 +19,7 @@
                         <a href="{{ route('dashboard') }}" class="default-color">Home</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <a class="default-color" href="{{ route('user.index') }}">Admin</a>
+                        <a class="default-color" href="{{ route('admin.index') }}">Admin</a>
                     </li>
                     <li class="breadcrumb-item active">Update Admin</li>
 
