@@ -28,7 +28,7 @@ style="background-image: url({{ asset('assets/admin/images/login-bg.jpg')}});">
        </div>
        <div class="col-lg-4 col-md-6 bg-white">
         <div class="login-fancy pb-40 clearfix">
-        <h3 class="mb-30">Sign In To Admin</h3>
+        <h3 class="mb-30">Sign In </h3>
          <div class="section-field mb-20">
           <form method="POST" action="{{ route('login') }}">
             @csrf

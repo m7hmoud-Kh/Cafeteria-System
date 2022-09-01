@@ -23,6 +23,7 @@ use App\Models\Category;
 */
 
 
+Route::middleware(['auth','isadmin'])->group(function () {
 
 Route::resource('category', CategoryController::class);
 Route::resource('tag', TagController::class);
@@ -31,3 +32,5 @@ Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
 Route::resource('user', UserController::class);
 
+
+});
