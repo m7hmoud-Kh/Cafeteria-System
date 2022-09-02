@@ -5,6 +5,7 @@
 @endsection
 
 @section('style')
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/select2.min.css') }}">
 @endsection
 
 @section('content')
@@ -70,6 +71,18 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Tags</label>
+                            <select class="custom-select js-example-basic-multiple" name="tags[]" multiple>
+                                <option disabled>Choose Tags</option>
+                                @foreach ($tags as $tag)
+                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
                         <div class="custom-file mb-10 mt-10 ">
                             <input type="file" name="image" class="custom-file-input" id="validatedCustomFile">
                             <label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
@@ -83,4 +96,10 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('assets/admin/js/select2.full.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
 @endsection
