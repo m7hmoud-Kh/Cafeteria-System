@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-Route::group(['middleware'=>['auth','isadmin']],function(){
+//'auth','isadmin'
+Route::group(['middleware'=>[]],function(){
     Route::resource('category', CategoryController::class);
 
     Route::resource('tag', TagController::class);
