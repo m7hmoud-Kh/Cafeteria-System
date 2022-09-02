@@ -42,7 +42,10 @@
         </div>
     </div>
 </footer>
+
 <script src="{{ asset('assets/website/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/website/js/all.min.js') }}"></script>
+<script src="{{ asset('assets/website/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/website/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/website/vendor/lightbox2/js/lightbox.min.js') }}"></script>
 <script src="{{ asset('assets/website/vendor/nouislider/nouislider.min.js') }}"></script>
@@ -50,6 +53,9 @@
 <script src="{{ asset('assets/website/vendor/owl.carousel2/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('assets/website/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js') }}"></script>
 <script src="{{ asset('assets/website/js/front.js') }}"></script>
+
+<script src="{{ asset('assets/admin/js/bootstrap-datatables/jquery.dataTables.min.js') }}"></script>
+
 </div>
 </body>
 
