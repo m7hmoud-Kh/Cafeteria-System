@@ -56,11 +56,7 @@
                                             height="100" alt="{{ $product->name }}"></td>
                                     <td>{{ $product->size($product->size) }}</td>
                                     <td>{{ $product->quantity }}</td>
-<<<<<<< HEAD
-                                    <td>{{ $product->status }}</td>
-=======
                                     <td>{!! $product->status($product->status) !!}</td>
->>>>>>> ea2c52a63f4c460c72bc7e875491d3ab7ae437a3
                                     <td>
                                         <a href="{{ route('products.edit', $product->id) }}"
                                             class="btn btn-primary">Edit</a>
