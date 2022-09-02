@@ -21,23 +21,71 @@
                                 href="#" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">Pages</a>
                             <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown"><a
-                                    class="dropdown-item border-0 transition-link" href="index.html">Homepage</a><a
-                                    class="dropdown-item border-0 transition-link" href="shop.html">Category</a><a
+                                    class="dropdown-item border-0 transition-link" href="index.html">Homepage</a>
+                                    <a
+                                    class="dropdown-item border-0 transition-link" href="shop.html">Category</a>
+                                    <a
                                     class="dropdown-item border-0 transition-link" href="detail.html">Product
-                                    detail</a><a class="dropdown-item border-0 transition-link"
+                                    detail</a>
+                                    <a class="dropdown-item border-0 transition-link"
                                     href="cart.html">Shopping cart</a><a class="dropdown-item border-0 transition-link"
                                     href="checkout.html">Checkout</a></div>
                         </li>
                     </ul>
+
+
+  
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="cart.html"> <i
-                                    class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small
-                                    class="text-gray">(2)</small></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small
-                                    class="text-gray"> (0)</small></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> <i
-                                    class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+                        @auth
+                        <li class="nav-item"style="margin-top: 8px;">
+                            <a class="nav-link" href="cart.html"> <i
+                                class="fas fa-dolly-flatbed mr-1 text-gray">
+                                </i>Cart
+                                <small class="text-gray">(2)</small>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown mr-20">
+                        <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{ asset('User_image/'.Auth::user()->image)}}"
+                        style="width: 35px;
+                                height: 35px;
+                                
+                                border: 0;
+                                border-radius: 50%;" alt="avatar">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-left">
+                        <div class="dropdown-header">
+                            <div class="media">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-0">{{Auth::user()->name}}</h5>
+                                <span>{{Auth::user()->email}}</span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{route('account')}}"><i class="text-secondary ti-reload"></i>My Profile</a>
+                        <a class="dropdown-item" href="#"><i class="text-success ti-email"></i>Messages</a>
+                        <a class="dropdown-item" href="#"><i class="text-warning ti-user"></i>Profile</a>
+                        <a class="dropdown-item" href="#"><i class="text-dark ti-layers-alt"></i>Projects <span class="badge badge-info">6</span> </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <i class="text-danger ti-unlock"></i>Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                        </form>
+                        </div>
+                    </li>
+                        @else
+                            <li class="nav-item">
+                            <a class="nav-link" href="{{route('login')}}"> <i
+                            class="fas fa-user-alt mr-1 text-gray"></i>Login</a>
+                        </li>
+                        @endauth
+                        
                     </ul>
+               
                 </div>
             </nav>
         </div>
