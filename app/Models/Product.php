@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Tag;
+use App\Models\Cart;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,10 +17,18 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function cart(){
+        return $this->hasMany(Cart::class);
+    }
 
     /**many to many */
+
     public function tags(){
         return $this->belongsToMany(Tag::class,'product_tag');
+    }
+
+    public function orders(){
+        return $this->belongsToMany(Order::class,'order_product');
     }
 
     /** make mutation */

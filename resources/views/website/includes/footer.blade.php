@@ -56,6 +56,9 @@
 
 <script src="{{ asset('assets/admin/js/bootstrap-datatables/jquery.dataTables.min.js') }}"></script>
 
+@include('sweetalert::alert')
+@livewireScripts
+
 </div>
 </body>
 
