@@ -21,7 +21,7 @@
                             class="small text-uppercase font-weight-bold">Categories</strong></div>
                     @foreach ($categories as $cat)
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            <li class="mb-2"><a class="reset-anchor" href="{{route('category.show',$cat->id)}}"> {{ $cat->name }}</a>
+                            <li class="mb-2"><a class="reset-anchor" href="{{route('show-category',$cat->id)}}"> {{ $cat->name }}</a>
                             </li>
                         </ul>
                     @endforeach
