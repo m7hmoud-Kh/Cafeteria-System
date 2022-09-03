@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MangeAccountController;
 use App\Http\Controllers\website\CartController;
 use App\Http\Controllers\website\CheckOutController;
+use App\Http\Controllers\website\CategoryController;
+
 
 Auth::routes(['verify'=>true]);
 
@@ -28,5 +30,10 @@ Route::group(['middleware'=>'auth'],function(){
         Route::post('/confirm-order',[CheckOutController::class,'store'])->name('confirm-order');
         /***End Route Check out */
     });
+
+    //category Route
+    Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category');
+    // End category Route
+
 
 });
