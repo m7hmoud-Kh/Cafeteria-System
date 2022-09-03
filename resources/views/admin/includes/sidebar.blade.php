@@ -4,8 +4,7 @@
             <!-- menu item Dashboard-->
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard">
-                    <div class="pull-left"><i class="ti-home"></i><span
-                            class="right-nav-text">Dashboard</span></div>
+                    <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">Dashboard</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
@@ -22,8 +21,7 @@
             <!-- menu item Elements-->
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#elements">
-                    <div class="pull-left"><i class="ti-palette"></i><span
-                            class="right-nav-text">Elements</span></div>
+                    <div class="pull-left"><i class="ti-palette"></i><span class="right-nav-text">Elements</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
@@ -52,8 +50,7 @@
             <!-- menu item calendar-->
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#calendar-menu">
-                    <div class="pull-left"><i class="ti-calendar"></i><span
-                            class="right-nav-text">calendar</span></div>
+                    <div class="pull-left"><i class="ti-calendar"></i><span class="right-nav-text">calendar</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
@@ -64,19 +61,26 @@
             </li>
             <!-- menu item todo-->
             <li>
-                <a href="{{route('admin.index')}}"><i class="fa fa-user-plus"></i><span class="right-nav-text">Admin</span> </a>
+                <a href="{{ route('admin.index') }}"><i class="fa fa-user-plus"></i><span
+                        class="right-nav-text">Admin</span> </a>
             </li>
 
             <li>
-                <a href="{{route('user.index')}}"><i class="fa fa-user-o"></i><span class="right-nav-text">User</span> </a>
+                <a href="{{ route('user.index') }}"><i class="fa fa-user-o"></i><span class="right-nav-text">User</span>
+                </a>
             </li>
 
             <li>
-                <a href="{{route('tag.index')}}"><i class="fa fa-tag"></i><span class="right-nav-text">Tag</span> </a>
+                <a href="{{ route('tag.index') }}"><i class="fa fa-tag"></i><span class="right-nav-text">Tag</span> </a>
             </li>
 
             <li>
-                <a href="{{route('category.index')}}"><i class="fa fa-user-o"></i><span class="right-nav-text">Category</span> </a>
+                <a href="{{ route('category.index') }}"><i class="fa fa-user-o"></i><span
+                        class="right-nav-text">Category</span> </a>
+            </li>
+            <li>
+                <a href="{{ route('products.index') }}"><i class="fa fa-product-hunt"></i><span
+                        class="right-nav-text">Products</span> </a>
             </li>
             <!-- menu item chat-->
             <li>
@@ -91,8 +95,7 @@
             <!-- menu item Charts-->
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#chart">
-                    <div class="pull-left"><i class="ti-pie-chart"></i><span
-                            class="right-nav-text">Charts</span></div>
+                    <div class="pull-left"><i class="ti-pie-chart"></i><span class="right-nav-text">Charts</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
@@ -121,8 +124,7 @@
             <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Widgets, Forms & Tables </li>
             <!-- menu item Widgets-->
             <li>
-                <a href="widgets.html"><i class="ti-blackboard"></i><span
-                        class="right-nav-text">Widgets</span> <span
+                <a href="widgets.html"><i class="ti-blackboard"></i><span class="right-nav-text">Widgets</span> <span
                         class="badge badge-pill badge-danger float-right mt-1">59</span> </a>
             </li>
             <!-- menu item Form-->
@@ -147,8 +149,8 @@
             <!-- menu item table -->
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#table">
-                    <div class="pull-left"><i class="ti-layout-tab-window"></i><span
-                            class="right-nav-text">data table</span></div>
+                    <div class="pull-left"><i class="ti-layout-tab-window"></i><span class="right-nav-text">data
+                            table</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
@@ -197,14 +199,12 @@
             </li>
             <!-- menu item maps-->
             <li>
-                <a href="maps.html"><i class="ti-location-pin"></i><span
-                        class="right-nav-text">maps</span> <span
+                <a href="maps.html"><i class="ti-location-pin"></i><span class="right-nav-text">maps</span> <span
                         class="badge badge-pill badge-success float-right mt-1">06</span></a>
             </li>
             <!-- menu item timeline-->
             <li>
-                <a href="timeline.html"><i class="ti-panel"></i><span
-                        class="right-nav-text">timeline</span> </a>
+                <a href="timeline.html"><i class="ti-panel"></i><span class="right-nav-text">timeline</span> </a>
             </li>
             <!-- menu item Multi level-->
             <li>
@@ -222,16 +222,15 @@
                         </a>
                         <ul id="auth" class="collapse">
                             <li>
-                                <a href="javascript:void(0);" data-toggle="collapse"
-                                    data-target="#login">Level item 1.1<div class="pull-right"><i
-                                            class="ti-plus"></i></div>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#login">Level item
+                                    1.1<div class="pull-right"><i class="ti-plus"></i></div>
                                     <div class="clearfix"></div>
                                 </a>
                                 <ul id="login" class="collapse">
                                     <li>
                                         <a href="javascript:void(0);" data-toggle="collapse"
-                                            data-target="#invoice">level item 1.1.1<div
-                                                class="pull-right"><i class="ti-plus"></i></div>
+                                            data-target="#invoice">level item 1.1.1<div class="pull-right"><i
+                                                    class="ti-plus"></i></div>
                                             <div class="clearfix"></div>
                                         </a>
                                         <ul id="invoice" class="collapse">

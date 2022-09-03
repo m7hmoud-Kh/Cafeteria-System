@@ -2,14 +2,15 @@
 
 
 namespace App\Http\Controllers\admin;
+use App\Models\Tag;
 use App\Models\Product;
 use App\Models\Category;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\trait\ImageTrait;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\StoreProductRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
-use Illuminate\Support\Facades\Storage;
-use App\Http\trait\ImageTrait;
 
 
 class ProductController extends Controller
@@ -22,8 +23,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-
+        
         $products = Product::all();
+
         $data = [
             'products' => $products
         ];
@@ -36,9 +38,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-
-    return view("admin.products.create",["categories"=>$categories]);
+        $categories = Category::select('id','name')->get();
+        $tags = Tag::select('id','name')->get();
+        return view("admin.products.create",[
+            "categories"=>$categories,
+            "tags" => $tags
+        ]);
     }
 
     /**
@@ -47,11 +52,12 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store( StoreProductRequest $request)
+    public function store(StoreProductRequest $request)
     {
         $data = $request->all();
         $data['image'] = $this->insertImage($request->name,$request->image,'Product_image/');
-        Product::create($data);
+        $product = Product::create($data);
+        $product->tags()->syncWithoutDetaching($request->tags);
         return redirect()->route('products.index')->with([
             'message' => 'Product Added Successfully',
             'alert' => 'success'
@@ -76,8 +82,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        return view("admin.products.edit", ["product"=>$product,"categories"=>$categories]);
+        $categories = Category::select('id','name')->get();
+        $tags = Tag::select('id','name')->get();
+
+        return view("admin.products.edit",
+        ["product"=>$product,
+        "categories"=>$categories,
+        "tags" => $tags
+        ]);
     }
 
     /**
@@ -93,9 +105,10 @@ class ProductController extends Controller
         if($request->file("image")){
             Storage::disk('product_image')->delete($product->image);
             $data['image'] = $this->insertImage($request->name,$request->image,'Product_image/');
-
         }
+        $product->tags()->delete();
         $product->update($data);
+        $product->tags()->syncWithoutDetaching($request->tags);
         return redirect()->route('products.index')->with([
             'message' => 'Product Updated Successfully',
             'alert' => 'success'
