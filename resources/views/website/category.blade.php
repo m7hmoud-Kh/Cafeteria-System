@@ -5,13 +5,10 @@
 @endsection
 
 @section('name')
-    {{$category->name}}
+    {{ $category->name }}
 @endsection
 
 @section('content')
-
-
-
     <section class="py-5">
         <div class="container p-0">
             <div class="row">
@@ -21,15 +18,14 @@
                             class="small text-uppercase font-weight-bold">Categories</strong></div>
                     @foreach ($categories as $cat)
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            <li class="mb-2"><a class="reset-anchor" href="{{route('show-category',$cat->id)}}"> {{ $cat->name }}</a>
+                            <li class="mb-2"><a class="reset-anchor" href="{{ route('show-category', $cat->id) }}">
+                                    {{ $cat->name }}</a>
                             </li>
                         </ul>
                     @endforeach
-                    
                 </div>
-              <livewire:website.product-shop-component :products="$products">
+                <livewire:website.product-shop-component :products="$products">
             </div>
         </div>
     </section>
-
 @endsection

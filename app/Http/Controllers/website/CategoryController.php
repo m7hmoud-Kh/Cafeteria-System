@@ -1,15 +1,8 @@
 <?php
 namespace App\Http\Controllers\website;
-use Carbon\Carbon;
-use App\Models\Cart;
-use App\Models\Order;
-use App\Models\TransactionOrder;
-use Illuminate\Support\Facades\DB;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\website\StoreOrderRequest;
 use App\Http\trait\ImageTrait;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -26,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       
+
     }
 
     /**
@@ -37,7 +30,7 @@ class CategoryController extends Controller
     public function create()
     {
 
-        
+
     }
 
     /**
@@ -48,7 +41,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-       
+
     }
 
     /**
@@ -80,7 +73,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        
+
     }
 
     /**
@@ -92,7 +85,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-      
+
     }
 
     /**
