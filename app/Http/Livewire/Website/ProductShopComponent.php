@@ -3,15 +3,18 @@
 namespace App\Http\Livewire\Website;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Livewire\Component;
-
+use Livewire\WithPagination;
 
 class ProductShopComponent extends Component
 {
-    public $products ;
-    public function mount($products){
-        $this->products = $products;
-    }
+    use WithPagination;
+    // public $products ;
+
+    // public function mount($products){
+    //     $this-> $products = $products;
+    // }
 
     public function AddToCart($product){
         //check if card is Added Before or not By User
@@ -30,6 +33,8 @@ class ProductShopComponent extends Component
     }
     public function render()
     {
-        return view('livewire.website.product-shop-component');
+        $products = Product::paginate(5);
+        
+    return view('livewire.website.product-shop-component',['products' => $products]);
     }
 }
