@@ -22,20 +22,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+<<<<<<< HEAD
 
 //'auth','isadmin'
 
 Route::group(['middleware'=>[]],function(){
+=======
+Route::group(['middleware'=>['auth','isadmin']],function(){
+>>>>>>> Mohei
     Route::resource('category', CategoryController::class);
-
     Route::resource('tag', TagController::class);
-
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
-
     Route::resource('user', UserController::class);
-
     Route::resource('admin', AdminController::class);
-
+    Route::resource('products',ProductController::class);
     Route::resource('products',ProductController::class);
 });
+
 
