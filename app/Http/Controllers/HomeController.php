@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\Category;
 use App\Models\Tag;
-use App\Models\Product;
-use Illuminate\Support\Facades\DB;
+
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     public function index()
     {
+
         $categories = Category::WhereHas('product' ,function($query) {
             $query->where('status', true);
         })->select('id','name')->get();

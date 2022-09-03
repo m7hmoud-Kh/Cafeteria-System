@@ -7,6 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+
+    <link rel="stylesheet" href="{{asset('assets/website/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/css/bootstrap.css')}}">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="{{asset('assets/website/vendor/bootstrap/css/bootstrap.min.css')}}">
     <!-- Lightbox-->
@@ -27,9 +30,18 @@
     <link rel="stylesheet" href="{{asset('assets/website/css/custom.css')}}">
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{asset('assets/website/img/favicon.png')}}">
+<<<<<<< HEAD
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
+=======
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/jquery.dataTables.min.css') }}">
+    @livewireStyles
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body>
+>>>>>>> 996b614ee2e57c677f78f27d2423848a0f26f3e1
     <div class="page-holder">

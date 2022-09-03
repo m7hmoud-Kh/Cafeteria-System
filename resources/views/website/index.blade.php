@@ -30,6 +30,7 @@
                         </ul>
                     @endforeach
                 </div>
+<<<<<<< HEAD
                 <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
                     <div class="row">
                         <!-- PRODUCT-->
@@ -56,7 +57,11 @@
                         @endforeach
                     </div>
                 </div>
+=======
+              <livewire:website.product-shop-component :products="$products">
+>>>>>>> 996b614ee2e57c677f78f27d2423848a0f26f3e1
             </div>
         </div>
     </section>
 @endsection
+
