@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['middleware'=>['auth','isadmin']],function(){
+Route::group(['middleware'=>[/*'auth','isadmin'*/]],function(){
     Route::resource('category', CategoryController::class);
     Route::resource('tag', TagController::class);
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
