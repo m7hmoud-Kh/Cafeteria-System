@@ -10,7 +10,7 @@ class MangeAccountController extends Controller
 {
     public function index()
     {
-    
+
         return view('website.account');
     }
 
@@ -23,23 +23,20 @@ class MangeAccountController extends Controller
             'email' => $request->email,
         ]);
 
-      return view('website.account')->with([
-           'message' => 'your Account Updated Successfully',
-        'alert' => 'success'
-       ]);
-     
+        return view('website.account')->with([
+            'message' => 'your Account Updated Successfully',
+            'alert' => 'success'
+        ]);
+
     }
 
 
     public function destroy(Request $request)
     {
-  
-        $user = User::find(Auth::user()->id);
 
-        //Auth::logout();
-        
+        $user = User::find(Auth::user()->id);
         if ($user->delete()) {
-        
+
             return redirect()->route('home')->with([
                 'message' => 'your Account Deleted Successfully',
                 'alert' => 'danger'
