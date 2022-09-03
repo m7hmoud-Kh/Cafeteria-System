@@ -56,35 +56,5 @@
 
 <script src="{{ asset('assets/admin/js/bootstrap-datatables/jquery.dataTables.min.js') }}"></script>
 
-<script>
-$(document).ready(function(){
-
-$("#customFile").on('change',function(){
-    var inputCode = $("#customFile").val();
-    console.log(inputCode);
-    $.ajax({
-        url: "{{url('/' . $page='')}}",
-        type: 'get',
-        data:{
-               'inputCode' :inputCode ,
-            },
-
-            dataType : 'json',
-            
-        success: function(data){	
-         
-         console.log(data.data[0])
-
-        }
-     });
-   })
-});
-
-</script>
-
-</div>
-
-
-</body>
-
-</html>
+@include('sweetalert::alert')
+@livewireScripts
