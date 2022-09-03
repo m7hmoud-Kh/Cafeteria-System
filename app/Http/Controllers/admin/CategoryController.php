@@ -7,6 +7,7 @@ use App\Http\trait\ImageTrait;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -65,8 +66,17 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
+
     {
-        return view("admin.category.show",["category"=>$category]);
+        $categories = Category::WhereHas('product' ,function($query) {
+            $query->where('status', true);
+        })->select('id','name')->get();
+
+        $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')
+        ->where('category_id','=',$category->id)
+        ->select('id','name','image','price')
+        ->get();
+        return view("website.category",["category"=>$category,"categories"=>$categories,"products"=>$products]);
     }
 
     /**
