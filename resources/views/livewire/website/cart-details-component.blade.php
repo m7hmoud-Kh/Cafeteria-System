@@ -1,4 +1,4 @@
-    <tr x-data="{show: true}" x-show='show'>
+    <tr x-data="{ show: true }" x-show='show'>
         <th class="pl-0 border-0" scope="row">
             <div class="media align-items-center"><a class="reset-anchor d-block animsition-link"
                     href="javascript:void(0);">
@@ -29,9 +29,8 @@
         <td class="align-middle border-0">
             <p class="mb-0 small">{{ $total }} </p>
         </td>
-        <td class="align-middle border-0" >
-            <a class="reset-anchor" @click="show = false"
-            wire:click.prevent="RemoveCart({{$cart->id}})">
+        <td class="align-middle border-0">
+            <a class="reset-anchor" @click="show = false" wire:click.prevent="RemoveCart({{ $cart->id }})">
                 <i class="fas fa-trash-alt small text-muted"></i>
             </a>
         </td>

@@ -9,9 +9,6 @@
 @endsection
 
 @section('content')
-
-
-
     <section class="py-5">
         <div class="container p-0">
             <div class="row">
@@ -21,7 +18,8 @@
                             class="small text-uppercase font-weight-bold">Categories</strong></div>
                     @foreach ($categories as $category)
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            <li class="mb-2"><a class="reset-anchor" href="{{route('show-category',$category->id)}}"> {{ $category->name }}</a>
+                            <li class="mb-2"><a class="reset-anchor" href="{{ route('show-category', $category->id) }}">
+                                    {{ $category->name }}</a>
                             </li>
                         </ul>
                     @endforeach
@@ -33,10 +31,8 @@
                         </ul>
                     @endforeach
                 </div>
-              <livewire:website.product-shop-component :products="$products">
+                <livewire:website.product-shop-component :products="$products" :catid="$catid">
             </div>
         </div>
     </section>
-
 @endsection
-

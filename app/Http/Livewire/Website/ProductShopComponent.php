@@ -1,16 +1,21 @@
 <?php
 
 namespace App\Http\Livewire\Website;
-
 use App\Models\Cart;
+use App\Models\Product;
 use Livewire\Component;
-
+use Livewire\WithPagination;
 
 class ProductShopComponent extends Component
 {
-    public $products ;
-    public function mount($products){
-        $this->products = $products;
+    // use WithPagination;
+    // protected $paginationTheme = 'bootstrap';
+    // public $products ;
+    public $catid;
+    public function mount($products,$catid){
+        // dd($catid);
+        // $this->products = $products;
+        $this->catid = $catid;
     }
 
     public function AddToCart($product){
@@ -30,6 +35,18 @@ class ProductShopComponent extends Component
     }
     public function render()
     {
-        return view('livewire.website.product-shop-component');
+        if ($this->catid) {
+            $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')
+        ->where('category_id','=',$this->catid)
+        ->select('id','name','image','price')
+        ->paginate(15);
+            return
+            view('livewire.website.product-shop-component',['products' => $products]);
+        }
+        else{
+            $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->paginate(15);
+            return view('livewire.website.product-shop-component',['products' => $products]);
+        }
     }
 }
+//

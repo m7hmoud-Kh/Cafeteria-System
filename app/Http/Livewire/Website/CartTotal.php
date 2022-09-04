@@ -27,7 +27,7 @@ class CartTotal extends Component
             DB::raw("price * quantity As sub_total")
         )->where('user_id',Auth()->user()->id)
         ->get();
-        
+
         $this->sub_total = $this->get_all_total_of_cart($all_cart);
         $this->acutal_tax = ($this->sub_total / self::TAX  );
         $this->grand_total = $this->sub_total + $this->acutal_tax;
