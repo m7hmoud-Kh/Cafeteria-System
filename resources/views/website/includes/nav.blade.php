@@ -30,7 +30,7 @@
                                 border: 0;
                                 border-radius: 50%;" alt="avatar">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right"style="">
+                        <div class="dropdown-menu dropdown-menu-left"style="">
                         <div class="dropdown-header">
                             <div class="media">
                             <div class="media-body">
