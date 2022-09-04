@@ -18,7 +18,8 @@
                             class="small text-uppercase font-weight-bold">Categories</strong></div>
                     @foreach ($categories as $category)
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            <li class="mb-2"><a class="reset-anchor" href="#"> {{ $category->name }}</a>
+                            <li class="mb-2"><a class="reset-anchor" href="{{ route('show-category', $category->id) }}">
+                                    {{ $category->name }}</a>
                             </li>
                         </ul>
                     @endforeach
@@ -26,13 +27,12 @@
                             tags</strong></div>
                     @foreach ($tags as $tag)
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            <li class="mb-2"><a class="reset-anchor" href="#">{{ $tag->name }}</a></li>
+                            <li class="mb-2"><a class="reset-anchor" href="">{{ $tag->name }}</a></li>
                         </ul>
                     @endforeach
                 </div>
-              <livewire:website.product-shop-component :products="$products">
+                <livewire:website.product-shop-component :products="$products" :catid="$catid">
             </div>
         </div>
     </section>
 @endsection
-

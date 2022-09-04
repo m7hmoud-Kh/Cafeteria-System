@@ -38,57 +38,35 @@
                         <thead>
                             <tr>
                                 <th scope="">#</th>
-                                <th scope="">Order</th>
-                                <th scope="">Notes</th>
-                                <th scope="">Phone</th>
-                                <th scope="">Sub Total</th>
-                                <th scope="">Tax</th>
-                                <th scope="">Total</th>
+                                <th scope="">Order Date</th>
                                 <th scope="">Status</th>
-                                <th scope="">Craeted At</th>
-                                <th scope="">More Action</th>
+                                <th scope="">Total</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
                                 $order_count = 0;
                             @endphp
-                            @foreach ($orders as $order)
+                            @foreach ($done_orders as $order)
                                 <tr>
                                     <td>{{ ++$order_count }}</td>
-                                    <td>{{ $order->ref_id }}</td>
-                                    <td>{{ $order->notes }}</td>
-                                    <td>{{ $order->phone }}</td>
-                                    <td>{{ $order->sub_total }}</td>
-                                    <td>{{ $order->tax }}</td>
-                                    <td>{{ $order->total }}</td>
-                                    <td>{{ $order->status }}</td>
                                     <td>{{ $order->created_at }}</td>
-                                    <td>
-                                        <a href="{{ route('show', $order->id) }}" class="btn btn-primary">
-                                            View Details
-                                        </a>
-                                    </td>
+                                    <td>{{ $order->status }}</td>
+                                    <td>{{ $order->total }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th scope="">#</th>
-                                <th scope="">Order</th>
-                                <th scope="">Notes</th>
-                                <th scope="">Phone</th>
-                                <th scope="">Sub Total</th>
-                                <th scope="">Tax</th>
-                                <th scope="">Total</th>
+                                <th scope="">Order Date</th>
                                 <th scope="">Status</th>
-                                <th scope="">Craeted At</th>
-                                <th scope="">More Action</th>
+                                <th scope="">Total</th>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
-                {{ $orders->links() }}
+                {{ $done_orders->links() }}
             </div>
         </div>
     </div>

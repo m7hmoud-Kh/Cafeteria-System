@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
 
-    <link rel="stylesheet" href="{{asset('assets/website/css/all.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/website/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/website/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/website/css/bootstrap.css') }}">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="{{ asset('assets/website/vendor/bootstrap/css/bootstrap.min.css') }}">
     <!-- Lightbox-->
@@ -32,14 +32,28 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('assets/website/css/custom.css') }}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{{asset('assets/website/img/favicon.png')}}">
+    <link rel="shortcut icon" href="{{ asset('assets/website/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/jquery.dataTables.min.css') }}">
     @livewireStyles
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    
     @yield('style')
 </head>
 
 <body>
-    <div class="page-holder">
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/jquery.dataTables.min.css') }}">
+    @livewireStyles
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
+
+    <body>
+        <div class="page-holder">
+            <link rel="shortcut icon" href="{{ asset('assets/website/img/favicon.png') }}">
+            <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/jquery.dataTables.min.css') }}">
+            @livewireStyles
+            <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+            <link rel="stylesheet" href="{{ asset('assets/website/css/style.css') }}">
+            </head>
+
+            <body>
+                <div class="page-holder">

@@ -7,6 +7,7 @@ use App\Http\trait\ImageTrait;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -65,8 +66,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
+
     {
-        return view("admin.category.show",["category"=>$category]);
+       //
     }
 
     /**
