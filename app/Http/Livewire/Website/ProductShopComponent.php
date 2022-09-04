@@ -4,14 +4,19 @@ namespace App\Http\Livewire\Website;
 use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProductShopComponent extends Component
 {
+    // use WithPagination;
+    // protected $paginationTheme = 'bootstrap';
     // public $products ;
-
-    // public function mount($products){
-    //     $products = $products;
-    // }
+    public $catid;
+    public function mount($products,$catid){
+        // dd($catid);
+        // $this->products = $products;
+        $this->catid = $catid;
+    }
 
     public function AddToCart($product){
         //check if card is Added Before or not By User
@@ -30,8 +35,18 @@ class ProductShopComponent extends Component
     }
     public function render()
     {
-        $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->paginate(15);
-        // dd($products);
-    return view('livewire.website.product-shop-component',['products' => $products]);
+        if ($this->catid) {
+            $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')
+        ->where('category_id','=',$this->catid)
+        ->select('id','name','image','price')
+        ->paginate(15);
+            return
+            view('livewire.website.product-shop-component',['products' => $products]);
+        }
+        else{
+            $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->paginate(15);
+            return view('livewire.website.product-shop-component',['products' => $products]);
+        }
     }
 }
+//

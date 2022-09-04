@@ -23,8 +23,8 @@
                             </li>
                         </ul>
                     @endforeach
-                </div>
-                <livewire:website.product-shop-component :products="$products">
+                    </div>
+                <livewire:website.product-shop-component :products="$products" :catid="$cat_id">
             </div>
         </div>
     </section>

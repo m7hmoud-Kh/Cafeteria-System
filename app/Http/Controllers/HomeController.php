@@ -13,9 +13,8 @@ class HomeController extends Controller
 
         $tags = Tag::all();
 
-        // $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->paginate(5);
         $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->get();
-        // dd($products);
-        return view('website.index',compact('categories','tags','products'));
+        $catid = false;
+        return view('website.index',compact('categories','tags','products','catid'));
     }
 }

@@ -31,7 +31,7 @@
                         </ul>
                     @endforeach
                 </div>
-                <livewire:website.product-shop-component :products="$products">
+                <livewire:website.product-shop-component :products="$products" :catid="$catid">
             </div>
         </div>
     </section>
