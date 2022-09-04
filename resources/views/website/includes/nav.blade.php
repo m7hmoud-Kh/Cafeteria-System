@@ -12,7 +12,7 @@
                             <!-- Link--><a class="nav-link active" href="{{route('home')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <!-- Link--><a class="nav-link " href="#">My Order</a>
+                            <!-- Link--><a class="nav-link " href="{{route('myorder')}}">My Order</a>
                         </li>
                     </ul>
 
@@ -30,7 +30,7 @@
                                 border: 0;
                                 border-radius: 50%;" alt="avatar">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-left">
+                        <div class="dropdown-menu dropdown-menu-right"style="">
                         <div class="dropdown-header">
                             <div class="media">
                             <div class="media-body">
@@ -41,11 +41,20 @@
                         </div>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{route('account')}}"><i class="text-secondary ti-reload"></i>My Profile</a>
-                        <a class="dropdown-item" href="#"><i class="text-success ti-email"></i>Messages</a>
+
+                        {{-- <a class="dropdown-item" href="#"><i class="text-success ti-email"></i>Messages</a>
+
                         <a class="dropdown-item" href="#"><i class="text-warning ti-user"></i>Profile</a>
-                        <a class="dropdown-item" href="#"><i class="text-dark ti-layers-alt"></i>Projects <span class="badge badge-info">6</span> </a>
+
+                        <a class="dropdown-item" href="#"><i class="text-dark ti-layers-alt"></i>Projects <span class="badge badge-info">6</span> </a> --}}
+
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
+                        @if (Auth::user()->isAdmin)
+                        <a class="dropdown-item" href="{{route('dashboard')}}">
+                            <i class="text-info ti-settings"></i>Admin
+                        </a>
+                        @endif
+
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <i class="text-danger ti-unlock"></i>Logout</a>
@@ -55,12 +64,11 @@
                         </div>
                     </li>
                         @else
-                            <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{route('login')}}"> <i
                             class="fas fa-user-alt mr-1 text-gray"></i>Login</a>
                         </li>
                         @endauth
-
                     </ul>
 
                 </div>

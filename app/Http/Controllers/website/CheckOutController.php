@@ -4,12 +4,15 @@ namespace App\Http\Controllers\website;
 
 use Carbon\Carbon;
 use App\Models\Cart;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\TransactionOrder;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\website\StoreOrderRequest;
+use App\Notifications\OrderNotification;
+use Notification;
 
 class CheckOutController extends Controller
 {
@@ -50,7 +53,9 @@ class CheckOutController extends Controller
             'order_id' => $order->id,
         ]);
 
-        //return view('my Order');
+        $this->send_notificatio_order_to_admins($order);
+        return redirect()->route('myorder');
+
     }
 
     private function get_all_total_of_cart($all_cart){
@@ -59,6 +64,11 @@ class CheckOutController extends Controller
             $all_total_cart += $cart->sub_total;
         }
         return $all_total_cart;
+    }
+
+    private function send_notificatio_order_to_admins($order){
+        $users = User::whereNotNull('isAdmin')->get();
+        Notification::send($users,new OrderNotification($order));
     }
 
 }
