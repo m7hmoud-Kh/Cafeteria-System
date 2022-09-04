@@ -17,7 +17,11 @@
 
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/style.css')}}" />
+@livewireStyles
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 @yield('style')
+
 </head>
 <body>
 
