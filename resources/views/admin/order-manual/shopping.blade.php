@@ -67,7 +67,6 @@
             z-index: 999;
         }
 
-
         .product-view {
             min-height: 20rem;
         }
@@ -137,7 +136,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @forelse ($data['carts'] as $cart)
                                     <livewire:admin.cart-info :cart="$cart" :key="$cart->id" />
                                 @empty
@@ -146,13 +144,9 @@
                                         </td>
                                     </tr>
                                 @endforelse
-
-
-
                             </tbody>
                         </table>
                     </div>
-
                 </div>
                 <div class="card-body">
                     <h5 class="text-uppercase mb-4">Cart total</h5>
@@ -170,13 +164,14 @@
                         <h4 class="m-3 text-center">All Products Available
                         </h4>
                     </div>
+
+
                     <div class="row">
-                        @forelse ($products as $product)
+                        @forelse ($data['products'] as $product)
                             <livewire:admin.shopping-product :product="$product" :key="$product->id" />
                         @empty
                         @endforelse
                     </div>
-                    {{-- {{ $products->links() }} --}}
                 </div>
             </div>
         </div>

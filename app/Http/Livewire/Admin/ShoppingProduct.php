@@ -38,6 +38,6 @@ class ShoppingProduct extends Component
     public function render()
     {
         // $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->orderby('name')->paginate(10);
-        return view('livewire.admin.shopping-product',['products'=>$products]);
+        return view('livewire.admin.shopping-product');
     }
 }
