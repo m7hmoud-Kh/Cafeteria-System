@@ -1,14 +1,12 @@
 <?php
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\website;
 
 use App\Http\Controllers\Controller;
 use App\Http\trait\ImageTrait;
-
-use Illuminate\Support\Facades\Storage;
-
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+
 
 class CategoryController extends Controller
 {
@@ -21,8 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       $categories=Category::all();
-       return view("admin.category.index",["categories"=>$categories]);
+
     }
 
     /**
@@ -33,7 +30,7 @@ class CategoryController extends Controller
     public function create()
     {
 
-        return view("admin.category.add");
+
     }
 
     /**
@@ -44,19 +41,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "name"=>"required",
-            'image'=>'required'
 
-        ]);
-
-        $inputdata = $request->all();
-        $inputdata['image'] = $this->insertImage($request->name,$request->image,'Category_image/');
-        Category::create($inputdata);
-        return redirect()->route('category.index')->with([
-            'message' => 'Category Added Successfully',
-            'alert' => 'success'
-        ]);
     }
 
     /**
@@ -65,10 +50,19 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
 
     {
-       //
+        $category = Category::findOrFail($id);
+        $categories = Category::WhereHas('product' ,function($query) {
+            $query->where('status', true);
+        })->select('id','name')->get();
+
+        $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')
+        ->where('category_id','=',$category->id)
+        ->select('id','name','image','price')
+        ->get();
+        return view("website.category",["category"=>$category,"categories"=>$categories,"products"=>$products]);
     }
 
     /**
@@ -79,7 +73,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view("admin.category.edit",["category"=>$category]);
+
     }
 
     /**
@@ -91,17 +85,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $inputdata=$request->all();
-        if ($request->file("image")) {
-            Storage::disk('category_image')->delete($category->image);
-            $inputdata['image'] = $this->insertImage($request->name,$request->image,'Category_image/');
 
-        }
-        $category->update($inputdata);
-        return redirect()->route('category.index')->with([
-            'message' => 'Category Updated Successfully',
-            'alert' => 'success'
-        ]);
     }
 
     /**
@@ -112,11 +96,5 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        Storage::disk('category_image')->delete($category->image);
-        $category->delete();
-        return redirect()->route('category.index')->with([
-            'message' => 'Category deleted Successfully',
-            'alert' => 'danger'
-        ]);
     }
 }

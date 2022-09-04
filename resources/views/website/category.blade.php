@@ -5,7 +5,7 @@
 @endsection
 
 @section('name')
-    Shop
+    {{ $category->name }}
 @endsection
 
 @section('content')
@@ -16,18 +16,11 @@
                 <div class="col-lg-3 order-2 order-lg-1">
                     <div class="py-2 px-4 bg-dark text-white mb-3"><strong
                             class="small text-uppercase font-weight-bold">Categories</strong></div>
-                    @foreach ($categories as $category)
+                    @foreach ($categories as $cat)
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            <li class="mb-2"><a class="reset-anchor" href="{{ route('show-category', $category->id) }}">
-                                    {{ $category->name }}</a>
+                            <li class="mb-2"><a class="reset-anchor" href="{{ route('show-category', $cat->id) }}">
+                                    {{ $cat->name }}</a>
                             </li>
-                        </ul>
-                    @endforeach
-                    <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">
-                            tags</strong></div>
-                    @foreach ($tags as $tag)
-                        <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            <li class="mb-2"><a class="reset-anchor" href="">{{ $tag->name }}</a></li>
                         </ul>
                     @endforeach
                 </div>
