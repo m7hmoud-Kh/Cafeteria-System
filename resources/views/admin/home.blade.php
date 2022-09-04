@@ -49,7 +49,7 @@ Home
                 <div class="clearfix">
                     <div class="float-left">
                         <span class="text-warning">
-                            <i class="fa fa-shopping-cart highlight-icon" aria-hidden="true"></i>
+                            <i class="fa fa-cog highlight-icon" aria-hidden="true"></i>
                         </span>
                     </div>
                     <div class="float-right text-right">
@@ -72,7 +72,7 @@ Home
                 <div class="clearfix">
                     <div class="float-left">
                         <span class="text-warning">
-                            <i class="fa fa-shopping-cart highlight-icon" aria-hidden="true"></i>
+                            <i class="fa   fa-rocket highlight-icon" aria-hidden="true"></i>
                         </span>
                     </div>
                     <div class="float-right text-right">
@@ -160,7 +160,8 @@ Home
                 <div class="clearfix">
                     <div class="float-left">
                         <span class="text-primary">
-                            <i class="fa fa-product-hunt highlight-icon" aria-hidden="true"></i>
+                            <i class="fa  fa-list
+                             highlight-icon" aria-hidden="true"></i>
                         </span>
                     </div>
                     <div class="float-right text-right">
