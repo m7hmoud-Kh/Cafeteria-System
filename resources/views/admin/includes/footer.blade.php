@@ -24,14 +24,17 @@
 </div><!-- main content wrapper end-->
 </div>
 </div>
-</div>
 
 <!--=================================
 footer -->
 
 
-<!--=================================
-jquery -->
+<!--=================================jquery -->
+
+
+
+
+
 
 <!-- jquery -->
 <script src="{{asset('assets/admin/js/jquery-3.3.1.min.js')}}"></script>
@@ -74,6 +77,7 @@ jquery -->
 <!-- custom -->
 <script src="{{asset('assets/admin/js/custom.js')}}"></script>
 
+<script src="{{asset('assets/admin/js/app.js')}}"></script>
 @yield('script')
 
 @include('sweetalert::alert')

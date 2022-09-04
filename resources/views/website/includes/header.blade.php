@@ -32,6 +32,7 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('assets/website/css/custom.css') }}">
     <!-- Favicon-->
+<<<<<<< HEAD
     <link rel="shortcut icon" href="{{ asset('assets/website/img/favicon.png') }}">
     <!-- Tweaks for older IEs-->
     <!--[if lt IE 9]>
@@ -47,3 +48,15 @@
 
     <body>
         <div class="page-holder">
+=======
+    <link rel="shortcut icon" href="{{asset('assets/website/img/favicon.png')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/jquery.dataTables.min.css') }}">
+    @livewireStyles
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <link rel="stylesheet" href="{{ asset('assets/website/css/style.css')}}">
+</head>
+
+<body>
+    <div class="page-holder">
+>>>>>>> ae290ff9f5910ced22f710545aacc73a43be38a7
