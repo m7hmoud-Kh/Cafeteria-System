@@ -5,15 +5,13 @@ namespace App\Http\Livewire\Website;
 use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class ProductShopComponent extends Component
 {
-    use WithPagination;
     // public $products ;
 
     // public function mount($products){
-    //     $this-> $products = $products;
+    //     $products = $products;
     // }
 
     public function AddToCart($product){
@@ -33,8 +31,9 @@ class ProductShopComponent extends Component
     }
     public function render()
     {
-        $products = Product::paginate(5);
-        
+        $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->paginate(15);
+        // $products = Product::all();
+        // dd($products);
     return view('livewire.website.product-shop-component',['products' => $products]);
     }
 }

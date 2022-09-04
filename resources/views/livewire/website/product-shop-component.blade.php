@@ -24,7 +24,6 @@
         @endforeach
     </div>
     <div class="d-flex">
-        {{ $products->links() }}
+        {{ $products->links('') }}
     </div>
-
 </div>

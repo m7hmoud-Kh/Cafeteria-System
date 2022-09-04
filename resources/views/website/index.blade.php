@@ -33,6 +33,5 @@
                 <livewire:website.product-shop-component :products="$products">
             </div>
         </div>
-
     </section>
 @endsection
