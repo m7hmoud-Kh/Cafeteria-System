@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Website;
 use App\Models\Cart;
 use Livewire\Component;
 use Flasher\Prime\FlasherInterface;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProductShopComponent extends Component
 {
@@ -15,21 +15,23 @@ class ProductShopComponent extends Component
     }
 
     public function AddToCart($product , FlasherInterface $flasher){
-        //check if card is Added Before or not By User
-        $found = Cart::where('product_id',$product['id'])->where('user_id',Auth()->user()->id)->first();
-
-        if(!$found){
-            Cart::create([
-                'user_id' => Auth()->user()->id,
-                'product_id' => $product['id'],
-                'price' => $product['price'],
-            ]);
-
-            $this->emit('update_cart');
-            $flasher->addSuccess("Product Added To Cart");
-
+        if(Auth::user()){
+            //check if card is Added Before or not By User
+            $found = Cart::where('product_id',$product['id'])->where('user_id',Auth()->user()->id)->first();
+            if(!$found){
+                Cart::create([
+                    'user_id' => Auth()->user()->id,
+                    'product_id' => $product['id'],
+                    'price' => $product['price'],
+                ]);
+                $this->emit('update_cart');
+                $flasher->addSuccess("Product Added To Cart");
+            }else{
+                $flasher->addError('Product Already Added');
+            }
+        }else{
+            return redirect()->route('login');
         }
-        $flasher->addError('Product Already Added');
     }
     public function render()
     {
