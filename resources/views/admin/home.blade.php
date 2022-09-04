@@ -127,9 +127,7 @@ Home
                         <h4>{{$num_all_user_is_not_admin}}</h4>
                     </div>
                 </div>
-                <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                    <i class="fa fa-calendar mr-1" aria-hidden="true"></i> for now
-                </p>
+               
             </div>
         </div>
     </div>
@@ -147,9 +145,7 @@ Home
                         <h4>{{$num_all_admin}}</h4>
                     </div>
                 </div>
-                <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                    <i class="fa fa-repeat mr-1" aria-hidden="true"></i> Just Updated
-                </p>
+               
             </div>
         </div>
     </div>
@@ -169,9 +165,7 @@ Home
                         <h4>{{$num_categories}}</h4>
                     </div>
                 </div>
-                <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                    <i class="fa fa-repeat mr-1" aria-hidden="true"></i> Just Updated
-                </p>
+              
             </div>
         </div>
     </div>
@@ -190,9 +184,7 @@ Home
                         <h4>{{$num_products}}</h4>
                     </div>
                 </div>
-                <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                    <i class="fa fa-repeat mr-1" aria-hidden="true"></i> Just Updated
-                </p>
+               
             </div>
         </div>
     </div>
