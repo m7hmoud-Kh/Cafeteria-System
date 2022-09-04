@@ -4,17 +4,11 @@ namespace App\Http\Livewire\Website;
 use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class ProductShopComponent extends Component
 {
-    // use WithPagination;
-    // protected $paginationTheme = 'bootstrap';
-    // public $products ;
     public $catid;
     public function mount($products,$catid){
-        // dd($catid);
-        // $this->products = $products;
         $this->catid = $catid;
     }
 
