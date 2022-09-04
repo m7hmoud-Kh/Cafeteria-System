@@ -5,13 +5,13 @@ Home
 @endsection
 
 @section('name')
-My Profile
+My Orders
 @endsection
-          
-
+ @section('style') 
+ <link rel="stylesheet" href="{{ asset('assets/website/css/style.css')}}">        
+ @endsection
 @section('content')
- 
-<div class="container">
+
 
 <?php $total = 0; ?>
 
@@ -40,9 +40,11 @@ My Profile
   ?>
     <tr class="view">
       <td>#</td>
+
+     
       <td>{{$order->created_at}}</td>
-      <td class="pcs">{{$order->status}}</td>
-      <td class="cur">{{$order->total}}</td>
+      <td >{{$order->status}}</td>
+      <td >{{$order->total}} EGP</td>
       @if($order->status == 1)
       <td title="cancel order">
              <a href="" 
@@ -155,5 +157,5 @@ My Profile
             </div>
           </div>
           <!-- cancel order  End --> 
-</div>
+
 @endsection
