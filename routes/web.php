@@ -24,10 +24,8 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('/cart',[CartController::class,'index'])->name('cart');
         /**End Route Cart */
 
-
         /**Route Check out */
         Route::get('/check-out',[CheckOutController::class,'index'])->name('check-out');
-
         Route::post('/confirm-order',[CheckOutController::class,'store'])->name('confirm-order');
         /***End Route Check out */
     });
@@ -37,6 +35,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/my-order', [MyOrderController::class, 'index'])->name('myorder');
     Route::post('/delete-order', [MyOrderController::class, 'destroy'])->name('deleteorder');
     Route::post('/select-date', [MyOrderController::class, 'selectdate'])->name('selectdate');
+
 
 });
 

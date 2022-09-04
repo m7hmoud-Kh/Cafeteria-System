@@ -14,7 +14,11 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "3.4",
         "livewire/livewire": "^2.6",
-        "realrashid/sweet-alert": "^5.1"
+        "realrashid/sweet-alert": "^5.1",
+        "php-flasher/flasher-laravel": "^1.7",
+        "realrashid/sweet-alert": "^4.0",
+        "yoeunes/toastr": "^2.0"
+
     },
     "require-dev": {
         "facade/ignition": "^2.5",
