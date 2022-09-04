@@ -17,7 +17,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                    {{-- <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="default-color">Home</a></li> --}}
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="default-color">Home</a></li>
                     <li class="breadcrumb-item active">category</li>
                 </ol>
             </div>
@@ -27,7 +27,6 @@
         <div class="card card-statistics h-100">
             <div class="card-body">
                 <div class="table-responsive">
-
                     <table id="datatable" class="table table-striped table-bordered p-0">
                         <thead>
                             <tr>
@@ -36,7 +35,6 @@
                                 <th>image</th>
                                 <th>Edit</th>
                                 <th>delete</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -46,14 +44,6 @@
                                     <td> {{ $category->name }} </td>
                                     <td><img src="{{ asset('Category_image/' . $category->image) }}" width="50"
                                             alt=""></td>
-
-
-
-
-
-
-
-
                                     <td>
                                         <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary "> Edit
                                         </a>
@@ -64,7 +54,6 @@
                                             @method('delete')
                                             <input type="submit" class="btn btn-danger" value="Delete">
                                         </form>
-
                                     </td>
                                 </tr>
                             @endforeach
