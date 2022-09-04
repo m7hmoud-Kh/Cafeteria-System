@@ -50,13 +50,15 @@
             <!-- menu item calendar-->
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#calendar-menu">
-                    <div class="pull-left"><i class="ti-calendar"></i><span class="right-nav-text">calendar</span></div>
+                    <div class="pull-left"><i class="ti-calendar"></i><span class="right-nav-text">Orders</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
                 <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
-                    <li> <a href="calendar.html">Events Calendar </a> </li>
-                    <li> <a href="calendar-list.html">List Calendar</a> </li>
+                    <li> <a href="{{ route('orders') }}">All Orders</a> </li>
+                    <li> <a href="{{route('processingOrders')}}">processing</a> </li>
+                    <li> <a href="{{route('outOfDeliveryOrders')}}">Out of Delivery</a> </li>
+                    <li> <a href="{{route('doneOrders')}}">Done</a> </li>
                 </ul>
             </li>
             <!-- menu item todo-->
@@ -84,7 +86,7 @@
             </li>
             <!-- menu item chat-->
             <li>
-                <a href="{{route('make-order')}}"><i class="fa fa-cart-plus"></i><span class="right-nav-text">Cart
+                <a href="{{ route('make-order') }}"><i class="fa fa-cart-plus"></i><span class="right-nav-text">Cart
                     </span></a>
             </li>
             <!-- menu item mailbox-->

@@ -37,15 +37,16 @@ Route::group(['middleware'=>['auth','isadmin']],function(){
     Route::post('/user-id-cart',[OrderManualController::class,'store_user_id'])->name('user-cart');
     Route::get('/shopping',[OrderManualController::class,'shopping_cart'])->name('shopping-cart');
     Route::get('/checkout_details',[OrderManualController::class,'checkout_details'])->name('checkout-details');
-
     Route::post('/place_order',[OrderManualController::class,'place_order'])->name('place_order');
     /**Route End OrderManual */
 
 
     /***Route Orders */
     Route::get('/orders',[OrderController::class,'index'])->name('orders');
-    Route::get('/show',[OrderController::class,'show'])->name('show');
-
+    Route::get('/show/{id}',[OrderController::class,'show'])->name('show');
+    Route::get('/processing',[OrderController::class,'processing_orders'])->name('processingOrders');
+    Route::get('/delivery',[OrderController::class,'out_of_delivery_orders'])->name('outOfDeliveryOrders');
+    Route::get('/done',[OrderController::class,'done_orders'])->name('doneOrders');
     /**Route End Orders */
 });
 
