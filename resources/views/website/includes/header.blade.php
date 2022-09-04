@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
-
     <link rel="stylesheet" href="{{ asset('assets/website/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/website/css/bootstrap.css') }}">
     <!-- Bootstrap CSS-->
@@ -34,25 +33,10 @@
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{ asset('assets/website/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/jquery.dataTables.min.css') }}">
-    @livewireStyles
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @yield('style')
-</head>
-
-<body>
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/jquery.dataTables.min.css') }}">
-    @livewireStyles
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    </head>
-
-    <body>
-        <div class="page-holder">
-            <link rel="shortcut icon" href="{{ asset('assets/website/img/favicon.png') }}">
-            <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/jquery.dataTables.min.css') }}">
-            @livewireStyles
-            <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-            <link rel="stylesheet" href="{{ asset('assets/website/css/style.css') }}">
+   
+        @livewireStyles
             </head>
 
             <body>
