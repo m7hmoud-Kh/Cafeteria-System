@@ -20,12 +20,12 @@
                     <div class="py-2 px-4 bg-dark text-white mb-3"><strong
                             class="small text-uppercase font-weight-bold">Categories</strong></div>
                     @foreach ($categories as $cat)
-                         @if($cat->id !== $category->id)
+                        
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
                             <li class="mb-2"><a class="reset-anchor" href="{{route('show-category',$cat->id)}}"> {{ $cat->name }}</a>
                             </li>
                         </ul>
-                        @endif
+                       
                     @endforeach
                     
                 </div>
