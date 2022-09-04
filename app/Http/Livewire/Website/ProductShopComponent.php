@@ -5,6 +5,11 @@ namespace App\Http\Livewire\Website;
 use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Flasher\Prime\FlasherInterface;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class ProductShopComponent extends Component
 {
