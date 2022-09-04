@@ -24,12 +24,10 @@
             <div class="card-body container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
+                        <div class="mb-20"><img class="logo-small mt-0"
+                                src="{{ asset('assets/admin/images/logo-dark.png') }}" alt="logo"></div>
                         <ul class="addresss-info invoice-addresss list-unstyled">
-                            <li>17504 Carlton Cuevas Rd,<br>
-                                Gulfport, MS, 39503</li>
-                            <li><strong>Email: </strong> letstalk@webmin.com</li>
-                            <li><strong>Phone: </strong> <a href="tel:7042791249"> +(704) 279-1249 </a></li>
-                            <li><strong>Fax: </strong>+(704) 213-7895 </li>
+                            <li>Cafeteria</li>
                         </ul>
                     </div>
                     <div class="col-sm-6 text-left text-sm-right mb-5">
@@ -38,7 +36,7 @@
                             <p> Invoice No: <a href="#">{{ $order->ref_id }}</a> </p> <br>
                             <h4><small>Invoice to:</small> {{ $user->name }}</h4>
                         </div>
-                        <ul>
+                        <ul class="list-unstyled">
                             <li><span><strong>Email: </strong> {{ $user->email }}</span></li>
                             <li><span><strong>Phone: </strong> <a href="{{ $order->phone }}"> {{ $order->phone }}</a></span>
                             </li>

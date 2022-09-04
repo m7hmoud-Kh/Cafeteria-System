@@ -113,47 +113,7 @@
         </div>
     </div>
 
-
     <div class="row">
-        {{-- <div class="col-xl-5 mb-30">
-            <div class="card card-statistics mb-30">
-                <div class="card-body">
-                    <h5 class="text-uppercase mb-4">Cart Info</h5>
-                    <div class="table-responsive mb-4">
-                        <table class="table">
-                            <thead class="bg-light">
-                                <tr>
-                                    <th class="border-0" scope="col"> <strong
-                                            class="text-small text-uppercase">Product</strong>
-                                    </th>
-                                    <th class="border-0" scope="col"> <strong
-                                            class="text-small text-uppercase">Price</strong></th>
-                                    <th class="border-0" scope="col"> <strong
-                                            class="text-small text-uppercase">Quantity</strong></th>
-                                    <th class="border-0" scope="col"> <strong
-                                            class="text-small text-uppercase">Total</strong></th>
-                                    <th class="border-0" scope="col"> </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($data['carts'] as $cart)
-                                    <livewire:admin.cart-info :cart="$cart" :key="$cart->id" />
-                                @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center font-weight-bold mt-2">Not Product In Cart
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h5 class="text-uppercase mb-4">Cart total</h5>
-                    <livewire:admin.cart-total />
-                </div>
-            </div>
-        </div> --}}
         <div class="col-xl-12 mb-30">
             <div class="card card-statistics mb-30">
                 <div class="card-body">
@@ -164,14 +124,13 @@
                         <h4 class="m-3 text-center">All Products Available
                         </h4>
                     </div>
-
-
                     <div class="row">
                         @forelse ($data['products'] as $product)
                             <livewire:admin.shopping-product :product="$product" :key="$product->id" />
                         @empty
                         @endforelse
                     </div>
+                    {{ $data['products']->links('') }}
                 </div>
             </div>
         </div>

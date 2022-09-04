@@ -15,5 +15,4 @@
         <h6> <a class="reset-anchor" href="#">{{ $product->name }}</a></h6>
         <p class="small text-muted">{{ $product->format_price($product->price) }} </p>
     </div>
-
 </div>

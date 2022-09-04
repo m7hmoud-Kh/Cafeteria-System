@@ -22,14 +22,14 @@
                         class="right-nav-text">Products</span> </a>
             </li>
             <li>
-                <a href="{{ route('userorders') }}"><i class="ti-comments"></i><span class="right-nav-text">Orders
-                        <a href="{{ route('make-order') }}"><i class="fa fa-cart-plus"></i><span
+                <a href="{{ route('userorders') }}"><i class="ti-search"></i><span class="right-nav-text"> Check Orders
+                        <a href="{{ route('make-order') }}"><i class="ti-shopping-cart"></i><span
                                 class="right-nav-text">Cart
                             </span></a>
             </li>
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#order-menu">
-                    <div class="pull-left"><i class="ti-calendar"></i><span class="right-nav-text">Orders</span></div>
+                    <div class="pull-left"><i class="ti-package"></i><span class="right-nav-text">Orders</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>

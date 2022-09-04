@@ -30,8 +30,12 @@ class OrderManualController extends Controller
     public function store_user_id(Request $request)
     {
         $request->session()->put('user_id', $request->user_id);
+        return redirect()->route('fill-cart');
+    }
 
-        $products = Product::whereStatus(true)->where('quantity', '>=', '1')->select('id', 'name', 'image', 'price')->orderby('name')->get();
+    public function fill_cart()
+    {
+        $products = Product::whereStatus(true)->where('quantity', '>=', '1')->select('id', 'name', 'image', 'price')->orderby('name')->paginate(10);
 
         $data = [
             'products' => $products,
