@@ -84,7 +84,7 @@
             </li>
             <!-- menu item chat-->
             <li>
-                <a href="chat-page.html"><i class="ti-comments"></i><span class="right-nav-text">Chat
+                <a href="{{route('orders')}}"><i class="ti-comments"></i><span class="right-nav-text">Orders
                     </span></a>
             </li>
             <!-- menu item mailbox-->

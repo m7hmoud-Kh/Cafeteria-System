@@ -50,7 +50,7 @@ class CheckOutController extends Controller
             'order_id' => $order->id,
         ]);
 
-        //return view('my Order');
+        return redirect()->route('myorder');
     }
 
     private function get_all_total_of_cart($all_cart){

@@ -12,7 +12,7 @@
                             <!-- Link--><a class="nav-link active" href="{{route('home')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <!-- Link--><a class="nav-link " href="#">My Order</a>
+                            <!-- Link--><a class="nav-link " href="{{route('myorder')}}">My Order</a>
                         </li>
                     </ul>
 
@@ -30,7 +30,7 @@
                                 border: 0;
                                 border-radius: 50%;" alt="avatar">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-left">
+                        <div class="dropdown-menu dropdown-menu-right"style="">
                         <div class="dropdown-header">
                             <div class="media">
                             <div class="media-body">
@@ -55,7 +55,7 @@
                         </div>
                     </li>
                         @else
-                            <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{route('login')}}"> <i
                             class="fas fa-user-alt mr-1 text-gray"></i>Login</a>
                         </li>

@@ -10,7 +10,7 @@ My Profile
           
 
 @section('content')
-@livewireStyles
+
 
   
 <div>
@@ -29,7 +29,7 @@ My Profile
             style="position: relative;
             display: inline-block;">
             <img class="rounded-circle" src="{{ asset('User_image/'.Auth::user()->image)}}" alt="" 
-            style="width: 200px;height: 200px;">
+            style="width: 200px;height: 200px;" id="output">
             <div class="profile-thumb-edit bg-success  text-white"
             style="font-size: 22px;
               width: 37px;
@@ -48,11 +48,15 @@ My Profile
           
             
              data-bs-toggle="tooltip" title="" data-bs-original-title="Change Profile Picture"> <i class="fas fa-camera position-absolute"></i>
-                <input type="file" class="custom-file-input" id="customFile">
+             <form action="{{route('updateimage')}}" method="post" enctype="multipart/form-data">
+               @csrf 
+                <input type="file" class="custom-file-input"name="image" id="customFile"onchange="loadFile(event)">
+               
               </div>
             </div>
-          
-            <p class="text-3 fw-500 mb-2">Hello, {{Auth::user()->name}}</p>
+            <button type="submit" class="btn btn-success rounded-3 btn-sm">save change</button>
+            </form>
+            <p class="text-3 fw-500 mb-2 mt-3">Hello, {{Auth::user()->name}}</p>
             <p class="mb-2"><a href="settings-profile.html" class="text-5 text-light" data-bs-toggle="tooltip" title="" data-bs-original-title="Edit Profile" aria-label="Edit Profile"><i class="fas fa-edit"></i></a></p>
           </div>
           <!-- Profile Details End --> 
@@ -176,6 +180,5 @@ My Profile
   </div>
 </div>
 @endsection
-@livewireScripts
-   
+
 

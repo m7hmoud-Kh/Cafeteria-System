@@ -5,7 +5,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\UserController;
-
+use App\Http\Controllers\admin\UsersOrderController;
 use App\Http\Controllers\admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +34,10 @@ Route::group(['middleware'=>['auth','isadmin']],function(){
     Route::resource('admin', AdminController::class);
     Route::resource('products',ProductController::class);
     Route::resource('products',ProductController::class);
+    Route::get('/orders', [UsersOrderController::class, 'index'])->name('orders');
+    Route::post('/change-status', [UsersOrderController::class, 'update'])->name('changestatus');
+    Route::post('/select-orders', [UsersOrderController::class, 'select'])->name('selectorders');
+
 });
 
 
