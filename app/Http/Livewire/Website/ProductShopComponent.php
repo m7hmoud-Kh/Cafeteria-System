@@ -4,7 +4,11 @@ namespace App\Http\Livewire\Website;
 use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
+
 use Livewire\WithPagination;
+
+use Flasher\Prime\FlasherInterface;
+
 
 class ProductShopComponent extends Component
 {
@@ -18,7 +22,7 @@ class ProductShopComponent extends Component
         $this->catid = $catid;
     }
 
-    public function AddToCart($product){
+    public function AddToCart($product , FlasherInterface $flasher){
         //check if card is Added Before or not By User
         $found = Cart::where('product_id',$product['id'])->where('user_id',Auth()->user()->id)->first();
 
@@ -30,8 +34,10 @@ class ProductShopComponent extends Component
             ]);
 
             $this->emit('update_cart');
-        }
+            $flasher->addSuccess("Product Added To Cart");
 
+        }
+        $flasher->addError('Product Already Added');
     }
     public function render()
     {
