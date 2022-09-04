@@ -54,8 +54,8 @@ class CheckOutController extends Controller
         ]);
 
         $this->send_notificatio_order_to_admins($order);
+        return redirect()->route('myorder');
 
-        //return view('my Order');
     }
 
     private function get_all_total_of_cart($all_cart){

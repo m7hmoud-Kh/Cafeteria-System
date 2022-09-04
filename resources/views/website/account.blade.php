@@ -7,8 +7,12 @@ Home
 @section('name')
 My Profile
 @endsection
+          
 
 @section('content')
+
+
+  
 <div>
 <div id="content" class="py-4">
     <div class="container">
@@ -25,7 +29,7 @@ My Profile
             style="position: relative;
             display: inline-block;">
             <img class="rounded-circle" src="{{ asset('User_image/'.Auth::user()->image)}}" alt="" 
-            style="width: 200px;height: 200px;">
+            style="width: 200px;height: 200px;" id="output">
             <div class="profile-thumb-edit bg-success  text-white"
             style="font-size: 22px;
               width: 37px;
@@ -40,14 +44,19 @@ My Profile
               -ms-flex-pack: center !important;
               justify-content: center !important;
               -ms-flex-align: center !important;
-              align-items: center !important;
+              align-items: center !important;"
           
             
              data-bs-toggle="tooltip" title="" data-bs-original-title="Change Profile Picture"> <i class="fas fa-camera position-absolute"></i>
-                <input type="file" class="custom-file-input" id="customFile">
+             <form action="{{route('updateimage')}}" method="post" enctype="multipart/form-data">
+               @csrf 
+                <input type="file" class="custom-file-input"name="image" id="customFile"onchange="loadFile(event)">
+               
               </div>
             </div>
-            <p class="text-3 fw-500 mb-2">Hello, {{Auth::user()->name}}</p>
+            <button type="submit" class="btn btn-success rounded-3 btn-sm">save change</button>
+            </form>
+            <p class="text-3 fw-500 mb-2 mt-3">Hello, {{Auth::user()->name}}</p>
             <p class="mb-2"><a href="settings-profile.html" class="text-5 text-light" data-bs-toggle="tooltip" title="" data-bs-original-title="Edit Profile" aria-label="Edit Profile"><i class="fas fa-edit"></i></a></p>
           </div>
           <!-- Profile Details End --> 
@@ -94,13 +103,13 @@ My Profile
           </div>
           <!-- Personal Details
           ============================================= -->
- <!-- Email Addresses
+            <!-- delete account
           ============================================= -->
           <div class="bg-white shadow-sm rounded p-4 mb-4">
             <h3 class="text-5 fw-400 d-flex align-items-center mb-4">Delete Your Account  <button type="button" class="btn btn-danger" style="margin-left: auto;" data-toggle="modal"
             data-target="#exampleModalCenter2"> Delete </button></h3>
           </div>
-          <!-- Edit Details Modal
+          <!-- delete account Details Modal
           ================================== -->
           <div id="exampleModalCenter2" class="modal fade" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
