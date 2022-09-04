@@ -27,6 +27,7 @@ Route::group(['middleware'=>'auth'],function(){
 
         Route::post('/confirm-order',[CheckOutController::class,'store'])->name('confirm-order');
         /***End Route Check out */
+
     });
 
 });

@@ -3,6 +3,8 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\admin\OrderManualController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\UserController;
 
@@ -34,6 +36,20 @@ Route::group(['middleware'=>['auth','isadmin']],function(){
     Route::resource('admin', AdminController::class);
     Route::resource('products',ProductController::class);
     Route::resource('products',ProductController::class);
+
+    /**Route OrderManual*/
+    Route::get('/make-order',[OrderManualController::class,'index'])->name('make-order');
+    Route::post('/user-id-cart',[OrderManualController::class,'store_user_id'])->name('user-cart');
+    Route::get('/shopping',[OrderManualController::class,'shopping_cart'])->name('shopping-cart');
+    Route::get('/checkout_details',[OrderManualController::class,'checkout_details'])->name('checkout-details');
+
+    Route::post('/place_order',[OrderManualController::class,'place_order'])->name('place_order');
+    /**Route End OrderManual */
+
+
+    /***Route Orders */
+    Route::get('/orders',[OrderController::class,'index'])->name('orders');
+    /**Route End Orders */
 });
 
 

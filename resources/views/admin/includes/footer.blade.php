@@ -59,22 +59,25 @@ jquery -->
 <!-- datepicker -->
 <script src="{{asset('assets/admin/js/datepicker.js')}}"></script>
 
-<!-- sweetalert2 -->
+{{-- <!-- sweetalert2 -->
 <script src="{{asset('assets/admin/js/sweetalert2.js')}}"></script>
 
 <!-- toastr -->
-<script src="{{asset('assets/admin/js/toastr.js')}}"></script>
+<script src="{{asset('assets/admin/js/toastr.js')}}"></script> --}}
 
-<!-- validation -->
+{{-- <!-- validation -->
 <script src="{{asset('assets/admin/js/validation.js')}}"></script>
 
 <!-- lobilist -->
-<script src="{{asset('assets/admin/js/lobilist.js')}}"></script>
+<script src="{{asset('assets/admin/js/lobilist.js')}}"></script> --}}
 
 <!-- custom -->
 <script src="{{asset('assets/admin/js/custom.js')}}"></script>
 
 @yield('script')
+
+@include('sweetalert::alert')
+@livewireScripts
 </body>
 
 </html>
