@@ -43,4 +43,3 @@ class ProductShopComponent extends Component
         }
     }
 }
-//

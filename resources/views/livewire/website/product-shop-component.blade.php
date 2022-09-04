@@ -1,7 +1,7 @@
 <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
     <div class="row">
         <!-- PRODUCT-->
-        @foreach ($products  as $p)
+        @foreach ($products as $p)
             <div wire:ignore.slef class="col-lg-4 col-sm-6">
                 <div class="product text-center">
                     <div class="mb-3 position-relative">
