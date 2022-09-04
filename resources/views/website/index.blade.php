@@ -34,5 +34,8 @@
                 <livewire:website.product-shop-component :products="$products" :catid="$catid">
             </div>
         </div>
+        <div class="d-flex">
+            {{ $products->links() }}
+        </div>
     </section>
 @endsection

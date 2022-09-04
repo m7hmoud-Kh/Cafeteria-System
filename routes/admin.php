@@ -44,6 +44,8 @@ Route::group(['middleware'=>['auth','isadmin']],function(){
 
     /***Route Orders */
     Route::get('/orders',[OrderController::class,'index'])->name('orders');
+    Route::get('/show',[OrderController::class,'show'])->name('show');
+
     /**Route End Orders */
 });
 

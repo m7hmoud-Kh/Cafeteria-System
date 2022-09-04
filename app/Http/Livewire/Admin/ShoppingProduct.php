@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
@@ -14,7 +15,6 @@ class ShoppingProduct extends Component
 
     public function mount($product){
         $this->product = $product;
-
     }
 
     public function AddToCart($product,Request $request, FlasherInterface $flasher){
@@ -32,13 +32,12 @@ class ShoppingProduct extends Component
         }else{
             $flasher->addError('Already Added before To Cart');
         }
-
-
     }
 
 
     public function render()
     {
-        return view('livewire.admin.shopping-product');
+        // $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->orderby('name')->paginate(10);
+        return view('livewire.admin.shopping-product',['products'=>$products]);
     }
 }

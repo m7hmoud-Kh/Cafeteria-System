@@ -29,14 +29,8 @@ class OrderManualController extends Controller
 
     public function store_user_id(Request $request){
         $request->session()->put('user_id',$request->user_id);
-
         $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->orderby('name')->get();
-
-
-         $data = [
-            'products' => $products,
-        ];
-        return view('admin.order-manual.shopping',compact('data'));
+        return view('admin.order-manual.shopping',['products' => $products]);
     }
 
     public function checkout_details(Request $request){

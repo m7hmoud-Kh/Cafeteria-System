@@ -162,27 +162,24 @@
         </div> --}}
         <div class="col-xl-12 mb-30">
             <div class="card card-statistics mb-30">
-                <div  class="card-body">
+                <div class="card-body">
                     <div>
-                        <a class="btn btn-success" href="{{route('checkout-details')}}">Go Check Out Details</a>
+                        <a class="btn btn-success" href="{{ route('checkout-details') }}">Go Check Out Details</a>
                     </div>
                     <div class="col-sm-12">
                         <h4 class="m-3 text-center">All Products Available
                         </h4>
                     </div>
-
-
                     <div class="row">
-                        @forelse ($data['products'] as $product)
+                        @forelse ($products as $product)
                             <livewire:admin.shopping-product :product="$product" :key="$product->id" />
                         @empty
                         @endforelse
                     </div>
+                    {{-- {{ $products->links() }} --}}
                 </div>
             </div>
         </div>
 
     </div>
 @endsection
-
-
