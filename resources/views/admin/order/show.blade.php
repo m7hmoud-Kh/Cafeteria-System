@@ -79,11 +79,31 @@
                         <h6 class="grand-invoice-amount">Grand Total: <strong>{{ $order->total }} EGP</strong></h6>
                     </div>
                 </div>
-                <div>
-                    <div class="text-right">
-                        <a href="{{ route('orders') }}" class="btn btn-primary">Back to all Orders</a>
+               <div class="container">
+                <div class="row">
+                    <div class="col-10">
+                        <a href="" class="btn btn-primary print-button"onclick="print_invoice()"aria-hidden="true">print invoices</a>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ route('orders') }}" class="btn btn-primary back-button">Back to all Orders</a>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
     @endsection
+
+    <script>
+function print_invoice() {
+	$(".side-menu-fixed").hide();
+    $(".admin-header").hide();
+    $(".page-title").hide();
+    $(".print-button").hide();
+    $(".back-button").hide();
+	window.print();
+    $(".side-menu-fixed").show();
+    $(".admin-header").show();
+    $(".page-title").show();
+};
+
+</script>

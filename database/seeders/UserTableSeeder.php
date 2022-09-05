@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder
                 'email' => $faker->unique->safeEmail(),
                 'password' => Hash::make('123456'),
                 'isAdmin' => 1,
-                'image' => rand(1,6).'.jpg',
+                'image' => '1.jpg',
                 'email_verified_at' => now()
             ]);
         }
