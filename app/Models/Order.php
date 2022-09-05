@@ -29,7 +29,9 @@ class Order extends Model
         return $this->hasMany(TransactionOrder::class);
     }
 
-
-
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 
 }

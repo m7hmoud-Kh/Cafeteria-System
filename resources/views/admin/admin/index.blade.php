@@ -54,12 +54,10 @@
                                             alt="{{ $user->name }}"></td>
                                     <td>{{ $user->created_at }}</td>
                                     <td>
-                                        <a href="{{route('admin.edit',$user->id)}}" class="btn btn-primary">Edit</a>
-
+                                        <a href="{{ route('admin.edit', $user->id) }}" class="btn btn-primary">Edit</a>
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-id="{{$user->id}}"
-                                        data-name="{{$user->name}}"
-                                        data-target="#exampleModalCenter"> Delete </button>
+                                            data-id="{{ $user->id }}" data-name="{{ $user->name }}"
+                                            data-target="#exampleModalCenter"> Delete </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,14 +72,11 @@
                                 <th scope="">More Action</th>
                             </tr>
                         </tfoot>
-
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -91,7 +86,7 @@
                         Delete Admin
                     </div>
                 </div>
-                <form action="{{route('admin.destroy',1)}}" method="post">
+                <form action="{{ route('admin.destroy', 1) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <div class="modal-body">
@@ -118,8 +113,6 @@
         $(document).ready(function() {
             $('#datatable').DataTable();
         });
-
-
         $("#exampleModalCenter").on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);
             var id = button.data('id');
@@ -128,8 +121,5 @@
             modal.find('.modal-body #name').html(name);
             modal.find('.modal-body #user_id').val(id);
         });
-
     </script>
-
-
 @endsection

@@ -4,7 +4,6 @@ use App\Models\Tag;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
-
 class HomeController extends Controller
 {
     public function index()
@@ -12,8 +11,11 @@ class HomeController extends Controller
         $categories = Category::WhereHas('product' ,function($query) {
             $query->where('status', true);
         })->select('id','name')->get();
-        $tags=Tag::all();
+
+        $tags = Tag::all();
+
         $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->get();
-        return view('website.index',["categories"=>$categories, "tags"=>$tags,"products"=>$products]);
+        $catid = false;
+        return view('website.index',compact('categories','tags','products','catid'));
     }
 }

@@ -55,11 +55,12 @@
 <script src="{{ asset('assets/website/js/front.js') }}"></script>
 
 <script src="{{ asset('assets/admin/js/bootstrap-datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/website/js/app.js') }}"></script>
 
 @include('sweetalert::alert')
 @livewireScripts
-
 </div>
 </body>
-
 </html>
+
+

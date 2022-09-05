@@ -12,8 +12,8 @@
                         </a>
                         <div class="product-overlay">
                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark"
-                            href='javascript:void(0);' wire:click.prevent='AddToCart({{ $p }})'>Add
-                            to cart</a>
+                                    href='javascript:void(0);' wire:click.prevent='AddToCart({{ $p }})'>Add
+                                    to cart</a>
                             </li>
                         </div>
                     </div>
@@ -22,5 +22,8 @@
                 </div>
             </div>
         @endforeach
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ $products->links('') }}
     </div>
 </div>
