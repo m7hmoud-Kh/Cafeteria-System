@@ -31,6 +31,7 @@ Route::group(['middleware'=>'auth'],function(){
         /***End Route Check out */
     });
 
+
     //category Route
     Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category');
     // End category Route
@@ -39,6 +40,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/my-order', [MyOrderController::class, 'index'])->name('myorder');
     Route::post('/delete-order', [MyOrderController::class, 'destroy'])->name('deleteorder');
     Route::post('/select-date', [MyOrderController::class, 'selectdate'])->name('selectdate');
+
 
 
 });
