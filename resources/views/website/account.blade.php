@@ -9,22 +9,21 @@ My Profile
 @endsection
 
 @section('content')
-<div>
 <div id="content" class="py-4">
     <div class="container">
-      <div class="row"> 
-        
+      <div class="row">
+
         <!-- Left Panel
         ============================================= -->
-        <aside class="col-lg-3"> 
-          
+        <aside class="col-lg-3">
+
           <!-- Profile Details
           =============================== -->
           <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
             <div class="profile-thumb mt-3 mb-4"
             style="position: relative;
             display: inline-block;">
-            <img class="rounded-circle" src="{{ asset('User_image/'.Auth::user()->image)}}" alt="" 
+            <img class="rounded-circle" src="{{ asset('User_image/'.Auth::user()->image)}}" alt=""
             style="width: 200px;height: 200px;">
             <div class="profile-thumb-edit bg-success  text-white"
             style="font-size: 22px;
@@ -41,8 +40,8 @@ My Profile
               justify-content: center !important;
               -ms-flex-align: center !important;
               align-items: center !important;
-          
-            
+
+
              data-bs-toggle="tooltip" title="" data-bs-original-title="Change Profile Picture"> <i class="fas fa-camera position-absolute"></i>
                 <input type="file" class="custom-file-input" id="customFile">
               </div>
@@ -50,8 +49,8 @@ My Profile
             <p class="text-3 fw-500 mb-2">Hello, {{Auth::user()->name}}</p>
             <p class="mb-2"><a href="settings-profile.html" class="text-5 text-light" data-bs-toggle="tooltip" title="" data-bs-original-title="Edit Profile" aria-label="Edit Profile"><i class="fas fa-edit"></i></a></p>
           </div>
-          <!-- Profile Details End --> 
-          
+          <!-- Profile Details End -->
+
           <!-- Need Help?
           =============================== -->
           <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
@@ -61,15 +60,15 @@ My Profile
               Our experts are here to help!.</p>
             <div class="d-grid"><a href="#" class="btn btn-primary">Chate with Us</a></div>
 		  </div>
-          <!-- Need Help? End --> 
-          
+          <!-- Need Help? End -->
+
         </aside>
-        <!-- Left Panel End --> 
-        
+        <!-- Left Panel End -->
+
         <!-- Middle Panel
         ============================================= -->
-        <div class="col-lg-9"> 
-          
+        <div class="col-lg-9">
+
           <!-- Personal Details
           ============================================= -->
           <div class="bg-white shadow-sm rounded p-4 mb-4">
@@ -107,7 +106,7 @@ My Profile
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title fw-400">Delete Account</h5>
-               
+
                 </div>
                 <div class="modal-body p-4">
                   <form id="emailAddresses" method="post"action="{{route('destroyAccount')}}">
@@ -115,17 +114,17 @@ My Profile
                     <div class="mb-3">
                       <label for="emailID2" class="form-label">Do You want to Delete your Account </label>
                       <div class="input-group">
-                       
+
                       </div>
                     </div>
-              
+
                     <div class="d-grid w-100"><button class="btn btn-danger" type="submit">Delete</button></div>
                   </form>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Email Addresses End --> 
+          <!-- Email Addresses End -->
           <!-- Edit Details Modal
           ================================== -->
           <div id="exampleModalCenter" class="modal fade" role="dialog" aria-hidden="true">
@@ -133,7 +132,7 @@ My Profile
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title fw-400">Personal Details</h5>
-           
+
                 </div>
                 <div class="modal-body p-4">
                   <form id="personaldetails" method="post" action="{{ route('updateAccount')}}">
@@ -144,28 +143,28 @@ My Profile
                         <label for="firstName" class="form-label">Name</label>
                         <input type="text" value="{{Auth::user()->name}}" class="form-control" data-bv-field="firstName" id="firstName" required=""name="name" placeholder="First Name">
                       </div>
-                       
+
                       <div class="col-12 "style="margin-top:20px">
                         <label for="birthDate" class="form-label">Email</label>
                         <div class="position-relative">
                           <input id="birthDate" value="{{Auth::user()->email}}" type="email" class="form-control" required="" placeholder="Date of Birth"name="email">
-                     
+
 						            </div>
                       </div>
 					  </div>
-					  
-                  
+
+
 					        <div class="col-12 mt-4 d-grid"><button class="btn btn-primary" type="submit">Save Changes</button></div>
                     </div>
-                    
+
                   </form>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Personal Details End --> 
-          
-        
+          <!-- Personal Details End -->
+
+
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Tag;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 
@@ -8,7 +9,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-
         $categories = Category::WhereHas('product' ,function($query) {
             $query->where('status', true);
         })->select('id','name')->get();
