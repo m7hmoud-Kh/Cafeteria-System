@@ -10,10 +10,13 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\trait\OrderNotificationTrait;
+use Flasher\Prime\FlasherInterface;
 
 class MangeAccountController extends Controller
 {
     use ImageTrait;
+    use OrderNotificationTrait;
 
     public function index()
     {
@@ -52,27 +55,23 @@ class MangeAccountController extends Controller
          return redirect()->route('account');
 
     }
-    public function changepassword(Request $request)
+    public function changepassword(Request $request,FlasherInterface $flasher)
     {
        # Validation
-       $request->validate([
-        'new_password' => 'required|confirmed',
-    ]);
+        if($request->new_password != $request->new_password_confirmation){
+            $flasher->addError("Password and confirm password does not match");
+            return redirect()->route('account');
+        }else{
+            $request->validate([ 'new_password' => 'required|confirmed',]);
+            #Update the new Password
+            User::whereId(auth()->user()->id)->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+                 $flasher->addSuccess("Password changed successfully");
+                 return redirect()->route('account');
+        }
 
-
-    #Match The Old Password
-    //if(!Hash::check($request->old_password, auth()->user()->password)){
-    //    return back()->with("error", "Old Password Doesn't match!");
-   // }
-
-
-    #Update the new Password
-    User::whereId(auth()->user()->id)->update([
-        'password' => Hash::make($request->new_password)
-    ]);
-
-
-         return redirect()->route('account');
+      
 
     }
 

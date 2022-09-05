@@ -1,15 +1,6 @@
-
-
 @extends('layouts.app')
-
-
-@section('style')
-<link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
-
-    <!-- css -->
-    <style>
+@section('content')
+<style>
 .form-control {
     background: #d3c5b7;
     color: #e5e5e5;
@@ -18,20 +9,25 @@
 label{
  color:snow;
 }
-.remember-checkbox label:before {
-    background-color: #a96518;
-}
-</style>
-@endsection
-@section('content')
-<video autoplay muted loop id="myVideo"style="position:fixed;
+#myVideo{
+    position:fixed;
   right: 0;
   bottom: 0;
   min-width: 100%; 
-  min-height: 100%;">
-<source src="{{asset('assets/admin/images/login.mp4')}}" type="video/mp4">
-</video>
+  min-height: 100%;
+}
+
+.remember-checkbox label:before {
+    background-color: #a96518;
+}
+
+
+</style>
+
     <section class="height-100vh d-flex align-items-center page-section-ptb login">
+        <video autoplay muted loop id="myVideo">
+        <source src="{{asset('assets/admin/images/login.mp4')}}" type="video/mp4">
+        </video>
         <div class="container">
             <div class="row justify-content-center no-gutters vertical-align">
                 <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-image: url(images/login-inner-bg.jpg);">
