@@ -39,7 +39,7 @@
                 </div>
                 <div class="dropdown-divider"></div>
                 @forelse (Auth::user()->unreadNotifications as $notification)
-                    <a href="#" class="dropdown-item">
+                    <a href="{{route('orders')}}" class="dropdown-item">
                         <strong> {{ $notification->data['user_name'] }}</strong> <br>
                         Make Order with Ref_id <br>
                         <strong>{{ $notification->data['order_ref_id'] }}</strong>
@@ -48,7 +48,7 @@
                     <div class="dropdown-divider"></div>
                 @empty
                     @foreach (Auth::user()->Notifications as $notification)
-                        <a href="#" class="dropdown-item">
+                        <a href="{{route('orders')}}" class="dropdown-item">
                             <strong> {{ $notification->data['user_name'] }}</strong> <br>
                             Make Order with Ref_id <br>
                             <strong>{{ $notification->data['order_ref_id'] }}</strong>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Tag;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 class HomeController extends Controller
