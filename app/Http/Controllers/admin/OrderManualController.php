@@ -10,11 +10,14 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\TransactionOrder;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Flasher\Prime\FlasherInterface;
+use App\Http\Controllers\Controller;
+use App\Http\trait\OrderNotificationTrait;
 
 class OrderManualController extends Controller
 {
+    use OrderNotificationTrait;
+
     public const TAX = 12;
 
     public function index(Request $request)
@@ -65,9 +68,10 @@ class OrderManualController extends Controller
         $tax = $sub_total / self::TAX;
         $total = $sub_total + $tax;
 
+        $user = User::find($request->session()->get('user_id'));
         $order = Order::create([
             'user_id' => $request->session()->get('user_id'),
-            'ref_id' => 'Admin_' . Auth()->user()->name . '_' . Carbon::now(),
+            'ref_id' => 'Admin_' . $user->name . '_' . Carbon::now(),
             'sub_total' => $sub_total,
             'tax' => $tax,
             'total' => $total,
@@ -85,6 +89,13 @@ class OrderManualController extends Controller
         TransactionOrder::create([
             'order_id' => $order->id,
         ]);
+
+        $data = [
+            'next_status' => 'Processing',
+            'order_ref_id' => $order->ref_id,
+        ];
+
+        $this->send_notification_order_to_specifi_user($request->session()->get('user_id'),$data);
 
 
         $flasher->addSuccess("Order Added with RefId: <br> $order->ref_id");

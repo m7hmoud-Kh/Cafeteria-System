@@ -38,9 +38,14 @@
                         <thead>
                             <tr>
                                 <th scope="">#</th>
-                                <th scope="">Order Date</th>
-                                <th scope="">Status</th>
+                                <th scope="">Order</th>
+                                <th scope="">Notes</th>
+                                <th scope="">Phone</th>
+                                <th scope="">Sub Total</th>
+                                <th scope="">Tax</th>
                                 <th scope="">Total</th>
+                                <th scope="">Status</th>
+                                <th scope="">Craeted At</th>
                                 <th scope="">More Action</th>
                             </tr>
                         </thead>
@@ -48,30 +53,46 @@
                             @php
                                 $order_count = 0;
                             @endphp
-                            @foreach ($processing_orders as $order)
+                            @forelse ($orders as $order)
                                 <tr>
                                     <td>{{ ++$order_count }}</td>
+                                    <td>{{ $order->ref_id }}</td>
+                                    <td>{{ $order->notes }}</td>
+                                    <td>{{ $order->phone }}</td>
+                                    <td>{{ $order->format_price($order->sub_total) }}</td>
+                                    <td>{{ $order->format_price($order->tax) }}</td>
+                                    <td>{{ $order->format_price($order->total) }}</td>
+                                    <td>{!! $order->status($order->status) !!}</td>
                                     <td>{{ $order->created_at }}</td>
-                                    <td>{{ $order->status }}</td>
-                                    <td>{{ $order->total }}</td>
                                     <td>
-                                        <a href="" class="btn btn-danger">Cancel</a>
+                                        <a href="{{ route('show', $order->id) }}" class="btn btn-primary">
+                                            View Details
+                                        </a>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                <tr>
+                                    <td class="text-center" colspan="10">No Data Found</td>
+                                </tr>
+                                @endforelse
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th scope="">#</th>
-                                <th scope="">Order Date</th>
-                                <th scope="">Status</th>
+                                <th scope="">Order</th>
+                                <th scope="">Notes</th>
+                                <th scope="">Phone</th>
+                                <th scope="">Sub Total</th>
+                                <th scope="">Tax</th>
                                 <th scope="">Total</th>
+                                <th scope="">Status</th>
+                                <th scope="">Craeted At</th>
                                 <th scope="">More Action</th>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
-                {{ $processing_orders->links() }}
+                {{ $orders->links() }}
             </div>
         </div>
     </div>
