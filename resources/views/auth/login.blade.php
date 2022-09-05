@@ -1,35 +1,50 @@
+
+
 @extends('layouts.app')
 
 
 @section('style')
-    <link rel="shortcut icon" href="images/favicon.ico" />
-
-    <!-- Font -->
-    <link rel="stylesheet"
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
 
     <!-- css -->
+    <style>
+.form-control {
+    background: #d3c5b7;
+    color: #e5e5e5;
+    border-radius: 5px !important;
+}
+label{
+ color:snow;
+}
+.remember-checkbox label:before {
+    background-color: #a96518;
+}
+</style>
 @endsection
-
 @section('content')
-    <section class="height-100vh d-flex align-items-center page-section-ptb login"
-        style="background-image: url({{ asset('assets/admin/images/login-bg.jpg') }});">
+<video autoplay muted loop id="myVideo"style="position:fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;">
+<source src="{{asset('assets/admin/images/login.mp4')}}" type="video/mp4">
+</video>
+    <section class="height-100vh d-flex align-items-center page-section-ptb login">
         <div class="container">
             <div class="row justify-content-center no-gutters vertical-align">
                 <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-image: url(images/login-inner-bg.jpg);">
                     <div class="login-fancy">
-                        <h2 class="text-white mb-20">Hello world!</h2>
-                        <p class="mb-20 text-white">Create tailor-cut websites with the exclusive multi-purpose responsive
-                            template along with powerful features.</p>
-                        <ul class="list-unstyled  pos-bot pb-30">
-                            <li class="list-inline-item"><a class="text-white" href="#"> Terms of Use</a> </li>
-                            <li class="list-inline-item"><a class="text-white" href="#"> Privacy Policy</a></li>
-                        </ul>
+                    <h2 class="text-white mb-60">Café teria</h2>
+                        <h5 class="mb-20 text-white">Discover The Test Of Relay Coffee</h5>
+                        <h5 class="mb-20 text-white">We’re open daily for dine in or take-away orders</h5>
+                        <img src="{{asset('assets/admin/images/login-image.png')}}">
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 bg-white">
+                <div class="col-lg-4 col-md-6 login-fancy-bg bg parallax">
                     <div class="login-fancy pb-40 clearfix">
-                        <h3 class="mb-30">Sign In </h3>
+                        <h3 class="mb-30"style="color:snow">Sign In </h3>
                         <div class="section-field mb-20">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
@@ -74,10 +89,11 @@
                             <span>Log in</span>
                             <i class="fa fa-check"></i>
                         </button>
-
                         <p class="mt-20 mb-0">Don't have an account? <a href="{{ route('register') }}"> Create one here</a>
                         </p>
+                        <p><a class="text-white" href="{{route('home')}}"> Home</a> </p>
                     </div>
+                   
                 </div>
             </div>
         </div>

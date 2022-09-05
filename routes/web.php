@@ -17,8 +17,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/account', [MangeAccountController::class, 'index'])->name('account');
     Route::post('/account/update', [MangeAccountController::class, 'update'])->name('updateAccount');
     Route::post('/account/delete', [MangeAccountController::class, 'destroy'])->name('destroyAccount');
-    Route::post('/account/updateimage', [MangeAccountController::class, 'updateimage'])->name('updateimage');
-
+    Route::post('/account/update-image', [MangeAccountController::class, 'updateimage'])->name('updateimage');
+    Route::post('/account/change-password', [MangeAccountController::class, 'changepassword'])->name('change-password');
 
     Route::group(['middleware'=>'empty-cart'],function(){
          /**Route Cart **/

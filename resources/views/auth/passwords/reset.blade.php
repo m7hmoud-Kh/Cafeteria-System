@@ -1,28 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.form-control {
+    background: #d3c5b7;
+    color: #e5e5e5;
+    border-radius: 5px !important;
+}
+label{
+ color:snow;
+}
+.remember-checkbox label:before {
+    background-color: #a96518;
+}
+</style>
+
+
+<video autoplay muted loop id="myVideo"style="position:fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;">
+<source src="{{asset('assets/admin/images/reg.mp4')}}" type="video/mp4">
+</video>
 
 
 
 
-
-<section class="height-100vh d-flex align-items-center page-section-ptb login" 
-style="background-image: url({{ asset('assets/admin/images/register-bg.jpg')}});">
+<section class="height-100vh d-flex align-items-center page-section-ptb login">
   <div class="container">
      <div class="row no-gutters">
        <div class="col-lg-4 offset-lg-1 col-md-6 login-fancy-bg bg parallax" style="background-image: url(images/register-inner-bg.jpg);">
-         <div class="login-fancy">
-          <h2 class="text-white mb-20">Hello world!</h2>
-          <p class="mb-20 text-white">Create tailor-cut websites with the exclusive multi-purpose responsive template along with powerful features.</p>
-          <ul class="list-unstyled pos-bot pb-30">
-            <li class="list-inline-item"><a class="text-white" href="#"> Terms of Use</a> </li>
-            <li class="list-inline-item"><a class="text-white" href="#"> Privacy Policy</a></li>
-          </ul>
-         </div> 
+       <div class="login-fancy">
+           <h2 class="text-white mb-30">Café teria</h2>
+        
+          <img src="{{asset('assets/admin/images/register-image.png')}}">
+        </div>
        </div>
-       <div class="col-lg-4 col-md-6 bg-white">
+       <div class="col-lg-4 col-md-6 login-fancy-bg bg parallax">
         <div class="login-fancy pb-40 clearfix">    
-        <h3 class="mb-30">{{ __('Reset Password') }}</h3>
+        <h3 class="mb-30"style="color:snow">{{ __('Reset Password') }}</h3>
         <form method="POST" action="{{ route('password.update') }}">
                  @csrf
                  <input type="hidden" name="token" value="{{ $token }}">
