@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+
+use App\Http\trait\FormatPriceTrait;
 use App\Models\Tag;
 use App\Models\Cart;
 use App\Models\Category;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory , FormatPriceTrait;
     protected $fillable = ["name","price","size",'status',"quantity","image","category_id"];
 
     /**one to many **/
@@ -33,9 +35,7 @@ class Product extends Model
 
     /** make mutation */
 
-    public function format_price($value){
-        return number_format($value,2) . ' EGP';
-    }
+
 
     /**get Size */
     public function Size($value){

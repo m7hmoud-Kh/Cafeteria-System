@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth', 'isadmin']], function () {
     Route::resource('products', ProductController::class);
 
     Route::get('/userorders', [UsersOrderController::class, 'index'])->name('userorders');
-    Route::post('/change-status', [UsersOrderController::class, 'update'])->name('changestatus');
+    Route::put('/change-status', [UsersOrderController::class, 'update'])->name('changestatus');
     Route::post('/select-orders', [UsersOrderController::class, 'select'])->name('selectorders');
 
 

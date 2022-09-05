@@ -60,8 +60,8 @@
                         </div>
                         <!-- Profile Details End -->
 
-                        <!-- Need Help?
-              =============================== -->
+                        {{-- <!-- Need Help?
+                  =============================== -->
                         <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
                             <div class="text-17 text-light my-3"><i class="fas fa-comments"></i></div>
                             <h3 class="text-5 fw-400 my-4">Need Help?</h3>
@@ -69,7 +69,7 @@
                                 Our experts are here to help!.</p>
                             <div class="d-grid"><a href="#" class="btn btn-primary">Chate with Us</a></div>
                         </div>
-                        <!-- Need Help? End -->
+                        <!-- Need Help? End --> --}}
 
                     </aside>
                     <!-- Left Panel End -->

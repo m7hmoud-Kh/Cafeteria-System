@@ -18,9 +18,9 @@ class ProductTableSeeder extends Seeder
     {
         $faker = Factory::create();
         $categories = Category::pluck('id');
-        for ($i=0; $i < 100 ; $i++) {
+        for ($i=0; $i < 150 ; $i++) {
             Product::create([
-                'name' => $faker->unique()->name(),
+                'name' => $faker->unique()->sentence(1),
                 'price' => $faker->numberBetween(1,50),
                 'size' => $faker->numberBetween(1,3),
                 'quantity' => $faker->numberBetween(5, 100),

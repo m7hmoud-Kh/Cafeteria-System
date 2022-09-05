@@ -3,22 +3,14 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
 
-class OrderNotification extends Notification
+class TrackingOrderNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public $data;
 
+    public $data;
     public function __construct($data)
     {
         $this->data = $data;
@@ -36,6 +28,7 @@ class OrderNotification extends Notification
     }
 
 
+
     /**
      * Get the array representation of the notification.
      *
@@ -45,10 +38,8 @@ class OrderNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'order_id' => $this->data['id'],
-            'order_ref_id' => $this->data['ref_id'],
-            'user_name' => Auth::user()->name,
-            'total' => $this->data['total'],
+            'order_ref_id' => $this->data['order_ref_id'],
+            'next_status' => $this->data['next_status']
         ];
     }
 }

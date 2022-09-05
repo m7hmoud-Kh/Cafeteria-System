@@ -4,30 +4,31 @@ namespace App\Http\Controllers\website;
 
 use Carbon\Carbon;
 use App\Models\Cart;
-use App\Models\User;
 use App\Models\Order;
 use App\Models\TransactionOrder;
 use Illuminate\Support\Facades\DB;
+use Flasher\Prime\FlasherInterface;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Http\trait\OrderNotificationTrait;
 use App\Http\Requests\website\StoreOrderRequest;
-use App\Notifications\OrderNotification;
-use Notification;
+
 
 class CheckOutController extends Controller
 {
+    use OrderNotificationTrait;
 
     public const TAX = 12;
     public function index(){
         return view('website.check-out');
     }
-    public function store(StoreOrderRequest $request){
+    public function store(StoreOrderRequest $request,FlasherInterface $flasher){
         $all_cart = Cart::select(
             'product_id',
             'quantity',
             DB::raw("price * quantity As sub_total")
         )->where('user_id',Auth()->user()->id)
         ->get();
+
         $sub_total = $this->get_all_total_of_cart($all_cart);
         $tax = $sub_total / self::TAX;
         $total = $sub_total + $tax;
@@ -53,6 +54,8 @@ class CheckOutController extends Controller
             'order_id' => $order->id,
         ]);
 
+        $flasher->addSuccess("Make Make Successfully with:ref_id: $order->ref_id");
+
         $this->send_notificatio_order_to_admins($order);
         return redirect()->route('myorder');
 
@@ -66,9 +69,6 @@ class CheckOutController extends Controller
         return $all_total_cart;
     }
 
-    private function send_notificatio_order_to_admins($order){
-        $users = User::whereNotNull('isAdmin')->get();
-        Notification::send($users,new OrderNotification($order));
-    }
+    
 
 }

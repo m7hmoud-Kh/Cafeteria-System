@@ -23,7 +23,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
+
         $products = Product::all();
 
         $data = [
@@ -65,16 +65,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-    }
-
-    /**
      *  the form for editing the specified resource.
      *
      * @param  \App\Models\Product  $product
@@ -106,9 +96,10 @@ class ProductController extends Controller
             Storage::disk('product_image')->delete($product->image);
             $data['image'] = $this->insertImage($request->name,$request->image,'Product_image/');
         }
-        $product->tags()->delete();
+        // $product->tags()->delete();
         $product->update($data);
-        $product->tags()->syncWithoutDetaching($request->tags);
+        $product->tags()->sync($request->tags);
+
         return redirect()->route('products.index')->with([
             'message' => 'Product Updated Successfully',
             'alert' => 'success'

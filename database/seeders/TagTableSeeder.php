@@ -16,7 +16,7 @@ class TagTableSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
-        for ($i=0; $i < 40; $i++) {
+        for ($i=0; $i < 15; $i++) {
             Tag::create([
                 'name' => $faker->unique()->name(),
             ]);
