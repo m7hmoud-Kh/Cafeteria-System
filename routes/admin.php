@@ -59,3 +59,4 @@ Route::group(['middleware' => ['auth', 'isadmin']], function () {
     Route::get('/done', [OrderController::class, 'done_orders'])->name('doneOrders');
     /**Route End Orders */
 });
+

@@ -1,9 +1,5 @@
 @extends('layouts.app')
-
-
-
 @section('content')
-
 <style>
 .form-control {
     background: #d3c5b7;
@@ -13,20 +9,23 @@
 label{
  color:snow;
 }
-</style>
-<video autoplay muted loop id="myVideo"style="position:fixed;
+#myVideo{
+    position:fixed;
   right: 0;
   bottom: 0;
   min-width: 100%; 
-  min-height: 100%;">
+  min-height: 100%;
+}
+</style>
+
+<video autoplay muted loop id="myVideo">
 <source src="{{asset('assets/admin/images/reg.mp4')}}" type="video/mp4">
 </video>
-    <section class="height-100vh d-flex align-items-center page-section-ptb login">
-   
+
+<section class="height-100vh d-flex align-items-center page-section-ptb login">
         <div class="container">
-            <div class="row no-gutters ">
-                <div class="col-lg-4 offset-lg-1 col-md-6 login-fancy-bg bg parallax"
-                    style="background-image: url(images/register-inner-bg.jpg);">
+            <div class="row justify-content-center no-gutters vertical-align">
+                <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-image: url(images/login-inner-bg.jpg);">
                     <div class="login-fancy">
                         <h2 class="text-white mb-60">Café teria</h2>
                         <h5 class="mb-20 text-white">Discover The Test Of Relay Coffee</h5>

@@ -13,6 +13,7 @@ label{
 .remember-checkbox label:before {
     background-color: #a96518;
 }
+
 </style>
 
 
@@ -26,11 +27,10 @@ label{
 
 
 
-
 <section class="height-100vh d-flex align-items-center page-section-ptb login">
-  <div class="container">
-     <div class="row no-gutters">
-       <div class="col-lg-4 offset-lg-1 col-md-6 login-fancy-bg bg parallax" style="background-image: url(images/register-inner-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center no-gutters vertical-align">
+                <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-image: url(images/login-inner-bg.jpg);">
        <div class="login-fancy">
            <h2 class="text-white mb-30">Café teria</h2>
         

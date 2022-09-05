@@ -11,8 +11,10 @@
 label{
  color:snow;
 }
-.remember-checkbox label:before {
-    background-color: #a96518;
+
+.alert-success {
+  
+  width: 296px;
 }
 </style>
 
@@ -25,10 +27,10 @@ label{
 <source src="{{asset('assets/admin/images/login.mp4')}}" type="video/mp4">
 </video>
 
-<section class="height-100vh d-flex align-items-center page-section-ptb login" style="background-image: url(images/login-bg.jpg);" >
-  <div class="container">
-     <div class="row justify-content-center no-gutters vertical-align">
-       <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-image: url(images/login-inner-bg.jpg);">
+<section class="height-100vh d-flex align-items-center page-section-ptb login">
+        <div class="container">
+            <div class="row justify-content-center no-gutters vertical-align">
+                <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-image: url(images/login-inner-bg.jpg);">
        <div class="login-fancy">
            <h2 class="text-white mb-30">Café teria</h2>
         
