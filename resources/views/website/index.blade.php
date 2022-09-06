@@ -27,11 +27,11 @@
                             tags</strong></div>
                     @foreach ($tags as $tag)
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            <li class="mb-2"><a class="reset-anchor" href="">{{ $tag->name }}</a></li>
+                            <li class="mb-2"><a class="reset-anchor" href="{{route('show-tag',$tag->id)}}">{{ $tag->name }}</a></li>
                         </ul>
                     @endforeach
                 </div>
-                <livewire:website.product-shop-component :products="$products" :catid="$catid">
+                <livewire:website.product-shop-component :products="$products" :catid="$catid" :tagid="false">
             </div>
         </div>
     </section>

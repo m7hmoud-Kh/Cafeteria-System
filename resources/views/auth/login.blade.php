@@ -13,15 +13,12 @@ label{
     position:fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%; 
+  min-width: 100%;
   min-height: 100%;
 }
-
 .remember-checkbox label:before {
     background-color: #a96518;
 }
-
-
 </style>
 
     <section class="height-100vh d-flex align-items-center page-section-ptb login">
@@ -85,11 +82,11 @@ label{
                             <span>Log in</span>
                             <i class="fa fa-check"></i>
                         </button>
-                        <p class="mt-20 mb-0">Don't have an account? <a href="{{ route('register') }}"> Create one here</a>
+                        <p class="mt-20 mb-0" style="color: snow">Don't have an account? <a href="{{ route('register') }}"> Create one here</a>
                         </p>
                         <p><a class="text-white" href="{{route('home')}}"> Home</a> </p>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
