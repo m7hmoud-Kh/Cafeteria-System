@@ -25,7 +25,8 @@
                         <div class="col-lg-12 form-group">
                             <label class="text-small text-uppercase" for="firstName">Notes</label>
                             <textarea class="form-control form-control-lg" id="firstName" name="notes" type="text"
-                            ></textarea>
+                            >{{old('notes')}}
+                        </textarea>
                         </div>
                         <div class="col-lg-12 form-group">
                             <button class="btn btn-dark" type="submit">Place order</button>

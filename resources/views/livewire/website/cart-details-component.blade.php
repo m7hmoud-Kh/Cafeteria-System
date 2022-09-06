@@ -8,6 +8,9 @@
             </div>
         </th>
         <td class="align-middle border-0">
+            <p class="mb-0 small">{{ $cart->products->size($cart->products->size) }}</p>
+        </td>
+        <td class="align-middle border-0">
             <p class="mb-0 small">{{ $cart->price }}</p>
         </td>
         <td class="align-middle border-0">

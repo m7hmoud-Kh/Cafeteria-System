@@ -52,6 +52,14 @@
                                 $order_count = 0;
                             @endphp
                             @forelse ($orders as $order)
+                                @php
+                                    $next_status = '';
+                                    if ($order->status == 1) {
+                                        $next_status = 2;
+                                    } elseif ($order->status == 2) {
+                                        $next_status = 3;
+                                    }
+                                @endphp
                                 <tr>
                                     <td>{{ ++$order_count }}</td>
                                     <td>{{ $order->ref_id }}</td>
@@ -66,13 +74,19 @@
                                         <a href="{{ route('show', $order->id) }}" class="btn btn-primary">
                                             View Details
                                         </a>
+                                        @if (!empty($next_status))
+                                            <button type="button" data-target="#exampleModalCenter" data-toggle="modal"
+                                                class='btn btn-success' data-order_id="{{ $order->id }}"
+                                                data-next_status="{{ $next_status }}"
+                                                data-ref_id="{{ $order->ref_id }}">Status</button>
+                                        @endif
                                     </td>
                                 </tr>
-                                @empty
+                            @empty
                                 <tr>
                                     <td class="text-center" colspan="10">No Data Found</td>
                                 </tr>
-                                @endforelse
+                            @endforelse
                         </tbody>
                         <tfoot>
                             <tr>
