@@ -1,10 +1,5 @@
 @extends('layouts.app')
-
-@section('style')
-<link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
-
+@section('content')
 <style>
 .form-control {
     background: #d3c5b7;
@@ -21,19 +16,11 @@ label{
   min-width: 100%;
   min-height: 100%;
 }
-
 .remember-checkbox label:before {
     background-color: #a96518;
 }
-
 </style>
 
-@endsection
-
-@section('content')
-
-<source src="{{asset('assets/admin/images/login.mp4')}}" type="video/mp4">
-</video>
     <section class="height-100vh d-flex align-items-center page-section-ptb login">
         <video autoplay muted loop id="myVideo">
         <source src="{{asset('assets/admin/images/login.mp4')}}" type="video/mp4">
@@ -95,7 +82,7 @@ label{
                             <span>Log in</span>
                             <i class="fa fa-check"></i>
                         </button>
-                        <p class="mt-20 mb-0">Don't have an account? <a href="{{ route('register') }}"> Create one here</a>
+                        <p class="mt-20 mb-0" style="color: snow">Don't have an account? <a href="{{ route('register') }}"> Create one here</a>
                         </p>
                         <p><a class="text-white" href="{{route('home')}}"> Home</a> </p>
                     </div>

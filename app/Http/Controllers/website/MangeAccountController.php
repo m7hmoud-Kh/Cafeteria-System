@@ -67,17 +67,16 @@ class MangeAccountController extends Controller
             User::whereId(auth()->user()->id)->update([
                 'password' => Hash::make($request->new_password)
             ]);
-                 $flasher->addSuccess("Password changed successfully");
-                 return redirect()->route('account');
+            $flasher->addSuccess("Password changed successfully");
+            return redirect()->route('account');
         }
 
-      
+
 
     }
 
-    public function destroy(Request $request)
+    public function destroy()
     {
-
         $user = User::find(Auth::user()->id);
         Storage::disk('user_image')->delete(Auth::user()->image);
         if ($user->delete()) {
@@ -88,6 +87,6 @@ class MangeAccountController extends Controller
         }
     }
 
-   
+
 
 }

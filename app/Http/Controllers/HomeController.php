@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Tag;
-use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 class HomeController extends Controller
@@ -13,7 +12,7 @@ class HomeController extends Controller
         })->select('id','name')->get();
 
         $tags = Tag::WhereHas('products',function($q){
-             $q->whereStatus(true)->where('quantity' , '>=' , '1');
+            $q->whereStatus(true)->where('quantity' , '>=' , '1');
         })->select('id','name')->get();
 
         $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->get();

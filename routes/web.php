@@ -13,36 +13,28 @@ use App\Http\Controllers\website\TagController as WebsiteTagController;
 
 Auth::routes(['verify'=>true]);
 
-if(Auth::user()){
-    Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/', [HomeController::class, 'index'])->name('home');
     //category Route
-    Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category')->middleware('verified');
-        // End category Route
-    Route::get('/tag/{id}',[WebsiteTagController::class,'show'])->name('show-tag')->middleware('verified');
-}else{
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-     //category Route
-    Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category');
-     // End category Route
-    Route::get('/tag/{id}',[WebsiteTagController::class,'show'])->name('show-tag');
-}
+Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category');
+    // End category Route
+Route::get('/tag/{id}',[WebsiteTagController::class,'show'])->name('show-tag');
 
 
-Route::group(['middleware'=>['auth','verified']],function(){
+Route::group(['middleware'=>['auth']],function(){
     Route::get('/account', [MangeAccountController::class, 'index'])->name('account');
     Route::post('/account/update', [MangeAccountController::class, 'update'])->name('updateAccount');
     Route::post('/account/delete', [MangeAccountController::class, 'destroy'])->name('destroyAccount');
     Route::post('/account/update-image', [MangeAccountController::class, 'updateimage'])->name('updateimage');
     Route::post('/account/change-password', [MangeAccountController::class, 'changepassword'])->name('change-password');
 
-        Route::group(['middleware'=>'empty-cart'],function(){
+        Route::group(['middleware'=>['empty-cart']],function(){
          /**Route Cart **/
         Route::get('/cart',[CartController::class,'index'])->name('cart');
         /**End Route Cart */
 
         /**Route Check out */
         Route::get('/check-out',[CheckOutController::class,'index'])->name('check-out');
-        Route::post('/confirm-order',[CheckOutController::class,'store'])->name('confirm-order');
+        Route::post('/confirm-order',[CheckOutController::class,'store'])->name('confirm-order')->middleware('verified');
         /***End Route Check out */
     });
 

@@ -13,7 +13,7 @@ label{
     position:fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%; 
+  min-width: 100%;
   min-height: 100%;
 }
 </style>
@@ -99,7 +99,7 @@ label{
                                 <i class="fa fa-check"></i>
                             </button>
 
-                            <p class="mt-20 mb-0">Do you have account? <a href="{{ route('login') }}"> LOGIN</a></p>
+                            <p class="mt-20 mb-0" style="color: snow">Do you have account? <a href="{{ route('login') }}"> LOGIN</a></p>
                     </div>
                 </div>
             </div>
