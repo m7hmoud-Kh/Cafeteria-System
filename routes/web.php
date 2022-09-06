@@ -11,10 +11,16 @@ use App\Http\Controllers\website\MyOrderController;
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+     //category Route
+    Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category');
+     // End category Route
 
 
-Route::group(['middleware'=>'auth'],function(){
+
+Route::group(['middleware'=>['auth','verified']],function(){
     Route::get('/account', [MangeAccountController::class, 'index'])->name('account');
     Route::post('/account/update', [MangeAccountController::class, 'update'])->name('updateAccount');
     Route::post('/account/delete', [MangeAccountController::class, 'destroy'])->name('destroyAccount');
@@ -33,10 +39,8 @@ Route::group(['middleware'=>'auth'],function(){
     });
 
 
-    //category Route
-    Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category');
-    // End category Route
-    
+
+
     /*** Route my order*/
     Route::get('/my-order', [MyOrderController::class, 'index'])->name('myorder');
     Route::post('/delete-order', [MyOrderController::class, 'destroy'])->name('deleteorder');
