@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Website;
 
+use App\Models\Tag;
 use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
@@ -13,9 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class ProductShopComponent extends Component
 {
     public $catid;
-    public function mount($products, $catid)
+    public $tagid;
+    public function mount($products, $catid , $tagid)
     {
         $this->catid = $catid;
+        $this->tagid = $tagid;
     }
 
     public function AddToCart($product,FlasherInterface $flasher)
@@ -46,11 +49,15 @@ class ProductShopComponent extends Component
                 ->where('category_id', '=', $this->catid)
                 ->select('id', 'name', 'image', 'price')
                 ->paginate(15);
-            return
-                view('livewire.website.product-shop-component', ['products' => $products]);
-        } else {
+
+        }elseif($this->tagid){
+            $products = Product::whereHas('tags',function($q){
+                $q->where('tag_id',$this->tagid);
+            })->whereStatus(true)->where('quantity', '>=', '1')->paginate(15);
+        }else {
             $products = Product::whereStatus(true)->where('quantity', '>=', '1')->select('id', 'name', 'image', 'price')->paginate(15);
-            return view('livewire.website.product-shop-component', ['products' => $products]);
+
         }
+        return view('livewire.website.product-shop-component', ['products' => $products]);
     }
 }

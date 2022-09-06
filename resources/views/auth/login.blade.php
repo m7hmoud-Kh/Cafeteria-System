@@ -1,5 +1,10 @@
 @extends('layouts.app')
-@section('content')
+
+@section('style')
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
+
 <style>
 .form-control {
     background: #d3c5b7;
@@ -13,7 +18,7 @@ label{
     position:fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%; 
+  min-width: 100%;
   min-height: 100%;
 }
 
@@ -21,9 +26,14 @@ label{
     background-color: #a96518;
 }
 
-
 </style>
 
+@endsection
+
+@section('content')
+
+<source src="{{asset('assets/admin/images/login.mp4')}}" type="video/mp4">
+</video>
     <section class="height-100vh d-flex align-items-center page-section-ptb login">
         <video autoplay muted loop id="myVideo">
         <source src="{{asset('assets/admin/images/login.mp4')}}" type="video/mp4">
@@ -89,7 +99,7 @@ label{
                         </p>
                         <p><a class="text-white" href="{{route('home')}}"> Home</a> </p>
                     </div>
-                   
+
                 </div>
             </div>
         </div>

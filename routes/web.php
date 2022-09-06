@@ -2,19 +2,33 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\website\MangeAccountController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\website\CartController;
-use App\Http\Controllers\website\CheckOutController;
-use App\Http\Controllers\website\CategoryController;
 use App\Http\Controllers\website\MyOrderController;
+use App\Http\Controllers\website\CategoryController;
+use App\Http\Controllers\website\CheckOutController;
+use App\Http\Controllers\website\MangeAccountController;
+use App\Http\Controllers\website\TagController as WebsiteTagController;
 
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+if(Auth::user()){
+    Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('verified');
+    //category Route
+    Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category')->middleware('verified');
+        // End category Route
+    Route::get('/tag/{id}',[WebsiteTagController::class,'show'])->name('show-tag')->middleware('verified');
+}else{
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+     //category Route
+    Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category');
+     // End category Route
+    Route::get('/tag/{id}',[WebsiteTagController::class,'show'])->name('show-tag');
+}
 
 
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>['auth','verified']],function(){
     Route::get('/account', [MangeAccountController::class, 'index'])->name('account');
     Route::post('/account/update', [MangeAccountController::class, 'update'])->name('updateAccount');
     Route::post('/account/delete', [MangeAccountController::class, 'destroy'])->name('destroyAccount');
@@ -32,17 +46,9 @@ Route::group(['middleware'=>'auth'],function(){
         /***End Route Check out */
     });
 
-
-    //category Route
-    Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category');
-    // End category Route
-    
     /*** Route my order*/
     Route::get('/my-order', [MyOrderController::class, 'index'])->name('myorder');
     Route::post('/delete-order', [MyOrderController::class, 'destroy'])->name('deleteorder');
     Route::post('/select-date', [MyOrderController::class, 'selectdate'])->name('selectdate');
 
-
-
 });
-
