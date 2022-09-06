@@ -14,13 +14,13 @@
         <div id="content" class="py-4">
             <div class="container">
                 <div class="row">
-            
+
                     <!-- Left Panel
-            ============================================= -->
+                ============================================= -->
                     <aside class="col-lg-3">
-            
+
                         <!-- Profile Details
-              =============================== -->
+                  =============================== -->
                         <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
                             <div class="profile-thumb mt-3 mb-4"
                                 style="position: relative;
@@ -75,11 +75,11 @@
                     <!-- Left Panel End -->
 
                     <!-- Middle Panel
-            ============================================= -->
+                ============================================= -->
                     <div class="col-lg-9">
 
                         <!-- Personal Details
-              ============================================= -->
+                  ============================================= -->
                         <div class="bg-white shadow-sm rounded p-4 mb-4">
                             <h3 class="text-5 fw-400 d-flex align-items-center mb-4">Personal Details<a
                                     style="margin-left: auto;" data-effect="effect-scale" data-target="#exampleModalCenter"
@@ -93,9 +93,21 @@
                             </div>
                             <div class="row gx-3 align-items-center">
                                 <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email:</p>
-                                <p class="col-sm-9 text-3">{{ Auth::user()->email }}&nbsp;&nbsp; <span
-                                        class="bg-success text-white rounded-pill d-inline-block px-2 mb-0"><i
-                                            class="fas fa-check-circle"></i> Verified </span></p>
+                                <p class="col-sm-9 text-3">{{ Auth::user()->email }}&nbsp;&nbsp;
+
+                                    @if (auth()->user()->email_verified_at)
+                                        <span class="bg-success text-white rounded-pill d-inline-block px-2 mb-0"><i
+                                                class="fas fa-check-circle"></i>
+                                                Verified
+                                        </span>
+                                    @else
+                                        <span class="bg-danger text-white rounded-pill d-inline-block px-2 mb-0" title='Check Your Email'><i
+                                                class="fas fa-check-circle"></i>
+                                                Not Verified
+                                        </span>
+                                    @endif
+
+                                </p>
                             </div>
                             <div class="row gx-3 align-items-baseline">
                                 <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Created_At:</p>
@@ -109,28 +121,28 @@
                             </div>
                         </div>
                         <!-- Personal Details
-              ============================================= -->
+                  ============================================= -->
 
-                             <!-- change password account
-              ============================================= -->
-              <div class="bg-white shadow-sm rounded p-4 mb-4">
-              <h3 class="text-5 fw-400 d-flex align-items-center mb-4">Change Your Password <button
+                        <!-- change password account
+                  ============================================= -->
+                        <div class="bg-white shadow-sm rounded p-4 mb-4">
+                            <h3 class="text-5 fw-400 d-flex align-items-center mb-4">Change Your Password <button
                                     type="button" class="btn btn-warning" style="margin-left: auto;" data-toggle="modal"
                                     data-target="#changeModalCenter">Change</button></h3>
-            </div>
-                 
+                        </div>
+
                         <!-- delete account
-              ============================================= -->
+                  ============================================= -->
                         <div class="bg-white shadow-sm rounded p-4 mb-4">
                             <h3 class="text-5 fw-400 d-flex align-items-center mb-4">Delete Your Account <button
                                     type="button" class="btn btn-danger" style="margin-left: auto;" data-toggle="modal"
                                     data-target="#exampleModalCenter2"> Delete </button></h3>
                         </div>
                         <!-- delete account Details Modal
-              ================================== -->
-                         <!-- changeModalCenter 
-              ================================== -->
-              <div id="changeModalCenter" class="modal fade" role="dialog" aria-hidden="true">
+                  ================================== -->
+                        <!-- changeModalCenter
+                  ================================== -->
+                        <div id="changeModalCenter" class="modal fade" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -138,104 +150,107 @@
 
                                     </div>
                                     <div class="modal-body p-4">
-                                    <form id="personaldetails" method="post" action="{{ route('change-password') }}">
+                                        <form id="personaldetails" method="post" action="{{ route('change-password') }}">
                                             @csrf
                                             <div class="row g-3">
                                                 <div class="col-12 col-sm-12">
                                                     <label for="firstName" class="form-label">Password</label>
-                                                    <input type="password"class="form-control @error('new_password') is-invalid @enderror" data-bv-field="password" id="password" required=""name="new_password" placeholder="new_password">
+                                                    <input
+                                                        type="password"class="form-control @error('new_password') is-invalid @enderror"
+                                                        data-bv-field="password" id="password"
+                                                        required=""name="new_password" placeholder="new_password">
                                                 </div>
                                                 <div class="col-12 "style="margin-top:20px">
-                                                <label for="birthDate" class="form-label">Confirm Password</label>
+                                                    <label for="birthDate" class="form-label">Confirm Password</label>
                                                     <div class="position-relative">
-                                                        <input id="birthDate"
-                                                            type="password" class="form-control" required=""
+                                                        <input id="birthDate" type="password" class="form-control"
+                                                            required=""
                                                             placeholder="confirm-password"name="new_password_confirmation"id="confirmNewPasswordInput">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 mt-4 d-grid">
-                                            <button class="btn btn-primary"type="submit">Save Changes</button>
-                                         </div>
-                                    </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- delete Addresses End -->
-                        <div id="exampleModalCenter2" class="modal fade" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title fw-400">Delete Account</h5>
-
-                                    </div>
-                                    <div class="modal-body p-4">
-                                        <form id="emailAddresses" method="post"action="{{ route('destroyAccount') }}">
-                                            @csrf
-                                            <div class="mb-3">
-                                                <label for="emailID2" class="form-label">Do You want to Delete your Account
-                                                </label>
-                                                <div class="input-group">
-                                                </div>
+                                                <button class="btn btn-primary"type="submit">Save Changes</button>
                                             </div>
-                                            <div class="d-grid"><button class="btn btn-danger"
-                                                    type="submit">Delete</button></div>
-                                        </form>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Email Addresses End -->
-                        <!-- Edit Details Modal
-              ================================== -->
-                        <div id="exampleModalCenter" class="modal fade" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title fw-400">Personal Details</h5>
-
-                                    </div>
-                                    <div class="modal-body p-4">
-                                        <form id="personaldetails" method="post" action="{{ route('updateAccount') }}">
-                                            @csrf
-                                            <input type="hidden" value="{{ Auth::user()->id }}"name="id">
-                                            <div class="row g-3">
-                                                <div class="col-12 col-sm-12">
-                                                    <label for="firstName" class="form-label">Name</label>
-                                                    <input type="text" value="{{ Auth::user()->name }}"
-                                                        class="form-control" data-bv-field="firstName" id="firstName"
-                                                        required=""name="name" placeholder="Name">
-                                                </div>
-
-                                                <div class="col-12 "style="margin-top:20px">
-                                                    <label for="birthDate" class="form-label">Email</label>
-                                                    <div class="position-relative">
-                                                        <input id="birthDate" value="{{ Auth::user()->email }}"
-                                                            type="email" class="form-control" required=""
-                                                            placeholder="Email"name="email">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-12 mt-4 d-grid"><button class="btn btn-primary"
-                                                    type="submit">Save Changes</button></div>
-                                    </div>
-
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Personal Details End -->
+
+                    <!-- delete Addresses End -->
+                    <div id="exampleModalCenter2" class="modal fade" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-400">Delete Account</h5>
+
+                                </div>
+                                <div class="modal-body p-4">
+                                    <form id="emailAddresses" method="post"action="{{ route('destroyAccount') }}">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="emailID2" class="form-label">Do You want to Delete your Account
+                                            </label>
+                                            <div class="input-group">
+                                            </div>
+                                        </div>
+                                        <div class="d-grid"><button class="btn btn-danger" type="submit">Delete</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email Addresses End -->
+                    <!-- Edit Details Modal
+                  ================================== -->
+                    <div id="exampleModalCenter" class="modal fade" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-400">Personal Details</h5>
+
+                                </div>
+                                <div class="modal-body p-4">
+                                    <form id="personaldetails" method="post" action="{{ route('updateAccount') }}">
+                                        @csrf
+                                        <input type="hidden" value="{{ Auth::user()->id }}"name="id">
+                                        <div class="row g-3">
+                                            <div class="col-12 col-sm-12">
+                                                <label for="firstName" class="form-label">Name</label>
+                                                <input type="text" value="{{ Auth::user()->name }}"
+                                                    class="form-control" data-bv-field="firstName" id="firstName"
+                                                    required=""name="name" placeholder="Name">
+                                            </div>
+
+                                            <div class="col-12 "style="margin-top:20px">
+                                                <label for="birthDate" class="form-label">Email</label>
+                                                <div class="position-relative">
+                                                    <input id="birthDate" value="{{ Auth::user()->email }}"
+                                                        type="email" class="form-control" required=""
+                                                        placeholder="Email"name="email">
+
+                                                </div>
+                                            </div>
+                                        </div>
 
 
+                                        <div class="col-12 mt-4 d-grid"><button class="btn btn-primary"
+                                                type="submit">Save Changes</button></div>
+                                </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- Personal Details End -->
+
+
             </div>
         </div>
+    </div>
     </div>
 @endsection

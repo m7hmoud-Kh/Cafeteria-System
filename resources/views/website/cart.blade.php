@@ -21,6 +21,8 @@
                                 <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Product</strong>
                                 </th>
                                 <th class="border-0" scope="col"> <strong
+                                    class="text-small text-uppercase">Size</strong></th>
+                                <th class="border-0" scope="col"> <strong
                                         class="text-small text-uppercase">Price</strong></th>
                                 <th class="border-0" scope="col"> <strong
                                         class="text-small text-uppercase">Quantity</strong></th>
