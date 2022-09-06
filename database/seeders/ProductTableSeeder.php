@@ -20,18 +20,17 @@ class ProductTableSeeder extends Seeder
         $faker = Factory::create();
         $categories = Category::pluck('id');
         $tags = Tag::pluck('id');
-        for ($i=0; $i < 150 ; $i++) {
+        for ($i = 0; $i < 150; $i++) {
             $product =   Product::create([
                 'name' => $faker->unique()->sentence(1),
-                'price' => $faker->numberBetween(1,50),
-                'size' => $faker->numberBetween(1,3),
+                'price' => $faker->numberBetween(1, 50),
+                'size' => $faker->numberBetween(1, 3),
                 'quantity' => $faker->numberBetween(5, 100),
-                'image' => 'Tea new.jpg',
+                'image' => 'Produt.jpg',
                 'category_id' => $categories->random(),
-                'status' => rand(1,0)
+                'status' => rand(1, 0)
             ]);
             $product->tags()->sync($tags->random());
         }
-
     }
 }

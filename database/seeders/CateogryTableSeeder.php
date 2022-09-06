@@ -17,10 +17,10 @@ class CateogryTableSeeder extends Seeder
     {
         //create Dummy Category
         $faker = Factory::create();
-        for ($i=0; $i < 25; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             Category::create([
                 'name' => $faker->unique()->sentence(1),
-                'image' => rand(1,2).'.jpg'
+                'image' => '1.jpg'
             ]);
         }
     }
