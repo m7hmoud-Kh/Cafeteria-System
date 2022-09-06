@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins/select2.min.css') }}">
 @endsection
 @section('content')
-    <div>
-        @include('admin.includes.alert-message')
-    </div>
 
     <div class="container-fluid"style="min-height :70vh">
 
@@ -61,23 +58,6 @@
                         <td>{{ $order->format_price($order->tax) }} </td>
                         <td>{{ $order->format_price($order->total) }} </td>
                         <td>{!! $order->status($order->status) !!}</td>
-
-                        {{-- @if ($order->status == 1 or $order->status == 2)
-                            <td title="cancel order">
-                                <a href="" data-toggle="modal" data-target="#deleteModel"
-                                    data-id="{{ $order->id }}">
-                                    <i class="ti-reload"></i>
-                                </a>
-                            </td>
-                        @endif
-                        @if ($order->status == 3)
-                            <td title="cancel order">
-                                <a href="" data-toggle="modal" data-target="#StatusModel1"
-                                    data-id="{{ $order->id }}">
-                                    <i class="ti-reload"></i>
-                                </a>
-                            </td>
-                        @endif --}}
                     </tr>
 
                     <tr class="fold">
@@ -124,60 +104,6 @@
     @endforeach
     </tbody>
     </table>
-
-    {{-- <!-- cancel order Modal=>1
-              ================================== -->
-    <div id="deleteModel" class="modal fade" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-400">Change Status</h5>
-                </div>
-                <div class="modal-body p-3">
-
-                    <form id="emailAddresses" method="post"action="{{ route('changestatus') }}" class="modal-body">
-                        @csrf
-                        <div class="mb-5">
-                            <div class="input-group">
-                                <input type="hidden" id="id" name="id">
-
-                                <select class="custom-select" name="status" required>
-                                    <option value="1">Processing</option>
-                                    <option value="2">Out of delivery</option>
-                                    <option value="3">Done</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="d-grid w-100">
-                            <button class="btn btn-warning" type="submit">Change</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- change order status  End -->
-
-    <!-- change order status Modal=>1
-              ================================== -->
-    <div id="StatusModel1" class="modal fade" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-400">Change Status</h5>
-                </div>
-                <div class="modal-body p-3">
-                    <div class="mb-5">
-                        <div class="input-group">
-                            <lable><span style="color:red;">Can`t change this order status</span></lable>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- cancel order  End -->
-    </div> --}}
-
     </div>
 @endsection
 @section('script')

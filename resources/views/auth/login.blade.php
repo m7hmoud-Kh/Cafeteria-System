@@ -9,7 +9,7 @@
         href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
 
     <!-- css -->
-    <style>
+<style>
 .form-control {
     background: #d3c5b7;
     color: #e5e5e5;
@@ -27,7 +27,7 @@ label{
 <video autoplay muted loop id="myVideo"style="position:fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%; 
+  min-width: 100%;
   min-height: 100%;">
 <source src="{{asset('assets/admin/images/login.mp4')}}" type="video/mp4">
 </video>
@@ -93,7 +93,7 @@ label{
                         </p>
                         <p><a class="text-white" href="{{route('home')}}"> Home</a> </p>
                     </div>
-                   
+
                 </div>
             </div>
         </div>

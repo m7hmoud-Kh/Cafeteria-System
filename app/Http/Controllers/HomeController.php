@@ -12,7 +12,9 @@ class HomeController extends Controller
             $query->where('status', true);
         })->select('id','name')->get();
 
-        $tags = Tag::all();
+        $tags = Tag::WhereHas('products',function($q){
+             $q->whereStatus(true)->where('quantity' , '>=' , '1');
+        })->select('id','name')->get();
 
         $products = Product::whereStatus(true)->where('quantity' , '>=' , '1')->select('id','name','image','price')->get();
         $catid = false;
