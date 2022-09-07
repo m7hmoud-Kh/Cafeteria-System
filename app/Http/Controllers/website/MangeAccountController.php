@@ -28,17 +28,19 @@ class MangeAccountController extends Controller
     {
         $user = User::find($request->id);
 
+        if($request->email != Auth::user()->email){
+            $user->update([
+                'email_verified_at' => null,
+            ]);
+        }
+
+
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
 
-      //  return view('website.account')->with([
-        //    'message' => 'your Account Updated Successfully',
-        //    'alert' => 'success'
-      //  ]);
-      return redirect()->route('account');
-
+        return redirect()->route('account');
     }
 
     public function updateimage(Request $request)
