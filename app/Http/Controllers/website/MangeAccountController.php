@@ -78,15 +78,13 @@ class MangeAccountController extends Controller
 
     }
 
-    public function destroy()
+    public function destroy(FlasherInterface $flasher)
     {
         $user = User::find(Auth::user()->id);
         Storage::disk('user_image')->delete(Auth::user()->image);
         if ($user->delete()) {
-            return redirect()->route('home')->with([
-                'message' => 'your Account Deleted Successfully',
-                'alert' => 'danger'
-            ]);
+            $flasher->addError("your Account Deleted Successfully");
+            return redirect()->route('home');
         }
     }
 

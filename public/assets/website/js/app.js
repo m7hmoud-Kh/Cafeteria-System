@@ -1,5 +1,5 @@
 
- 
+
   var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
@@ -15,17 +15,16 @@ $(function(){
     });
 
 
- 
   });
 
 
 
-  
+
 
 $('#deleteModel').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
-      
+
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
 
