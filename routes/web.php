@@ -16,7 +16,7 @@ Auth::routes(['verify'=>true]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
     //category Route
 Route::get('/category/{id}',[CategoryController::class,'show'])->name('show-category');
-    // End category Route
+    // End category Route
 Route::get('/tag/{id}',[WebsiteTagController::class,'show'])->name('show-tag');
 
 
