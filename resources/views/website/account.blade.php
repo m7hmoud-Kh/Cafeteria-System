@@ -14,11 +14,11 @@
         <div id="content" class="py-4">
             <div class="container">
                 <div class="row">
-            
+
                     <!-- Left Panel
             ============================================= -->
                     <aside class="col-lg-3">
-            
+
                         <!-- Profile Details
               =============================== -->
                         <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
@@ -93,9 +93,15 @@
                             </div>
                             <div class="row gx-3 align-items-center">
                                 <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email:</p>
-                                <p class="col-sm-9 text-3">{{ Auth::user()->email }}&nbsp;&nbsp; <span
-                                        class="bg-success text-white rounded-pill d-inline-block px-2 mb-0"><i
-                                            class="fas fa-check-circle"></i> Verified </span></p>
+                                 <p class="col-sm-9 text-3">{{ Auth::user()->email }}&nbsp;&nbsp;
+                                  @if(Auth::user()->email_verified_at != null)
+                                 <span class="bg-success text-white rounded-pill d-inline-block px-2 mb-0"><i
+                                class="fas fa-check-circle"></i> Verified </span>
+                                @else
+                                <span class="bg-warning text-white rounded-pill d-inline-block px-2 mb-0">Not Verified </span>
+                                @endif
+                                </p>
+
                             </div>
                             <div class="row gx-3 align-items-baseline">
                                 <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Created_At:</p>
@@ -118,7 +124,7 @@
                                     type="button" class="btn btn-warning" style="margin-left: auto;" data-toggle="modal"
                                     data-target="#changeModalCenter">Change</button></h3>
             </div>
-                 
+
                         <!-- delete account
               ============================================= -->
                         <div class="bg-white shadow-sm rounded p-4 mb-4">
@@ -128,7 +134,7 @@
                         </div>
                         <!-- delete account Details Modal
               ================================== -->
-                         <!-- changeModalCenter 
+                         <!-- changeModalCenter
               ================================== -->
               <div id="changeModalCenter" class="modal fade" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">

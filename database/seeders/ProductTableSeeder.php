@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
-use App\Models\Product;
 use Faker\Factory;
+use App\Models\Tag;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class ProductTableSeeder extends Seeder
@@ -18,8 +19,9 @@ class ProductTableSeeder extends Seeder
     {
         $faker = Factory::create();
         $categories = Category::pluck('id');
+        $tags = Tag::pluck('id');
         for ($i=0; $i < 150 ; $i++) {
-            Product::create([
+            $product =   Product::create([
                 'name' => $faker->unique()->sentence(1),
                 'price' => $faker->numberBetween(1,50),
                 'size' => $faker->numberBetween(1,3),
@@ -28,6 +30,7 @@ class ProductTableSeeder extends Seeder
                 'category_id' => $categories->random(),
                 'status' => rand(1,0)
             ]);
+            $product->tags()->sync($tags->random());
         }
 
     }

@@ -54,7 +54,7 @@ class CheckOutController extends Controller
             'order_id' => $order->id,
         ]);
 
-        $flasher->addSuccess("Make Make Successfully with:ref_id: $order->ref_id");
+        $flasher->addSuccess("Make Successfully with:ref_id: $order->ref_id");
 
         $this->send_notificatio_order_to_admins($order);
         return redirect()->route('myorder');
@@ -69,6 +69,6 @@ class CheckOutController extends Controller
         return $all_total_cart;
     }
 
-    
+
 
 }

@@ -28,15 +28,18 @@ class MangeAccountController extends Controller
     {
         $user = User::find($request->id);
 
+        if($request->email != Auth::user()->email){
+            $user->update([
+                'email_verified_at' => null,
+            ]);
+        }
+
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
 
-      //  return view('website.account')->with([
-        //    'message' => 'your Account Updated Successfully',
-        //    'alert' => 'success'
-      //  ]);
+
       return redirect()->route('account');
 
     }
@@ -67,17 +70,16 @@ class MangeAccountController extends Controller
             User::whereId(auth()->user()->id)->update([
                 'password' => Hash::make($request->new_password)
             ]);
-                 $flasher->addSuccess("Password changed successfully");
-                 return redirect()->route('account');
+            $flasher->addSuccess("Password changed successfully");
+            return redirect()->route('account');
         }
 
-      
+
 
     }
 
-    public function destroy(Request $request)
+    public function destroy()
     {
-
         $user = User::find(Auth::user()->id);
         Storage::disk('user_image')->delete(Auth::user()->image);
         if ($user->delete()) {
@@ -88,6 +90,6 @@ class MangeAccountController extends Controller
         }
     }
 
-   
+
 
 }

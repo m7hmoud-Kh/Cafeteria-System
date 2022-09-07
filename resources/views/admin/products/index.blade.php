@@ -9,9 +9,6 @@
 @endsection
 
 @section('content')
-    <div>
-        @include('admin.includes.alert-message')
-    </div>
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">

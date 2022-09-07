@@ -18,7 +18,7 @@ class CategoryController extends Controller
         ->where('category_id','=',$category->id)
         ->select('id','name','image','price')
         ->get();
-        // dd($products);
+
         return view("website.category",["category"=>$category,"categories"=>$categories,"products"=>$products ,"cat_id"=>$id]);
     }
 }

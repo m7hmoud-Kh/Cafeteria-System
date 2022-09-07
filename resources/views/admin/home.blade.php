@@ -12,7 +12,7 @@ Home
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">
-                <li class="breadcrumb-item"><a href="index.html" class="default-color">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="default-color">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
         </div>
@@ -20,8 +20,8 @@ Home
 </div>
 <!-- widgets -->
 <div class="row">
-   
-    
+
+
     <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
@@ -42,7 +42,7 @@ Home
             </div>
         </div>
     </div>
-   
+
     <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
@@ -60,7 +60,7 @@ Home
                 <p class="text-muted pt-3 mb-0 mt-2 border-top">
 
                     <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i>
-                  
+
                     {{number_format(($orders_in_prossing/$all_orders)*100,2)}}%
                 </p>
             </div>
@@ -68,7 +68,7 @@ Home
     </div>
 
 
-       
+
     <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
@@ -84,7 +84,7 @@ Home
                     </div>
                 </div>
                 <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                    <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i> 
+                    <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i>
                     {{number_format(($orders_out_of_delivery/$all_orders)*100,2)}}%
                 </p>
             </div>
@@ -92,7 +92,7 @@ Home
     </div>
 
 
-       
+
     <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
@@ -123,7 +123,7 @@ Home
                 <div class="clearfix">
                     <div class="float-left">
                         <span class="text-success">
-                           
+
                             <i class="fa fa-user-o highlight-icon" aria-hidden="true"></i>
                         </span>
                     </div>
@@ -132,7 +132,7 @@ Home
                         <h4>{{$all_user_is_not_admin}}</h4>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -150,7 +150,7 @@ Home
                         <h4>{{$all_admin}}</h4>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -170,7 +170,7 @@ Home
                         <h4>{{$categories}}</h4>
                     </div>
                 </div>
-              
+
             </div>
         </div>
     </div>
@@ -189,7 +189,7 @@ Home
                         <h4>{{$products}}</h4>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
