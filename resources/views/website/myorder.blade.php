@@ -45,8 +45,9 @@
         <tbody>
             {{$count = 0}}
             @foreach ($orders as $order)
+
                 <?php
-                $total = $order->pluck('total')->sum();
+                $total =$total + $order->total;
                 ?>
                 <tr class="view">
                     <td>{{++$count}}</td>
