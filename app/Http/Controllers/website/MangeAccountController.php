@@ -39,8 +39,7 @@ class MangeAccountController extends Controller
             'email' => $request->email,
         ]);
 
-
-      return redirect()->route('account');
+        return redirect()->route('account');
 
     }
 

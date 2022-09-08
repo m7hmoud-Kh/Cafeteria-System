@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->enum('size',[1,2,3]);
             $table->boolean("status")->default(1);
             $table->integer("quantity")->default(1);
-            $table->foreignId("category_id")->nullable()->constrained();
+            $table->foreignId("category_id")->nullable()->constrained()->cascadeOnDelete();;
             $table->timestamps();
         });
     }
