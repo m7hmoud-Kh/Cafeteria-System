@@ -19,47 +19,8 @@
             <a id="btnFullscreen" href="#" class="nav-link"><i class="ti-fullscreen"></i></a>
         </li>
 
-        <li class="nav-item dropdown ">
-            <a class="nav-link top-nav" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                aria-expanded="false">
-                <i class="ti-bell"></i>
-                @if (Auth::user()->unreadNotifications->count())
-                    <span class="badge badge-success notification-status">
-                    </span>
-                @else
-                    <span class="badge badge-danger notification-status">
-                    </span>
-                @endif
-
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-big dropdown-notifications">
-                <div class="dropdown-header notifications">
-                    <strong>Notifications</strong>
-                    <span class="badge badge-pill badge-warning">{{ Auth::user()->unreadNotifications->count() }}</span>
-                </div>
-                <div class="dropdown-divider"></div>
-                @forelse (Auth::user()->unreadNotifications as $notification)
-                    <a href="{{route('orders')}}" class="dropdown-item">
-                        <strong> {{ $notification->data['user_name'] }}</strong> <br>
-                        Make Order with Ref_id <br>
-                        <strong>{{ $notification->data['order_ref_id'] }}</strong>
-                        <small class="float-right text-muted time">{{ $notification->created_at }}</small>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                @empty
-                    @foreach (Auth::user()->Notifications as $notification)
-                        <a href="{{route('orders')}}" class="dropdown-item">
-                            <strong> {{ $notification->data['user_name'] }}</strong> <br>
-                            Make Order with Ref_id <br>
-                            <strong>{{ $notification->data['order_ref_id'] }}</strong>
-                            <small class="float-right text-muted time">{{ $notification->created_at }}</small>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                    @endforeach
-                @endforelse
-                {{Auth::user()->unreadNotifications->markAsRead()}}
-            </div>
-        </li>
+        <!--notification component -->
+        <livewire:admin.notification-component>
 
         <li class="nav-item dropdown mr-30">
             <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
