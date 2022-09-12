@@ -12,6 +12,7 @@ class MyOrderController extends Controller
 {
     public function index()
     {
+        Auth::user()->unreadNotifications->markAsRead();
         $orders = Order::where('user_id', Auth()->user()->id)->orderBy('created_at','desc')->get();
         return view('website.myorder',compact('orders'));
 

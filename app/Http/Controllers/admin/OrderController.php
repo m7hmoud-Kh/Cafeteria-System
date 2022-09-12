@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Order;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
+use App\Models\Order;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
     public function index()
     {
+        Auth::user()->unreadNotifications->markAsRead();
+
         $orders = Order::select('id', 'ref_id', 'notes', 'phone', 'sub_total', 'tax', 'total', 'status', 'created_at')->orderby('id','desc')->paginate(10);
         return view('admin.order.index', compact('orders'));
     }
