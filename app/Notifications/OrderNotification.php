@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
 
 class OrderNotification extends Notification
 {
@@ -18,10 +17,12 @@ class OrderNotification extends Notification
      * @return void
      */
     public $data;
+    public $name;
 
-    public function __construct($data)
+    public function __construct($data,$auth_name)
     {
         $this->data = $data;
+        $this->name = $auth_name;
     }
 
     /**
@@ -47,7 +48,7 @@ class OrderNotification extends Notification
         return [
             'order_id' => $this->data['id'],
             'order_ref_id' => $this->data['ref_id'],
-            'user_name' => Auth::user()->name,
+            'user_name' => $this->name,
             'total' => $this->data['total'],
         ];
     }

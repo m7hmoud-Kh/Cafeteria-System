@@ -9,9 +9,10 @@ use App\Models\TransactionOrder;
 use Illuminate\Support\Facades\DB;
 use Flasher\Prime\FlasherInterface;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\trait\OrderNotificationTrait;
+use App\Jobs\SendNotificationForAdminsJob;
 use App\Http\Requests\website\StoreOrderRequest;
-
 
 class CheckOutController extends Controller
 {
@@ -56,7 +57,7 @@ class CheckOutController extends Controller
 
         $flasher->addSuccess("Make Successfully with:ref_id: $order->ref_id");
 
-        $this->send_notificatio_order_to_admins($order);
+        SendNotificationForAdminsJob::dispatch($order,Auth::user()->name);
         return redirect()->route('myorder');
 
     }
