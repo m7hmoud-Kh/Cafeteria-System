@@ -18,7 +18,7 @@ class UsersOrderController extends Controller
 
     public function index()
     {
-        $orders = Order::orderBy('created_at','desc')->get();
+        $orders = Order::latest()->get();
         $usersUnique = $orders->unique(['user_id']);  //get uniqe user to display in selector
         return view('admin.orders.orders',compact('orders','usersUnique'));
     }
@@ -56,16 +56,16 @@ class UsersOrderController extends Controller
         $user = $request->user_id;
 
         if($user != 'null' && $from == '' && $to == '' ){
-            $orders = Order::where('user_id',$user)->orderBy('created_at','desc')->get();
+            $orders = Order::where('user_id',$user)->latest()->get();
 
         }elseif($from != '' && $to != '' && $user != 'null'){
 
-        $orders = Order::whereBetween('created_at', [$from, $to])->where('user_id',$user)->orderBy('created_at','desc')->get();
+        $orders = Order::whereBetween('created_at', [$from, $to])->where('user_id',$user)->latest()->get();
         }
         elseif($from != '' && $to != '' && $user == 'null'){
-            $orders = Order::whereBetween('created_at', [$from, $to])->orderBy('created_at','desc')->get();
+            $orders = Order::whereBetween('created_at', [$from, $to])->latest()->get();
         }else{
-            $orders = Order::orderBy('created_at','desc')->get();
+            $orders = Order::latest()->get();
         }
 
         $allorders = Order::all();

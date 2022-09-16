@@ -21,10 +21,10 @@
     <form class="form-inline mt-5 mb-3" action="{{ route('selectdate') }}"method="post">
         @csrf
         <div class="form-group mb-2">
-            <input type="date" class="form-control"name="datefrom">
+            <input type="date" class="form-control"name="datefrom" required>
         </div>
         <div class="form-group mx-sm-3 mb-2">
-            <input type="date" class="form-control"name="dateto">
+            <input type="date" class="form-control"name="dateto" required>
         </div>
         <button type="submit" class="btn btn-warning mb-2">select</button>
     </form>
@@ -43,7 +43,9 @@
             </tr>
         </thead>
         <tbody>
-            {{$count = 0}}
+            @php
+            $count = 0
+            @endphp
             @foreach ($orders as $order)
 
                 <?php
@@ -57,13 +59,13 @@
                     <td>{{ $order->notes }} </td>
                     <td>{{ $order->format_price($order->total) }} </td>
                     @if ($order->status == 1)
-                        <td title="cancel order">
+                        <td title="cancel order" class="text-center">
                             <a href="" data-toggle="modal" data-target="#deleteModel" data-id="{{ $order->id }}">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
                     @else
-                        <td title="cancel order">
+                        <td title="cancel order" class="text-center">
                             <a href="" data-toggle="modal" data-target="#deleteModel1">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -95,9 +97,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-
-
-
                                 </div>
                             </div>
 
@@ -115,15 +114,13 @@
 
     </div>
 
-
     @else
         <div class="total text-center mt-4 mb-4" dir="ltr">
             <h3>Not Found Order</h3>
             <p>Shopping  <a href="{{route('home')}}">Here</a> </p>
         </div>
     @endif
-    <!-- cancel order Modal=>1
-              ================================== -->
+    <!-- cancel order Modal=>1================================== -->
     <div id="deleteModel" class="modal fade" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">

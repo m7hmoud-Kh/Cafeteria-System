@@ -21,12 +21,12 @@ class MyOrderController extends Controller
 
     public function selectdate(Request $request)
     {
-    $from = date($request->datefrom);
-    $to = date($request->dateto);
-    $orders = Order::whereBetween('created_at', [$from, $to])->where('user_id', Auth()->user()->id)->orderBy('created_at','desc')->get();
+        $from = date($request->datefrom);
+        $to = date($request->dateto);
+        
+        $orders = Order::whereBetween('created_at', [$from, $to])->where('user_id', Auth()->user()->id)->latest()->get();
 
-
-    return view('website.myorder',compact('orders'));
+        return view('website.myorder',compact('orders'));
     }
 
     public function destroy(Request $request)

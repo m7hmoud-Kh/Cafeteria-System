@@ -3,72 +3,44 @@
 namespace App\Http\Controllers\website;
 
 use Carbon\Carbon;
-use App\Models\Cart;
 use App\Models\Order;
-use App\Models\TransactionOrder;
-use Illuminate\Support\Facades\DB;
 use Flasher\Prime\FlasherInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\trait\OrderNotificationTrait;
 use App\Jobs\SendNotificationForAdminsJob;
 use App\Http\Requests\website\StoreOrderRequest;
+use App\Http\trait\CheckoutTrait;
 
 class CheckOutController extends Controller
 {
-    use OrderNotificationTrait;
+    use OrderNotificationTrait , CheckoutTrait;
 
-    public const TAX = 12;
-    public function index(){
-        return view('website.check-out');
-    }
+
     public function store(StoreOrderRequest $request,FlasherInterface $flasher){
-        $all_cart = Cart::select(
-            'product_id',
-            'quantity',
-            DB::raw("price * quantity As sub_total")
-        )->where('user_id',Auth()->user()->id)
-        ->get();
 
-        $sub_total = $this->get_all_total_of_cart($all_cart);
-        $tax = $sub_total / self::TAX;
-        $total = $sub_total + $tax;
-
+        $all_prices = $this->calc_total_tax(Auth()->user()->id);
         $order = Order::create([
             'user_id' => Auth()->user()->id,
             'ref_id' => Auth()->user()->name.'_'.Carbon::now(),
-            'sub_total' => $sub_total,
-            'tax' => $tax,
-            'total' => $total,
+            'sub_total' => $all_prices['sub_total'],
+            'tax' => $all_prices['tax'],
+            'total' => $all_prices['total'],
             'notes' => $request->notes,
             'phone' => $request->phone
         ]);
+        $all_item_in_cart = $this->put_products_in_order($order,Auth()->user()->id);
+        $this->destory_cart($all_item_in_cart);
+        $this->add_transactionOrder($order);
 
-        $all_item_in_cart = Auth()->user()->cart;
-        foreach ($all_item_in_cart as $cart) {
-            $order->products()->syncWithoutDetaching([$cart->product_id => ['quantity' => $cart->quantity]]);
-        }
-        Cart::destroy($all_item_in_cart->pluck('id'));
-
-
-        TransactionOrder::create([
-            'order_id' => $order->id,
-        ]);
+        SendNotificationForAdminsJob::dispatch($order,Auth::user()->name);
 
         $flasher->addSuccess("Make Successfully with:ref_id: $order->ref_id");
 
-        SendNotificationForAdminsJob::dispatch($order,Auth::user()->name);
         return redirect()->route('myorder');
-
     }
 
-    private function get_all_total_of_cart($all_cart){
-        $all_total_cart = 0;
-        foreach ($all_cart as $cart) {
-            $all_total_cart += $cart->sub_total;
-        }
-        return $all_total_cart;
-    }
+
 
 
 

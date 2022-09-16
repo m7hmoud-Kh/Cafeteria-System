@@ -33,7 +33,7 @@ Route::group(['middleware'=>['auth']],function(){
         /**End Route Cart */
 
         /**Route Check out */
-        Route::get('/check-out',[CheckOutController::class,'index'])->name('check-out');
+        Route::view('/check-out','website.check-out')->name('check-out');
         Route::post('/confirm-order',[CheckOutController::class,'store'])->name('confirm-order')->middleware('verified');
         /***End Route Check out */
     });

@@ -8,17 +8,15 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Models\TransactionOrder;
-use Illuminate\Support\Facades\DB;
 use Flasher\Prime\FlasherInterface;
 use App\Http\Controllers\Controller;
+use App\Http\trait\CheckoutTrait;
 use App\Http\trait\OrderNotificationTrait;
 
 class OrderManualController extends Controller
 {
-    use OrderNotificationTrait;
+    use OrderNotificationTrait , CheckoutTrait;
 
-    public const TAX = 12;
 
     public function index(Request $request)
     {
@@ -48,7 +46,7 @@ class OrderManualController extends Controller
 
     public function checkout_details(Request $request)
     {
-        $carts = Cart::where('user_id', $request->session()->get('user_id'))->orderby('id', 'desc')->get();
+        $carts = Cart::where('user_id', $request->session()->get('user_id'))->latest()->get();
         $data = [
             'carts' => $carts,
         ];
@@ -57,38 +55,26 @@ class OrderManualController extends Controller
 
     public function place_order(Request $request, FlasherInterface $flasher)
     {
-        $all_cart = Cart::select(
-            'product_id',
-            'quantity',
-            DB::raw("price * quantity As sub_total")
-        )->where('user_id', $request->session()->get('user_id'))
-            ->get();
 
-        $sub_total = $this->get_all_total_of_cart($all_cart);
-        $tax = $sub_total / self::TAX;
-        $total = $sub_total + $tax;
-
+        $all_prices = $this->calc_total_tax($request->session()->get('user_id'));
         $user = User::find($request->session()->get('user_id'));
+
         $order = Order::create([
             'user_id' => $request->session()->get('user_id'),
             'ref_id' => 'Admin_' . $user->name . '_' . Carbon::now(),
-            'sub_total' => $sub_total,
-            'tax' => $tax,
-            'total' => $total,
+            'sub_total' => $all_prices['sub_total'],
+            'tax' => $all_prices['tax'],
+            'total' => $all_prices['total'],
             'notes' => $request->notes,
             'phone' => $request->phone
         ]);
 
-        $all_item_in_cart = Cart::where('user_id', $request->session()->get('user_id'))->get();
-        foreach ($all_item_in_cart as $cart) {
-            $order->products()->syncWithoutDetaching([$cart->product_id => ['quantity' => $cart->quantity]]);
-        }
-        Cart::destroy($all_item_in_cart->pluck('id'));
+
+        $all_item_in_cart = $this->put_products_in_order($order,$request->session()->get('user_id'));
+        $this->destory_cart($all_item_in_cart);
+        $this->add_transactionOrder($order);
 
 
-        TransactionOrder::create([
-            'order_id' => $order->id,
-        ]);
 
         $data = [
             'next_status' => 'Processing',
@@ -100,14 +86,8 @@ class OrderManualController extends Controller
 
         $flasher->addSuccess("Order Added with RefId: <br> $order->ref_id");
         return redirect()->route('orders');
+
     }
 
-    private function get_all_total_of_cart($all_cart)
-    {
-        $all_total_cart = 0;
-        foreach ($all_cart as $cart) {
-            $all_total_cart += $cart->sub_total;
-        }
-        return $all_total_cart;
-    }
+
 }
