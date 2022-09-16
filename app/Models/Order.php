@@ -11,6 +11,10 @@ class Order extends Model
 {
     use HasFactory , FormatPriceTrait;
 
+    const PROCESSING = 1;
+    const OUT_OF_DELIVERY = 2;
+    const DONE = 3;
+
     protected $fillable = [
         'ref_id',
         'user_id',
@@ -38,11 +42,11 @@ class Order extends Model
 
     public function status($value){
         switch ($value) {
-            case '1':
+            case self::PROCESSING:
                 return '<span class="badge badge-warning">Processing</span>';
-            case '2':
+            case self::OUT_OF_DELIVERY:
                 return '<span class="badge badge-primary">Out of Delivery</span>';
-            case '3':
+            case self::DONE:
                 return '<span class="badge badge-success">Done</span>';
             default:
                 break;
@@ -51,9 +55,9 @@ class Order extends Model
 
     public function next_status($value){
         switch ($value) {
-            case '2':
+            case self::OUT_OF_DELIVERY:
                 return 'Out of Delivery';
-            case '3':
+            case self::DONE:
                 return 'Done';
             default:
                 break;
