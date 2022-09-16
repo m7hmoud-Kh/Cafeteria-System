@@ -14,6 +14,7 @@ class Order extends Model
     const PROCESSING = 1;
     const OUT_OF_DELIVERY = 2;
     const DONE = 3;
+    const TAX = 12;
 
     protected $fillable = [
         'ref_id',
