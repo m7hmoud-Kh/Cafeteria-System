@@ -107,5 +107,49 @@
                 {{ $orders->links() }}
             </div>
         </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    Change Status
+                </div>
+            </div>
+            <form action="{{route('changestatus')}}" method="post">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    Do You want to Change Status For Order:
+                    <strong><span id="ref_id"></span></strong>
+                    <input type="hidden" name="order_id" id="order_id" value="">
+                    <input type="hidden" name="next_status" id="next_status" value="">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class='btn btn-success'>
+                        Confirm
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
+@endsection
+
+@section('script')
+<script>
+ $("#exampleModalCenter").on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        var order_id = button.data('order_id');
+        var next_status = button.data('next_status');
+        var ref_id = button.data('ref_id');
+        var modal = $(this);
+        modal.find('.modal-body #ref_id').html(ref_id);
+        modal.find('.modal-body #order_id').val(order_id);
+        modal.find('.modal-body #next_status').val(next_status);
+    });
+</script>
 @endsection

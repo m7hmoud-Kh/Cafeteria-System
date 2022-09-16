@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
+use App\Events\DecreaseQuantityEvent;
 use App\Models\Order;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
@@ -13,6 +15,7 @@ use Flasher\Prime\FlasherInterface;
 class UsersOrderController extends Controller
 {
     use OrderNotificationTrait;
+
     public function index()
     {
         $orders = Order::orderBy('created_at','desc')->get();
@@ -32,12 +35,8 @@ class UsersOrderController extends Controller
         ]);
 
 
-        if($request->next_status == 2){
-            foreach($order->products as $product){
-                $pro = Product::find($product->pivot->product_id);
-                $pro->quantity -= $product->pivot->quantity;
-                $pro->save();
-            }
+        if($request->next_status == Order::OUT_OF_DELIVERY){
+            event(new DecreaseQuantityEvent($order));
         }
 
         $data = [
@@ -47,8 +46,8 @@ class UsersOrderController extends Controller
         $this->send_notification_order_to_specifi_user($order->user->id,$data);
 
         $flasher->addSuccess("Order Change Status Successfully");
-        
-        return redirect()->route('orders');
+
+        return redirect()->back();
     }
 
     public function select(Request $request){
