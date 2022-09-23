@@ -21,8 +21,7 @@ class OrderController extends Controller
     {
         $order = Order::with('products', 'user')->find($id);
         $user = User::find($order->user_id);
-        // dd($order);
-    return view('admin.order.show', ['order' => $order, 'user' => $user]);
+        return view('admin.order.show', ['order' => $order, 'user' => $user]);
     }
 
     public function processing_orders()

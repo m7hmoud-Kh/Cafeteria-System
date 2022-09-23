@@ -10,14 +10,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\trait\OrderNotificationTrait;
 use Flasher\Prime\FlasherInterface;
 
 class MangeAccountController extends Controller
 {
     use ImageTrait;
-    use OrderNotificationTrait;
-
     public function index()
     {
 
