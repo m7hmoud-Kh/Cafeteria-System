@@ -22,8 +22,7 @@ class IsAdmin
         {
             return $next($request);
         }
-        else
-            return redirect('/');
-      
+        return redirect('/');
+
     }
 }
