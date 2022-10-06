@@ -168,8 +168,9 @@ return [
         /*
          * Package Service Providers...
          */
-        SweetAlertServiceProvider::class,
+        // SweetAlertServiceProvider::class,
         FlasherServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -235,6 +236,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Flasher' => Flasher\Laravel\Facade\Flasher::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
     ],
 
