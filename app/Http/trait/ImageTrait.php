@@ -4,9 +4,6 @@ namespace  App\Http\trait;
 
 use Carbon\Carbon;
 
-/**
- *
- */
 trait ImageTrait
 {
     public function insertImage($title,$image,$dir){
