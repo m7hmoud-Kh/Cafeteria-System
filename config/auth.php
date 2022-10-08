@@ -40,10 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        
+
         'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
+            'hash' => false,
+        ],
+
+        'Sadmin' => [
+            'driver' => 'jwt',
+            'provider' => 'super_admins',
             'hash' => false,
         ],
     ],
@@ -69,6 +75,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'super_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SuperAdmin::class,
         ],
 
         // 'users' => [

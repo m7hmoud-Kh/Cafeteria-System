@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\SuperAdmin;
+use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
-class AuthController extends Controller
+class SuperAdminAuthController extends Controller
 {
-    /**
+     /**
      * Create a new AuthController instance.
      *
      * @return void
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:super-admin', ['except' => ['login', 'register']]);
     }
     /**
      * Get a JWT via given credentials.
@@ -34,7 +35,7 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
         $credentials = request()->only(['email','password']);
-        if (! $token = auth('api')->attempt($credentials)) {
+        if (! $token = Auth::guard('Sadmin')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
         return $this->createNewToken($token);
@@ -56,11 +57,11 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
-        $user = User::create(array_merge($validator->validated(), ['password' => bcrypt($request->password)]));
+        $user = SuperAdmin::create(array_merge($validator->validated(), ['password' => bcrypt($request->password)]));
 
         return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
+            'message' => 'Super Admin successfully registered',
+            'Admin' => $user
         ], 201);
     }
 
@@ -71,8 +72,8 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth('api')->logout();
-        return response()->json(['message' => 'User successfully signed out']);
+        auth('Sadmin')->logout();
+        return response()->json(['message' => 'Admin successfully signed out']);
     }
     /**
      * Refresh a token.
@@ -81,7 +82,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->createNewToken(auth('api')->refresh());
+        return $this->createNewToken(auth('Sadmin')->refresh());
     }
     /**
      * Get the authenticated User.
@@ -90,7 +91,7 @@ class AuthController extends Controller
      */
     public function userProfile()
     {
-        return response()->json(auth()->user());
+        return response()->json(auth('Sadmin')->user());
     }
     /**
      * Get the token array structure.
@@ -103,8 +104,8 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60,
-            'user' => auth('api')->user()
+            'expires_in' => auth('Sadmin')->factory()->getTTL() * 60,
+            'user' => auth('Sadmin')->user()
         ]);
     }
 }
